@@ -1,27 +1,26 @@
 export default {
   // Target: https://go.nuxtjs.dev/config-target
-  mode: 'universal',
-  target: 'server',
+  target: "server",
   generate: {
     minify: false
   },
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'ecom',
+    title: "ecom",
     meta: [
-      { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' }
+      { charset: "utf-8" },
+      { name: "viewport", content: "width=device-width, initial-scale=1" },
+      { hid: "description", name: "description", content: "" }
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
     // http://ginnibazar.lara
     script: [
       {
         src: `${
-          process.env.NODE_ENV == 'production'
-            ? 'https://ghorerbazar.shop'
-            : 'http://ginnibazar.lara'
+          process.env.NODE_ENV == "production"
+            ? "https://ghorerbazar.shop"
+            : "http://ginnibazar.lara"
         }/assets-media/1/content/confignew.js`
       }
     ]
@@ -29,8 +28,8 @@ export default {
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
-    '~assets/scss/main.scss',
-    '~assets/splide/themes/splide-skyblue.min.css'
+    "~assets/scss/main.scss",
+    "~assets/splide/themes/splide-skyblue.min.css"
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -39,49 +38,49 @@ export default {
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
     // https://go.nuxtjs.dev/eslint
-    '@nuxtjs/eslint-module'
+    "@nuxtjs/eslint-module"
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
-    '@nuxtjs/proxy',
+    "@nuxtjs/proxy",
     // https://go.nuxtjs.dev/bootstrap
-    'bootstrap-vue/nuxt',
+    "bootstrap-vue/nuxt",
     // https://go.nuxtjs.dev/axios
-    '@nuxtjs/auth-next',
-    '@nuxtjs/axios',
+    "@nuxtjs/auth-next",
+    "@nuxtjs/axios",
 
     // https://go.nuxtjs.dev/pwa
-    '@nuxtjs/pwa'
+    "@nuxtjs/pwa"
   ],
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     // all is function
-    { src: '~/plugins/is.js' },
-    { src: '~/plugins/persistedState.client.js', mode: 'client' },
+    { src: "~/plugins/is.js" },
+    { src: "~/plugins/persistedState.client.js", mode: "client" },
     // { src: '~/plugins/axios/plugin.js', mode: 'client' },
-    '~/plugins/axios/index.js',
-    '~/plugins/ziggy/apiUrl.js',
+    "~/plugins/axios/index.js",
+    "~/plugins/ziggy/apiUrl.js",
     // { src: '~/plugins/axios/index.js', mode: 'client' },
     // { src: '~/plugins/axios/index.js', mode: 'server' },
-    { src: '~/plugins/vue-plugins.js', mode: 'client' },
-    { src: '~/plugins/validate/formVError.client.js', mode: 'client' }
+    { src: "~/plugins/vue-plugins.js", mode: "client" },
+    { src: "~/plugins/validate/formVError.client.js", mode: "client" }
   ],
   // 'http://ginnibazar.lara/json'
   proxy: {
-    '/json': {
+    "/json": {
       target:
-        process.env.NODE_ENV == 'production'
-          ? 'https://ghorerbazar.shop'
-          : 'http://ginnibazar.lara',
-      pathRewrite: { '^/json': '/json' }
+        process.env.NODE_ENV == "production"
+          ? "https://ghorerbazar.shop"
+          : "http://ginnibazar.lara",
+      pathRewrite: { "^/json": "/json" }
     },
-    '/laravel': {
+    "/laravel": {
       target:
-        process.env.NODE_ENV == 'production'
-          ? 'https://ghorerbazar.shop'
-          : 'http://ginnibazar.lara',
-      pathRewrite: { '^/laravel': '/' }
+        process.env.NODE_ENV == "production"
+          ? "https://ghorerbazar.shop"
+          : "http://ginnibazar.lara",
+      pathRewrite: { "^/laravel": "/" }
     }
   },
   // Global CSS: https://medium.com/@wearethreebears/globally-accessible-css-and-scss-sass-in-your-nuxt-component-files-7c1c012d31bd
@@ -106,13 +105,13 @@ export default {
     // },
     strategies: {
       laravelSanctum: {
-        provider: 'laravel/sanctum',
-        url: 'json',
+        provider: "laravel/sanctum",
+        url: "json",
         endpoints: {
           login: {
-            url: '/login',
-            method: 'post',
-            propertyName: 'data.token'
+            url: "/login",
+            method: "post",
+            propertyName: "data.token"
           },
           user: false,
           logout: false
@@ -130,14 +129,14 @@ export default {
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {
     manifest: {
-      lang: 'en'
+      lang: "en"
     }
   },
 
-  globalName: 'myCustomName',
+  globalName: "myCustomName",
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-    transpile: ['vue-plugins'],
+    transpile: ["vue-plugins"],
     cssSourceMap: true,
     extractCSS: true,
     html: {
@@ -156,4 +155,4 @@ export default {
       }
     }
   }
-}
+};
