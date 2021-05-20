@@ -1,0 +1,33 @@
+.footer{
+    $gap: 0.5rem;
+    background-color: #ffde96;
+    color:#040131;
+    padding:1rem;
+    margin-top: $gap;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:center;
+    white-space:nowrap;
+    .footer-item{
+       
+        flex: 1;
+        padding: 1rem 0.5rem;
+        .title-box{
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+        .footer-content{
+            margin-top:0.5rem;
+            .footer-item-list{
+           list-style-type: none;
+           padding: 0;
+           margin:0;
+           display: grid;
+           grid-template-columns: 1fr;
+                .item{
+                   
+                }
+            }
+        }
+    }
+}

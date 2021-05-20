@@ -1,0 +1,27 @@
+
+.slick-slider{
+    padding-top: 6px;
+    position: relative;
+    .slick-arrow{
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        z-index: 5;
+        font-size: 3rem;
+        color: #fff;
+        transition: color .2s cubic-bezier(.54,.01,.1,1);
+        padding: 0;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        &.slick-prev{
+            left: 0;
+           transform: translate(-100%, 0%);
+        }
+        &.slick-next{
+            right: 0;
+            transform: translate(100%, 0%);
+        }
+    }
+}

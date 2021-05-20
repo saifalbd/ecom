@@ -1,0 +1,26 @@
+.rd-item-name{
+    $line_height_lg:4rem;
+    $line_height:2.5rem;
+    $line_height_sm:2rem;
+    white-space: nowrap;
+    text-decoration: none;
+    line-height: $line_height;
+    font-size: $line_height/2;
+    color: black;
+    &:hover{
+        text-decoration: none;  
+    }
+
+    @media (min-width: 768px) {
+       
+        
+      }
+&.sm{
+    line-height: $line_height_sm;
+    font-size: $line_height_sm/2;
+}
+&.lg{
+    line-height:  $line_height_lg;
+    font-size:  $line_height_lg/2;
+}
+}

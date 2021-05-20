@@ -1,0 +1,16 @@
+.headerBox {
+    
+    
+    background-color: #ffde96;
+    .rd-middle-bar{
+        margin:1rem 0;
+    }
+    @media (min-width: 768px) {
+        min-height: 120px;
+        .rd-middle-bar{
+            margin:0 0;
+        }
+
+        
+      }
+}

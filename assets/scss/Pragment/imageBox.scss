@@ -1,0 +1,30 @@
+.image-box{
+
+    position: relative;
+    height: 100%;
+    overflow: hidden;
+    &:hover{
+        .img-hover{
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            z-index: 2;
+            background-color: rgba(103,58,183,0.7);
+        }
+    }
+    .is-love{
+        position: absolute;
+        top: 0;
+        right: 0;
+        transform: translateX(-50%)  translateY(50%) scale(1.4);
+        z-index: 3;
+        cursor: pointer; 
+        &:hover{
+            color: red;
+        }
+        &.isLoved{
+            color: red;
+        }    
+    }
+}

@@ -1,0 +1,33 @@
+.rd-responsive-menu-sidebar{
+   
+    .rd-res-menu-box{
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        .rd-res-menu-item{
+            margin: 0px 0;
+            width: 100%;
+            background-color: #cddc392e;
+            display: flex;
+            border-top: 1px solid black;
+            a{
+                
+                line-height: 2rem;
+                width: 100%;
+              
+            }
+        }
+        .rd-res-menu-item{
+            &:first-child{
+                border-top:none;
+                justify-content: center;
+                align-items: center;
+                background-color: #ccdc3900;
+                padding: 5px 10px;
+            }
+            
+        }
+
+    }
+}

@@ -1,0 +1,125 @@
+.cart-sidebar {
+
+    .checkout-box {
+        margin-top: 1rem;
+    }
+
+    .b-sidebar-header {
+        display: flex;
+        justify-content: space-between;
+
+        .cart-title {
+            text-transform: capitalize;
+        }
+    }
+
+    .cart-sidebar-body {
+        font-size: 1.2rem;
+
+
+        .top-toolbar {
+
+            color: var(--green);
+            text-transform: capitalize;
+            border-bottom: 1px solid black;
+        }
+
+        .bottom-toolbar {
+            color: var(--green);
+            text-transform: uppercase;
+            display: flex;
+            justify-content: space-around;
+            border-top: 1px solid black;
+            font-weight: bold;
+
+        }
+
+        .cart-item-list {
+            .cart-item {
+                position: relative;
+                margin: 0.5rem 0;
+                border-bottom: 1px solid silver;
+                border-top: 1px solid silver;
+                box-sizing: border-box;
+                height: 100%;
+                display: grid;
+                grid-template-columns: 6rem auto;
+
+                &:first-child {
+                    border-top: none;
+                }
+
+                &:last-child {
+                    border-bottom: none;
+                }
+
+                .item-card-img-box {
+                    box-sizing: border-box;
+                }
+
+                .item-card-details {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-around;
+                    align-items: center;
+                    position: relative;
+
+                    .item-card-title {
+                        font-size: 0.9rem;
+                        cursor: pointer;
+                    }
+
+                    .item-card-categories {
+                        font-size: 0.8rem;
+                        display: none;
+                    }
+
+                    .item-catd-price {
+                        color: var(--green);
+                        font-size: 0.9rem;
+                    }
+
+
+                    .bottom-box {
+                        display: flex;
+                        justify-content: space-around;
+                        width: 100%;
+
+                        .item-catd-quantity-adder-box {
+                            max-width: 8rem;
+                        }
+
+                        .remove-item-box {
+
+                            z-index: 2;
+                            position: relative;
+                            .remove-item-tooltip{
+                                display:none;
+                                position:absolute;
+                                top: 0;
+                                font-size: 0.7rem;
+                                white-space:nowrap;
+                                background-color: rgb(10, 1, 1);
+                                color: var(--orange);
+                                padding:0.2rem;
+                                border-radius: 0.2rem;
+                                transform:translate(-60%, -100%);
+                                text-transform: capitalize;
+                            }
+                            &:hover{
+                                .remove-item-tooltip{
+                                    display:block;
+                                }   
+                            }
+                        
+                        }
+
+                    }
+
+
+                }
+
+            }
+        }
+    }
+}

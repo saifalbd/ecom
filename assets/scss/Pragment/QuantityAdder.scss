@@ -1,0 +1,11 @@
+
+.quantity-adder {
+    &.unit{
+        text-align: center;
+        .form-control{
+            justify-content:center;
+            text-align: center;
+            background-color: transparent;
+        }
+    }
+}

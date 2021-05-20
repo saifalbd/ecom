@@ -1,0 +1,39 @@
+.searchPanel {
+    position: relative;
+    .dropSelect {
+        min-width: 100px;
+        display: none;
+      }
+    .srearchList {
+        background: #ffff;
+          position: absolute;
+          top: 100%;
+          width: 100%;
+          left: 0;
+          z-index: 500;
+        
+        }
+        .search-icon{
+            display: none;
+        }
+        .srearchList:hover{
+              
+                background: #CDDC39;  
+         
+        }
+        .srearchList li {
+          list-style-type: none;
+          line-height: 80px;
+        }
+    
+        @media (min-width: 768px) {
+            .dropSelect {
+           
+                display: flex;
+              }
+              .search-icon{
+                  display: flex;
+              }
+            
+          }
+  }

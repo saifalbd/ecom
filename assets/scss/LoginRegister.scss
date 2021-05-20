@@ -1,0 +1,29 @@
+.loginRegister {
+
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: rgba(0, 123, 255, 0.25);
+  height: 100vh;
+
+  .inner {
+
+    display: flex;
+    justify-content: center;
+
+
+
+
+    .authorize-box {
+      box-shadow: 0px 0px 17px 13px rgba(192, 178, 38, 0.78);
+      -webkit-box-shadow: 0px 0px 17px 13px rgba(192, 178, 38, 0.78);
+      -moz-box-shadow: 0px 0px 17px 13px rgba(192, 178, 38, 0.78);
+      padding: 10px;
+      max-width: 600px;
+
+
+    }
+  }
+}
