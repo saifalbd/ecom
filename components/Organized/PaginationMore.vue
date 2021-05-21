@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="w-100 text-center">
     <b-button
       v-show="show"
       squared

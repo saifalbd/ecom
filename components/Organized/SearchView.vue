@@ -38,7 +38,8 @@ export default {
       'searchBusy',
       'searchValue',
       'searchCount',
-      'pagination'
+      'pagination',
+      'searchView'
     ]),
     items () {
       return this.searchItems
@@ -47,6 +48,9 @@ export default {
     title () {
       return `Total ${this.searchCount} items found`
     }
+  },
+  mounted () {
+    this.removeData()
   },
   methods: {
     ...mapActions('Search', ['removeData', 'searchFetch']),

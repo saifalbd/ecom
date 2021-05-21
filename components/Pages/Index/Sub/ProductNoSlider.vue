@@ -38,7 +38,7 @@
     </div>
 
     <b-row no-gutters align-h="center">
-      <b-col cols="12">
+      <b-col cols="12" class="text-center">
         <b-button
           v-show="showMore"
           size="sm"
@@ -46,7 +46,7 @@
           squared
           @click.stop="$emit('clickMore', $event)"
         >
-          more
+          More
         </b-button>
       </b-col>
     </b-row>

@@ -25,8 +25,20 @@ $baseBgColor:#e2e4c9;
 
 @import './Dashboard/Index.scss';
 @import './LoginRegister.scss';
+@import './searchpage.scss';
 
 
+.page.hide {
+  display: none
+}
+
+.search-layout {
+  display: none;
+
+  &.show {
+    display: block;
+  }
+}
 
 .upper {
   text-transform: uppercase;
@@ -42,6 +54,10 @@ $baseBgColor:#e2e4c9;
 
 .read-only-overley {
   display: none;
+}
+
+.relative {
+  position: relative;
 }
 
 .readonly {
