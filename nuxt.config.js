@@ -1,10 +1,10 @@
+// import axios from 'axios'
+// axios.defaults.headers.common.token = process.env.API_TOKEN
+
 export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'server',
   ssr: true,
-  generate: {
-    minify: false
-  },
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -155,5 +155,15 @@ export default {
         useShortDoctype: false
       }
     }
+  },
+  generate: {
+    minify: false
+    // routes () {
+    //   return axios.get('http://ginnibazar.lara/json/items?all=1').then((res) => {
+    //     return res.data.data.map((p) => {
+    //       return '/products/' + p.id
+    //     })
+    //   })
+    // }
   }
 }
