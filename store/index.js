@@ -23,9 +23,13 @@ export default {
     pageBusy: true,
     loginPopup: false,
     showCart: false,
-    showResMenu: false
+    showResMenu: false,
+    api_token: ''
   }),
   mutations: {
+    API_TOKEN(state, payload) {
+      state.api_token = payload
+    },
     PAGE_BUSY(state, payload) {
       state.pageBusy = payload
     },
@@ -48,6 +52,11 @@ export default {
     }
   },
   actions: {
+    addApiToken({ commit }, payload) {
+      if (payload) {
+        commit('API_TOKEN', payload)
+      }
+    },
     pageBusy({ commit }, payload) {
       commit('PAGE_BUSY', payload)
     },

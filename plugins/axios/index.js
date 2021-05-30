@@ -1,5 +1,6 @@
-export default ({ $axios, redirect }, inject) => {
-  $axios.defaults.headers.common.token = process.env.API_TOKEN
+export default ({ $axios, redirect, store }, inject) => {
+  store.dispatch('addApiToken', process.env.API_TOKEN)
+  $axios.defaults.headers.common.token = store.state.api_token
   inject('axiosWithoutToken', $axios)
 
   const authAxios = (auth) => {
@@ -9,9 +10,7 @@ export default ({ $axios, redirect }, inject) => {
       }
       const ax = $axios.create()
       const userToken = auth.strategy.token.get()
-
       ax.defaults.headers.common.Authorization = `Bearer ${userToken}`
-
       return ax
     } catch (error) {
       console.error(error)
