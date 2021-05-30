@@ -1,6 +1,6 @@
 export default ({ $axios, redirect, store }, inject) => {
   store.dispatch('addApiToken', process.env.API_TOKEN)
-  $axios.defaults.headers.common.token = store.state.api_token
+  $axios.defaults.headers.common.token = 'f584c1f8a6e4fc4352fd973cfb3a9e437c44d20b1314acb4ee96a7a53c3783e2'
   inject('axiosWithoutToken', $axios)
 
   const authAxios = (auth) => {
