@@ -22,7 +22,7 @@ export default {
           process.env.NODE_ENV == 'production'
             ? 'https://www.redcom.cloud'
             : 'http://ginnibazar.lara'
-        }/assets-media/${process.env.COMPANY_ID}/content/confignew.js`
+        }/assets-media/${process.env.COMPANY_ID}/content/config-new.js`
       }
     ]
   },

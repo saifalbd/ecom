@@ -1,6 +1,12 @@
 export default ({ $axios, redirect, store }, inject) => {
   store.dispatch('addApiToken', process.env.API_TOKEN)
-  $axios.defaults.headers.common.token = 'f584c1f8a6e4fc4352fd973cfb3a9e437c44d20b1314acb4ee96a7a53c3783e2'
+  if (typeof window !== 'undefined') {
+    $axios.defaults.headers.common.token = window.app.app_token
+    console.log('this should print only if window object actually exists')
+  } else {
+    $axios.defaults.headers.common.token = process.env.API_TOKEN
+  }
+
   inject('axiosWithoutToken', $axios)
 
   const authAxios = (auth) => {
