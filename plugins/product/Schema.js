@@ -57,7 +57,7 @@ export const schema = yup.object().shape({
   categories,
   images,
   description: yup.string().nullable(),
-  specification: yup.string(),
+  specification: yup.array(),
   variant_options: yup.array(),
   available_variant_options: yup.array(),
   group: yup.object().shape({
@@ -67,7 +67,7 @@ export const schema = yup.object().shape({
     categories,
     images,
     description: yup.string().nullable(),
-    specification: yup.string(),
+    specification: yup.array(),
     available_variant_options: yup.array()
   })
 })

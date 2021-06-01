@@ -71,14 +71,14 @@ export default {
   proxy: {
     '/json': {
       target:
-        process.env.NODE_ENV == 'production'
+        process.env.NODE_ENV === 'production'
           ? 'https://www.redcom.cloud'
           : 'http://ginnibazar.lara',
       pathRewrite: { '^/json': '/json' }
     },
     '/laravel': {
       target:
-        process.env.NODE_ENV == 'production'
+        process.env.NODE_ENV === 'production'
           ? 'https://www.redcom.cloud'
           : 'http://ginnibazar.lara',
       pathRewrite: { '^/laravel': '/' }

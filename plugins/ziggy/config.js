@@ -40,6 +40,29 @@ export default (isProd) => {
           product: 'id'
         }
       },
+      'app.item.review.index': {
+        uri: 'json/items/{item}/review',
+        methods: ['GET', 'HEAD']
+      },
+      'app.item.review.store': {
+        uri: 'json/items/{item}/review',
+        methods: ['POST'],
+        bindings: {
+          product: 'id'
+        }
+      },
+      'app.item.review.show': {
+        uri: 'json/items/{item}/review/{review}',
+        methods: ['GET', 'HEAD']
+      },
+      'app.item.review.update': {
+        uri: 'json/items/{item}/review/{review}',
+        methods: ['PUT', 'PATCH']
+      },
+      'app.item.review.destroy': {
+        uri: 'json/items/{item}/review/{review}',
+        methods: ['DELETE']
+      },
       'app.orders': {
         uri: 'json/orders',
         methods: ['GET', 'HEAD']
@@ -54,6 +77,13 @@ export default (isProd) => {
       },
       'app.category.show': {
         uri: 'json/categories/{category}',
+        methods: ['GET', 'HEAD'],
+        bindings: {
+          category: 'id'
+        }
+      },
+      'app.category.show.items': {
+        uri: 'json/categories/{category}/items',
         methods: ['GET', 'HEAD'],
         bindings: {
           category: 'id'

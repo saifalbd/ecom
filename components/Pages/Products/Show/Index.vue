@@ -14,45 +14,49 @@
         </b-col>
       </b-row>
     </div>
-    <!-- <div class="rd-item-summary"  v-if="item">
+    <div v-if="item" class="rd-item-summary">
+      <no-ssr>
         <b-card no-body>
-            <b-tabs
-                card
-                fill
-                nav-wrapper-class="h3 font-weight-bold text-success card-title">
-                <b-tab
-                    title="Summary"
-                    active>
-                    <b-card-text>
-                        <specifications :items="item.specifications"></specifications>
-
-                    </b-card-text>
-                </b-tab>
-                <b-tab title="Description">
-                    <b-card-text>
-                             {{item.description}}
-                    </b-card-text>
-                </b-tab>
-                   <b-tab title="Review">
-                    <b-card-text>Tab contents 2</b-card-text>
-                </b-tab>
-            </b-tabs>
+          <b-tabs
+            card
+            fill
+            nav-wrapper-class="h3 font-weight-bold text-success card-title"
+          >
+            <b-tab title="Summary" active>
+              <b-card-text>
+                <specifications :items="item.specification" />
+              </b-card-text>
+            </b-tab>
+            <b-tab title="Description">
+              <b-card-text>
+                {{ item.description }}
+              </b-card-text>
+            </b-tab>
+            <b-tab title="Review">
+              <b-card-text>
+                <Review />
+              </b-card-text>
+            </b-tab>
+          </b-tabs>
         </b-card>
-
-    </div> -->
+      </no-ssr>
+    </div>
   </b-overlay>
 </template>
 
 <script>
 import ImageSlider from './Sub/ImageSlider.vue'
 import ItemInfo from './Sub/ItemInfo.vue'
+import Review from './Sub/Review.vue'
 
-// import Specifications from './Sub/Specifications.vue'
+import Specifications from './Sub/Specifications.vue'
 
 export default {
   components: {
     ImageSlider,
-    ItemInfo
+    ItemInfo,
+    Specifications,
+    Review
   },
   props: {
     name: {

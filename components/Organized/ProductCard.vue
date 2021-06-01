@@ -22,12 +22,14 @@
         <p class="card-text mt-1">
           {{ str_take(item.description) }}
         </p>
-        <variants-select
-          v-if="item.available_vartians"
-          :item="item"
-          :variants="item.available_vartians"
-          select-type="radio"
-        />
+        <no-ssr>
+          <variants-select
+            v-if="item.available_vartians"
+            :item="item"
+            :variants="item.available_vartians"
+            select-type="radio"
+          />
+        </no-ssr>
       </div>
 
       <div class="buy">
@@ -38,14 +40,16 @@
             {{ item.unit.title }}
           </small>
         </div>
-        <add-to-cart-button
-          :value="item.cartQuantities"
-          :has-on="hasOnCart"
-          :item="item"
-          @input="addQuantityOnCart"
-        >
-          {{ hasOnCart ? 'Added' : 'Add' }}
-        </add-to-cart-button>
+        <no-ssr>
+          <add-to-cart-button
+            :value="item.cartQuantities"
+            :has-on="hasOnCart"
+            :item="item"
+            @input="addQuantityOnCart"
+          >
+            {{ hasOnCart ? 'Added' : 'Add' }}
+          </add-to-cart-button>
+        </no-ssr>
       </div>
     </div>
   </div>
@@ -53,7 +57,7 @@
 
 <script>
 /* eslint-disable vue/no-mutating-props */
-import { isPlainObject, hasIn } from 'lodash'
+import { isPlainObject, hasIn, head } from 'lodash'
 import VariantsSelect from '../Pragment/VariantsSelect.vue'
 import AddToCartButton from '../Pragment/AddToCartButton.vue'
 import CategoriesLinks from '../Pragment/CategoriesLinks.vue'
@@ -107,8 +111,13 @@ export default {
     this.itemIsOnCart()
   },
   methods: {
-    str_take (str) {
-      return str
+    str_take (text) {
+      const count = 35
+      if (text && text.length > count) {
+        const res = text.substr(0, count)
+        return res + '...'
+      }
+      return text
     },
     addQuantityOnCart (value) {
       this.item.cartQuantities = value
@@ -130,7 +139,7 @@ export default {
       alert('go')
     },
     img (images) {
-      const img = _.head(images)
+      const img = head(images)
       return img
     }
   }

@@ -54,7 +54,7 @@ export default {
       const { data } = await restApi
         .ctx(this)
         .getIs()
-        .categoryShow(paramsIs)
+        .categoryShowItems(paramsIs)
 
       this.meta = data.meta
       this.loaded = true

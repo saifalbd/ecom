@@ -22,7 +22,7 @@ export default class AllGet {
     }
   }
 
-  async categoryShow (params) {
+  async categoryShowItems (params) {
     if (!isPlainObject(params)) {
       const e = 'items parms must be object'
       console.error(e)
@@ -31,7 +31,7 @@ export default class AllGet {
     }
 
     try {
-      const url = this.ctx.$apiUrl('app.category.show', params, false)
+      const url = this.ctx.$apiUrl('app.category.show.items', params, false)
       const { data } = await this.ctx.$axiosWithoutToken.get(url)
       return Promise.resolve({ data })
     } catch (error) {

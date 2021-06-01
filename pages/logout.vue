@@ -7,8 +7,11 @@
 <script>
 export default {
   layout: 'loginRegister',
-  async created () {
-    await this.$auth.logout()
+  async asyncData ({ $auth, redirect }) {
+    await $auth.logout()
+    redirect('/')
+
+    return {}
   }
 }
 </script>
