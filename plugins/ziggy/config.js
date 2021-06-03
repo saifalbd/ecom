@@ -1,5 +1,5 @@
 export default (isProd) => {
-  const host = isProd ? 'https://www.redcom.cloud' : 'http://ginnibazar.lara'
+  const host = isProd ? 'https://redcom.cloud' : 'http://ginnibazar.lara'
   return {
     url: host,
     port: null,
@@ -62,6 +62,20 @@ export default (isProd) => {
       'app.item.review.destroy': {
         uri: 'json/items/{item}/review/{review}',
         methods: ['DELETE']
+      },
+      'app.item.rating.index': {
+        uri: 'json/items/{item}/rating',
+        methods: ['GET', 'HEAD'],
+        bindings: {
+          product: 'id'
+        }
+      },
+      'app.item.rating.store': {
+        uri: 'json/items/{item}/rating',
+        methods: ['POST'],
+        bindings: {
+          product: 'id'
+        }
       },
       'app.orders': {
         uri: 'json/orders',

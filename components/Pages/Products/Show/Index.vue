@@ -9,7 +9,7 @@
         </b-col>
         <b-col>
           <no-ssr>
-            <item-info :item="item" />
+            <item-info :item="item" @rating="newRating = $event" />
           </no-ssr>
         </b-col>
       </b-row>
@@ -34,7 +34,7 @@
             </b-tab>
             <b-tab title="Review">
               <b-card-text>
-                <Review />
+                <Review :add-rating="newRating" />
               </b-card-text>
             </b-tab>
           </b-tabs>
@@ -72,7 +72,8 @@ export default {
   },
   data () {
     return {
-      busy: false
+      busy: false,
+      newRating: false
     }
   }
 }

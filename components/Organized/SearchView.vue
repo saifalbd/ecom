@@ -2,6 +2,7 @@
   <div class="search-page">
     <b-row v-if="searchCount">
       <b-col cols="12">
+        <!-- {{ items }} -->
         <product-list :title="title" :items="items" />
       </b-col>
       <b-col cols="12">

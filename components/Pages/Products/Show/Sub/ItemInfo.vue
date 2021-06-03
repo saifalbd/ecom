@@ -21,7 +21,12 @@
           select-type="radio"
         />
       </b-col>
-      <b-col cols="12" md="6" class="mt-2 mb-2 p-2">
+      <b-col
+        cols="12"
+        md="6"
+        :offset-md="hasOnCart ? 0 : 3"
+        class="mt-2 mb-2 p-2 "
+      >
         <div>
           <price-tag
             :is-bold="true"
@@ -30,15 +35,27 @@
           />
         </div>
       </b-col>
-      <b-col cols="12" md="6" class="mt-2 mb-2 p-2">
-        <quantity-group-adder
+      <b-col
+        v-if="hasOnCart == true"
+        cols="12"
+        md="6"
+        class="mt-2 mb-2 p-2 d-flex justify-content-center"
+      >
+        <!-- <quantity-group-adder
           size="lg"
           input-width="80px"
           :value="item.cartQuantities"
           @input="addQuantity"
+        /> -->
+        <quantity-group-adder-with-unit
+          size="lg"
+          input-width="80px"
+          :value="item.cartQuantities"
+          :unit="item.unit"
+          @input="addQuantity(item, $event)"
         />
       </b-col>
-      <b-col cols="12" class="mt-2 mb-2">
+      <b-col cols="12" class="mt-2 mb-2 d-flex justify-content-center">
         <add-to-cart-button
           :value="item.cartQuantities"
           size="lg"
@@ -59,6 +76,15 @@
           Remove On Cart
         </b-button>
       </b-col>
+      <b-col cols="12" class="mt-2 mb-2 p-2">
+        <label for="rating-10">Rating with 5 stars:</label>
+        <b-form-rating
+          id="rating-10"
+          v-model="rate"
+          :readonly="rateReadOnly"
+          color="indigo"
+        />
+      </b-col>
     </b-row>
   </div>
 </template>
@@ -68,18 +94,20 @@ import { mapActions } from 'vuex'
 import ProductTitle from '@/components/Pragment/ProductTitle.vue'
 import PriceTag from '@/components/Pragment/PriceTag.vue'
 import AddToCartButton from '@/components/Pragment/AddToCartButton.vue'
-import QuantityGroupAdder from '@/components/Pragment/QuantityGroupAdder.vue'
+// import QuantityGroupAdder from '@/components/Pragment/QuantityGroupAdder.vue'
 import CategoriesLinks from '@/components/Pragment/CategoriesLinks.vue'
 import VariantsSelect from '@/components/Pragment/VariantsSelect.vue'
+import QuantityGroupAdderWithUnit from '@/components/Pragment/QuantityGroupAdderWithUnit.vue'
 
 export default {
   components: {
     PriceTag,
     AddToCartButton,
-    QuantityGroupAdder,
+    // QuantityGroupAdder,
     CategoriesLinks,
     ProductTitle,
-    VariantsSelect
+    VariantsSelect,
+    QuantityGroupAdderWithUnit
   },
   props: {
     item: {
@@ -88,7 +116,10 @@ export default {
     }
   },
   data () {
-    return {}
+    return {
+      rate: null,
+      rateReadOnly: false
+    }
   },
   computed: {
     hasVariants () {
@@ -98,14 +129,36 @@ export default {
       return this.$store.getters['ShopingCart/hasOnCart'](this.item.id)
     }
   },
+  watch: {
+    rate (val) {
+      this.storeRate(val)
+    }
+  },
   methods: {
-    ...mapActions('ShopingCart', ['removeItem']),
-    addQuantity (num) {
-      if (this.item.cartQuantities != num) {
-        this.removeItem(this.item)
+    ...mapActions('ShopingCart', ['updateQuantity', 'removeItem']),
+
+    // addQuantity (num) {
+    //   if (this.item.cartQuantities !== num) {
+    //     this.removeItem(this.item)
+    //   }
+    //   // eslint-disable-next-line vue/no-mutating-props
+    //   this.item.cartQuantities = num
+    // },
+    addQuantity (item, quantity) {
+      this.updateQuantity({ id: item.id, quantity })
+      item.cartQuantities = quantity
+    },
+    async storeRate (rate) {
+      try {
+        this.rateReadOnly = true
+        const item = this.$route.params.slug
+        const url = this.$apiUrl('app.item.rating.store', { item }, false)
+        const body = this.text
+        const { data } = await this.$axios.post(url, { rate })
+        this.$emit('rating', data)
+      } catch (error) {
+        console.error(error)
       }
-      // eslint-disable-next-line vue/no-mutating-props
-      this.item.cartQuantities = num
     }
   }
 }

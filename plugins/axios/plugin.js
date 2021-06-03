@@ -12,7 +12,7 @@ const mix = (ax) => {
 
   // axiosWithoutToken.defaults.withCredentials = true;
   ax.defaults.headers.common['Access-Control-Allow-Origin'] = true
-  if (window.app.app_access_key == undefined) {
+  if (window.app.app_access_key === undefined) {
     console.error(
       'window.app.app_access_key missing please update your config.js file'
     )

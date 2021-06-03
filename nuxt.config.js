@@ -20,7 +20,7 @@ export default {
       {
         src: `${
           process.env.NODE_ENV == 'production'
-            ? 'https://www.redcom.cloud'
+            ? 'https://redcom.cloud'
             : 'http://ginnibazar.lara'
         }/assets-media/${process.env.COMPANY_ID}/content/config-new.js`
       }
@@ -44,12 +44,12 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
+    '@nuxtjs/axios',
     '@nuxtjs/proxy',
     // https://go.nuxtjs.dev/bootstrap
     'bootstrap-vue/nuxt',
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/auth-next',
-    '@nuxtjs/axios',
 
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa'
@@ -72,14 +72,14 @@ export default {
     '/json': {
       target:
         process.env.NODE_ENV === 'production'
-          ? 'https://www.redcom.cloud'
+          ? 'https://redcom.cloud'
           : 'http://ginnibazar.lara',
       pathRewrite: { '^/json': '/json' }
     },
     '/laravel': {
       target:
         process.env.NODE_ENV === 'production'
-          ? 'https://www.redcom.cloud'
+          ? 'https://redcom.cloud'
           : 'http://ginnibazar.lara',
       pathRewrite: { '^/laravel': '/' }
     }
