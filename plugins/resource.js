@@ -8,11 +8,8 @@ const isBrowser = () => {
 export default {
   async fetch (ctx) {
     try {
-      const host = ctx.isDev
-        ? 'http://ginnibazar.lara'
-        : 'https://redcom.cloud'
       const res = await ctx.$axios.get(
-        `${host}/assets-media/1/content/confignew.json`
+        'https://redcom.cloud/assets-media/1/content/confignew.json'
       )
       this.setResource(res.data, ctx)
     } catch (error) {

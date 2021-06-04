@@ -15,14 +15,10 @@ export default {
       { hid: 'description', name: 'description', content: '' }
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
-    // http://ginnibazar.laraAPI_TOKEN
+    // https://redcom.cloudAPI_TOKEN
     script: [
       {
-        src: `${
-          process.env.NODE_ENV == 'production'
-            ? 'https://redcom.cloud'
-            : 'http://ginnibazar.lara'
-        }/assets-media/${process.env.COMPANY_ID}/content/config-new.js`
+        src: `https://redcom.cloud/assets-media/${process.env.COMPANY_ID}/content/config-new.js`
       }
     ]
   },
@@ -60,27 +56,22 @@ export default {
     { src: '~/plugins/is.js' },
     { src: '~/plugins/persistedState.client.js', mode: 'client' },
     // { src: '~/plugins/axios/plugin.js', mode: 'client' },
-    '~/plugins/axios/index.js',
+    '~/plugins/axios/index.server.js',
+    '~/plugins/axios/index.client.js',
     '~/plugins/ziggy/apiUrl.js',
     // { src: '~/plugins/axios/index.js', mode: 'client' },
     // { src: '~/plugins/axios/index.js', mode: 'server' },
     { src: '~/plugins/vue-plugins.js', mode: 'client' },
     { src: '~/plugins/validate/formVError.client.js', mode: 'client' }
   ],
-  // 'http://ginnibazar.lara/json'
+  // 'https://redcom.cloud/json'
   proxy: {
     '/json': {
-      target:
-        process.env.NODE_ENV === 'production'
-          ? 'https://redcom.cloud'
-          : 'http://ginnibazar.lara',
+      target: 'https://redcom.cloud',
       pathRewrite: { '^/json': '/json' }
     },
     '/laravel': {
-      target:
-        process.env.NODE_ENV === 'production'
-          ? 'https://redcom.cloud'
-          : 'http://ginnibazar.lara',
+      target: 'https://redcom.cloud',
       pathRewrite: { '^/laravel': '/' }
     }
   },
@@ -159,7 +150,7 @@ export default {
   generate: {
     minify: false
     // routes () {
-    //   return axios.get('http://ginnibazar.lara/json/items?all=1').then((res) => {
+    //   return axios.get('https://redcom.cloud/json/items?all=1').then((res) => {
     //     return res.data.data.map((p) => {
     //       return '/products/' + p.id
     //     })

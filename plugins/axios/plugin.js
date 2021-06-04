@@ -1,14 +1,7 @@
 import axiosIs from 'axios'
 
 const mix = (ax) => {
-  if (process.env.NODE_ENV === 'production') {
-    ax.defaults.baseURL = process.env.VUE_APP_PROD_API_URL
-    console.log('%c PRODUCTION MODE', 'color:red')
-  } else {
-    ax.defaults.baseURL = process.env.VUE_APP_DEV_API_URL
-    // axiosWithoutToken.defaults.baseURL = apiBaseUrl;
-    console.log('%c DEVELOPMENT MODE', 'color:red')
-  }
+  ax.defaults.baseURL = 'https://redcom.cloud'
 
   // axiosWithoutToken.defaults.withCredentials = true;
   ax.defaults.headers.common['Access-Control-Allow-Origin'] = true

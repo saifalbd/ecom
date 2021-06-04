@@ -38,6 +38,8 @@ import {
   asyncData,
   methods
 } from '@/components/Pages/Index/Internal/fetchCollectionAll.js'
+import { hasIn, isUndefined } from 'lodash'
+import { validate, mixer } from '@/plugins/product/index'
 
 export default {
   // mixins: [fetchColletions],
@@ -47,12 +49,46 @@ export default {
     ProductSlider,
     ProductNoSlider
   },
-  asyncData,
   data () {
     return {
       busy: false,
       banners: [],
-      offers: []
+      offers: [],
+      collection: []
+    }
+  },
+  async fetch () {
+    try {
+      const url = this.$apiUrl('app.homePage', {}, false)
+
+      const { data } = await this.$axiosWithoutToken.get(url)
+
+      if (!hasIn(data, 'banners')) {
+        // eslint-disable-next-line no-throw-literal
+        throw 'data.banners missing'
+      }
+      if (!hasIn(data, 'offers')) {
+        // eslint-disable-next-line no-throw-literal
+        throw 'data.offers missing'
+      }
+      if (!hasIn(data, 'collection')) {
+        // eslint-disable-next-line no-throw-literal
+        throw 'data.collection missing'
+      }
+      if (!Array.isArray(data.collection)) {
+        // eslint-disable-next-line no-throw-literal
+        throw 'data.collection must be Array'
+      }
+
+      this.banners = data.banners
+      this.offers = data.offers
+      this.collection = data.collection.map((item) => {
+        item.busy = false
+        item.data = item.data.map(obj => mixer(obj))
+        return item
+      })
+    } catch (error) {
+      console.error(error)
     }
   },
 

@@ -39,17 +39,6 @@ export default class AllGet {
     }
   }
 
-  async homePage () {
-    try {
-      const url = this.ctx.$apiUrl('app.homePage', {}, false)
-
-      const { data } = await this.ctx.$axiosWithoutToken.get(url)
-      return Promise.resolve({ data })
-    } catch (error) {
-      return Promise.reject(error)
-    }
-  }
-
   /**
    *
    * @returns Promise(data or error)

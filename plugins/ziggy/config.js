@@ -1,5 +1,5 @@
 export default (isProd) => {
-  const host = isProd ? 'https://redcom.cloud' : 'http://ginnibazar.lara'
+  const host = 'https://redcom.cloud'
   return {
     url: host,
     port: null,
