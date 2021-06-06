@@ -3,7 +3,7 @@
     <!-- start footer-item -->
     <div class="footer-item">
       <div class="title-box">
-        Contract us
+        Contact us
       </div>
       <div class="footer-content">
         <ul class="footer-item-list">
