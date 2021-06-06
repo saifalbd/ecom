@@ -1,33 +1,36 @@
+.home-page {
+  background-color: ghostwhite;
+  width: 100%;
 
-.home-page{
-    background-color: ghostwhite;
+  .top-bar {
     width: 100%;
-    
-    .top-bar{
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      margin: 1.5rem 0;
-      padding-bottom: 0.5rem;
-      border-bottom: 1px solid black;
-    }
-    .top-carosole{
-      width: 100%;
-      min-height: 200px;
-  
-    }
-    .offer-slider{
-      margin-top: 20px;
-      min-height: 200px;
-      .splide__slide{
-        .card{
-          width: 300px;
-        }
-      }
-  
-    }
-    .product-slider{
-      min-height: 200px;
-     
-    }
+    display: flex;
+    justify-content: space-between;
+    margin: 1.5rem 0;
+    padding-bottom: 0.5rem;
+    //  border-bottom: 1px solid black;
   }
+
+  .top-carosole {
+    width: 100%;
+    min-height: 200px;
+
+  }
+
+  .offer-slider {
+    margin-top: 20px;
+    min-height: 200px;
+
+    .splide__slide {
+      .card {
+        width: 300px;
+      }
+    }
+
+  }
+
+  .product-slider {
+    min-height: 200px;
+
+  }
+}
