@@ -49,9 +49,15 @@ export default {
       } else {
         state.showResMenu = !state.showCart
       }
+    },
+    SET_LOGGED_IN(state, payload) {
+      state.auth.loggedIn = true
     }
   },
   actions: {
+    set_logged_in({ commit }, payload) {
+      commit('SET_LOGGED_IN', payload)
+    },
     addApiToken({ commit }, payload) {
       if (payload) {
         commit('API_TOKEN', payload)

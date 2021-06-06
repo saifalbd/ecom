@@ -24,6 +24,7 @@ export default {
         console.log('set user resource')
 
         this.$auth.strategy.token.set(token)
+        this.$store.dispatch('set_logged_in', true)
 
         const userRes = await this.$authAxios(this.$auth).get('/json/user')
 

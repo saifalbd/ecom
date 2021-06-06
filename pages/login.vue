@@ -134,6 +134,7 @@ export default {
     },
 
     async onSubmit () {
+      this.busy = true
       try {
         const email = this.loginForm.email
         const password = this.loginForm.password
@@ -141,7 +142,7 @@ export default {
         const res = await this.$auth.loginWith('laravelSanctum', {
           data: params
         })
-    
+
         const token = res.data.token
         const user = res.data.user
         await this.$auth.setUserToken(token)
@@ -150,9 +151,14 @@ export default {
         console.log('set user resource')
 
         this.$auth.strategy.token.set(token)
+        this.$store.dispatch('set_logged_in', true)
+        if (this.$store.state.auth.loggedIn) {
+          await this.$router.push({ name: 'index' })
+        }
       } catch (error) {
         console.error(error)
       }
+      this.busy = false
     },
 
     async onSubmits () {

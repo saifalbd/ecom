@@ -64,9 +64,6 @@ export default {
         // add addtional info for product
         return mixer(item)
       })
-      // .filter((item, index) => item.id === 14181)
-
-
     } catch (error) {
       console.error(error)
     }

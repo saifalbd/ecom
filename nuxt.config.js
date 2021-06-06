@@ -12,7 +12,12 @@ export default {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' }
+      { hid: 'description', name: 'description', content: '' },
+      {
+        hid: 'og:image',
+        name: 'og:image',
+        content: `https://redcom.cloud/assets-media/${process.env.COMPANY_ID}/logo/logo.jpg`
+      }
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
     // https://redcom.cloudAPI_TOKEN
@@ -109,13 +114,14 @@ export default {
           logout: false
         }
       }
+    },
+
+    redirect: {
+      login: '/login',
+      logout: '/',
+      callback: '/login',
+      home: false
     }
-    // redirect: {
-    //   login: '/login',
-    //   logout: '/',
-    //   callback: '/login',
-    //   home: '/'
-    // }
   },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa

@@ -93,14 +93,16 @@ export default {
       const result = []
       const ratings = this.ratings
       const totalLnt = ratings.length
-
-      for (let r = 1; r <= 5; r++) {
-        const arr = ratings.filter(el => el.rate === r).map(r => r.rate)
-        const count = arr.length
-        const rate = r
-        const percent = (100 / totalLnt) * count
-        result.push({ count, rate, percent })
+      if (ratings.length) {
+        for (let r = 1; r <= 5; r++) {
+          const arr = ratings.filter(el => el.rate === r).map(r => r.rate)
+          const count = arr.length
+          const rate = r
+          const percent = (100 / totalLnt) * count
+          result.push({ count, rate, percent })
+        }
       }
+
       return result.filter(r => r.count)
     }
   },
