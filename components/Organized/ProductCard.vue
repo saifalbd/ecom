@@ -4,8 +4,15 @@
       :class="imgClass"
       :images="item.images"
       :want-love="true"
-      :is-hover="false"
-    />
+      :is-hover="true"
+    >
+      <b-button
+        variant="primary"
+        :to="{ name: 'products-slug', params: { slug: item.id } }"
+      >
+        show details
+      </b-button>
+    </image-box>
     <!-- <img class="card-img" :src="img(item.images).url" :alt="img(item.images).url"> -->
     <!-- card-img-overlay  -->
     <div class="d-flex justify-content-end">
@@ -22,14 +29,14 @@
         <p class="card-text mt-1">
           {{ str_take(item.description) }}
         </p>
-        <no-ssr>
+        <client-only>
           <variants-select
             v-if="item.available_vartians"
             :item="item"
             :variants="item.available_vartians"
             select-type="radio"
           />
-        </no-ssr>
+        </client-only>
       </div>
 
       <div class="buy">
@@ -40,7 +47,7 @@
             {{ item.unit.title }}
           </small>
         </div>
-        <no-ssr>
+        <client-only>
           <add-to-cart-button
             :value="item.cartQuantities"
             :has-on="hasOnCart"
@@ -49,7 +56,7 @@
           >
             {{ hasOnCart ? 'Added' : 'Add' }}
           </add-to-cart-button>
-        </no-ssr>
+        </client-only>
       </div>
     </div>
   </div>

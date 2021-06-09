@@ -96,7 +96,6 @@ export default {
     images: {
       deep: true,
       handler (arr) {
-
         this.img = this.head(arr)
       }
     }

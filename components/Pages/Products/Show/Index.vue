@@ -3,19 +3,19 @@
     <div v-if="item" class="item-details">
       <b-row>
         <b-col cols="12" md="6">
-          <no-ssr>
+          <client-only>
             <image-slider :images="item.images" />
-          </no-ssr>
+          </client-only>
         </b-col>
         <b-col>
-          <no-ssr>
+          <client-only>
             <item-info :item="item" @rating="newRating = $event" />
-          </no-ssr>
+          </client-only>
         </b-col>
       </b-row>
     </div>
     <div v-if="item" class="rd-item-summary">
-      <no-ssr>
+      <client-only>
         <b-card no-body>
           <b-tabs
             card
@@ -39,7 +39,7 @@
             </b-tab>
           </b-tabs>
         </b-card>
-      </no-ssr>
+      </client-only>
     </div>
   </b-overlay>
 </template>

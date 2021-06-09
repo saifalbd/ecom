@@ -1,7 +1,9 @@
 <template>
-  <no-ssr>
-    <div v-html="content" />
-  </no-ssr>
+  <div>
+    <div>
+      {{ content }}
+    </div>
+  </div>
 </template>
 
 <script>
@@ -15,7 +17,7 @@ export default {
     try {
       const url = this.$apiUrl('app.aboutUs.show', {}, false)
       const { data } = await this.$axiosWithoutToken(url)
-    
+
       this.content = data
     } catch (error) {
       console.error(error)

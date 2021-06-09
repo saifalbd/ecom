@@ -25,7 +25,7 @@
           <div>{{ address.city }},{{ address.country }},</div>
         </b-col>
         <b-col cols="4">
-          <edit-item :item="address" @done="addOrEdit">
+          <ShipingAddressEdit :edit-item="address" @done="addOrEdit">
             <template #default="{ on }">
               <b-button
                 variant="outline-primary"
@@ -36,7 +36,7 @@
                 Edit
               </b-button>
             </template>
-          </edit-item>
+          </ShipingAddressEdit>
 
           <b-button variant="outline-danger" size="sm" @click="remove(address)">
             Delete
@@ -47,9 +47,21 @@
         </b-col>
       </b-row>
       <b-row align-h="center">
-        <b-button variant="outline-primary" size="sm" @click="add = true">
+        <b-button
+          v-if="selectedAddress"
+          variant="outline-primary"
+          size="sm"
+          @click="add = true"
+        >
           Add New Address
         </b-button>
+        <b-col v-else cols="12" md="12" lg="10" offset-lg="1">
+          <ShipingAddressCreate
+            :with-register="withRegister"
+            @createdUser="$emit('createdUser', $event)"
+            @done="addOrEdit"
+          />
+        </b-col>
       </b-row>
     </b-form-group>
     <b-row>
@@ -61,10 +73,10 @@
       </b-col>
     </b-row>
 
-    <b-row align-h="end">
-      <b-button squared variant="primary" @click="next">
+    <b-row align-h="end" class="mt-4 pt-4" @click.once="next">
+      <button class="submit-button">
         APPLY
-      </b-button>
+      </button>
     </b-row>
     <shiping-address-model
       v-model="add"
@@ -76,16 +88,18 @@
 </template>
 
 <script>
-import { head } from 'lodash'
+import { head, lowerCase } from 'lodash'
 import ShipingAddressModel from './spDetails/ShipingAddressModel.vue'
-import EditItem from './spDetails/EditItem.vue'
+import ShipingAddressCreate from './spDetails/ShipingAddressCreate.vue'
+import ShipingAddressEdit from './spDetails/ShipingAddressEdit.vue'
 import PaymentMethods from './spDetails/PaymentMethods.vue'
 export default {
   name: 'ShipingDetails',
   components: {
     ShipingAddressModel,
-    EditItem,
-    PaymentMethods
+    ShipingAddressEdit,
+    PaymentMethods,
+    ShipingAddressCreate
   },
   props: {
     shipingAddresses: {
@@ -133,19 +147,13 @@ export default {
   },
   created () {},
   methods: {
-    async submit () {
-      try {
-        this.busy = true
-        const url = this.$apiUrl('app.shipingAddress.store', {}, false)
-        await this.$http.axios.post(url, this.address)
-      } catch (error) {
-        console.error(error)
-        return error
-      }
-    },
-
     addOrEdit (item) {
-      const index = this.shipingAddresses.findIndex(el => el.id == item.id)
+      const index = this.shipingAddresses.findIndex((el) => {
+        return (
+          parseInt(el.id) === parseInt(item.id) ||
+          lowerCase(el.type) === lowerCase(item.type)
+        )
+      })
       if (index > -1) {
         // eslint-disable-next-line vue/no-mutating-props
         this.shipingAddresses.splice(index, 1, item)
@@ -178,19 +186,24 @@ export default {
         .then(async (value) => {
           if (value) {
             const index = this.shipingAddresses.findIndex(
-              el => el.id == item.id
+              el => parseInt(el.id) === parseInt(item.id)
             )
             if (index > -1) {
               try {
+                const user = this.$auth.user.id
+                if (!user) {
+                  throw new ReferenceError('user not logged')
+                }
                 const url = this.$apiUrl(
-                  'app.shipingAddress.destroy',
+                  'app.user.shipingAddress.destroy',
                   {
-                    shiping_address: item.id
+                    shiping_address: item.id,
+                    user
                   },
                   false
                 )
                 // eslint-disable-next-line no-unused-vars
-                const { data } = await this.$http.axios.delete(url)
+                const { data } = await this.$axiosWithoutToken.delete(url)
                 // eslint-disable-next-line vue/no-mutating-props
                 this.shipingAddresses.splice(index, 1)
                 this.selectedItem = head(this.shipingAddresses)

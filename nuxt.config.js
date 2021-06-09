@@ -8,7 +8,7 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'ecom',
+    title: 'bookman online book store',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -16,7 +16,7 @@ export default {
       {
         hid: 'og:image',
         name: 'og:image',
-        content: `https://redcom.cloud/assets-media/${process.env.COMPANY_ID}/logo/logo.jpg`
+        content: `https://redcom.cloud/assets-media/${process.env.COMPANY_ID}/logo/logo.png`
       }
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
@@ -25,6 +25,10 @@ export default {
       {
         src: `https://redcom.cloud/assets-media/${process.env.COMPANY_ID}/content/config-new.js`
       }
+
+      // {
+      //   src: 'https://connect.facebook.net/en_US/sdk.js'
+      // }
     ]
   },
 
@@ -113,6 +117,14 @@ export default {
           user: false,
           logout: false
         }
+      },
+      facebook: {
+        endpoints: {
+          userInfo:
+            'https://graph.facebook.com/v6.0/me?fields=id,name,picture{url}'
+        },
+        clientId: '329030548663558',
+        scope: ['public_profile', 'email']
       }
     },
 

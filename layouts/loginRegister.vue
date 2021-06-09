@@ -5,9 +5,9 @@
         class="d-flex justify-content-center pt-4 mt-4 pt-md-0 pt-md-0"
       >
         <div class="authorize-box">
-          <no-ssr>
+          <client-only>
             <Nuxt />
-          </no-ssr>
+          </client-only>
         </div>
       </b-container>
     </div>

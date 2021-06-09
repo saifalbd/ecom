@@ -32,6 +32,14 @@ export const asyncData = async function (ctx) {
       // eslint-disable-next-line no-throw-literal
       throw 'data.offers missing'
     }
+    if (!hasIn(data, 'vendors')) {
+      // eslint-disable-next-line no-throw-literal
+      throw 'data.vendors missing'
+    }
+    if (!hasIn(data, 'categories')) {
+      // eslint-disable-next-line no-throw-literal
+      throw 'data.categories missing'
+    }
     if (!hasIn(data, 'collection')) {
       // eslint-disable-next-line no-throw-literal
       throw 'data.collection missing'
@@ -43,12 +51,14 @@ export const asyncData = async function (ctx) {
 
     const banners = data.banners
     const offers = data.offers
+    const categories = data.categories
+    const vendors = data.vendors
     const collection = data.collection.map((item) => {
       item.busy = false
       item.data = itemsMixer(item.data)
       return item
     })
-    return { collection, banners, offers }
+    return { collection, banners, offers, categories, vendors }
   } catch (error) {
     console.error(error)
   }

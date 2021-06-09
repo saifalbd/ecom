@@ -4,7 +4,7 @@
       <b-col cols="12">
         <product-list :busy="busy" :items="items" :title="name" />
       </b-col>
-      <no-ssr>
+      <client-only>
         <b-col cols="12">
           <pagination-more
             v-if="loaded"
@@ -15,7 +15,7 @@
             @next-params="$fetch($event)"
           />
         </b-col>
-      </no-ssr>
+      </client-only>
     </b-row>
   </div>
 </template>

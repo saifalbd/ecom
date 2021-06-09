@@ -1,7 +1,7 @@
 <template>
-  <no-ssr>
+  <client-only>
     <CheckOut />
-  </no-ssr>
+  </client-only>
 </template>
 
 <script>

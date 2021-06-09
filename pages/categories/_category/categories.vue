@@ -33,7 +33,8 @@ export default {
   fetchOnServer: true,
   async fetch () {
     try {
-      const url = this.$apiUrl('app.category.index', {}, false)
+      const parent = this.$route.params.category
+      const url = this.$apiUrl('app.category.index', { parent }, false)
 
       const { data } = await this.$axiosWithoutToken.get(url)
       this.categories = data.data.map((c) => {

@@ -70,10 +70,14 @@ export default {
     shippingFillup () {
       this.submit()
     },
-    async fetchShipingAddresses () {
+    async fetchShipingAddresses (user) {
       try {
         this.busy = true
-        const url = this.$apiUrl('app.shipingAddress.index', {}, false)
+        const url = this.$apiUrl(
+          'app.user.shipingAddress.index',
+          { user },
+          false
+        )
         const { data } = await this.$authAxios(this.$auth).get(url)
 
         this.selectedAddress = head(data) ? head(data).id : null
@@ -96,7 +100,9 @@ export default {
       const is = this.$auth.loggedIn
 
       if (is) {
-        this.fetchShipingAddresses()
+        const userId = this.$auth.user.id
+
+        this.fetchShipingAddresses(userId)
       } else {
         this.notWantToLogin()
         // this.confirmModel();

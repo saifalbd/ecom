@@ -1,8 +1,8 @@
 <template>
   <div class="guest-layout">
-    <no-ssr>
+    <client-only>
       <HeadBox :categories="categories" />
-    </no-ssr>
+    </client-only>
     <b-container fluid class="relative">
       <div class="page" :class="{ hide: searchView }">
         <Nuxt />
@@ -11,12 +11,12 @@
         <SearchView />
       </div>
     </b-container>
-    <no-ssr>
+    <client-only>
       <AppFooter />
-    </no-ssr>
-    <no-ssr>
+    </client-only>
+    <client-only>
       <CartSidebar />
-    </no-ssr>
+    </client-only>
   </div>
 </template>
 
@@ -39,9 +39,9 @@ export default {
     ...mapState('Search', ['searchView'])
   },
   mounted () {
-    setTimeout(() => {
-      this.allCategories()
-    }, 3000)
+    // setTimeout(() => {
+    //   this.allCategories()
+    // }, 3000)
   },
   methods: {
     ...mapActions('Search', ['removeData']),

@@ -14,7 +14,7 @@ export default class AllGet {
 
   async categories () {
     try {
-      const url = await r.zRoute('app.category', {}, false)
+      const url = await r.zRoute('app.category.index', {}, false)
       const { data } = await this.ctx.$axiosWithoutToken.get(url)
       return Promise.resolve({ data })
     } catch (error) {

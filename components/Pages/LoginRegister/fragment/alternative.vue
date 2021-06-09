@@ -5,7 +5,12 @@
         {{ title }}
       </b-col>
       <b-col cols="12" class="mt-2">
-        <b-button squared block variant="outline-primary">
+        <b-button
+          squared
+          block
+          variant="outline-primary"
+          @click.stop="facebook"
+        >
           Facebook
         </b-button>
         <b-button squared block variant="outline-primary">
@@ -22,6 +27,16 @@ export default {
     title: {
       type: String,
       default: 'Login'
+    }
+  },
+  methods: {
+    async facebook () {
+      try {
+        const res = await this.$auth.loginWith('facebook')
+        console.log(res)
+      } catch (error) {
+        console.error(error)
+      }
     }
   }
 }

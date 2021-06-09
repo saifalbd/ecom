@@ -1,5 +1,5 @@
 <template>
-  <no-ssr>
+  <client-only>
     <Vo ref="form">
       <b-overlay :show="busy" rounded="sm">
         <b-card bg-variant="light">
@@ -90,7 +90,7 @@
         </b-card>
       </b-overlay>
     </Vo>
-  </no-ssr>
+  </client-only>
 </template>
 
 <script>

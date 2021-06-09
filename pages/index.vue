@@ -1,21 +1,40 @@
 <template>
   <div class="home-page">
-    <no-ssr>
+    <client-only>
       <top-carosole :busy="busy" :items="banners" />
-    </no-ssr>
-    <no-ssr>
+    </client-only>
+    <b-row>
+      <b-col cols="12">
+        <div class="top-bar">
+          <h4>
+            Choice Vendors
+          </h4>
+        </div>
+        <VendorsComponent :busy="busy" :items="vendors" />
+      </b-col>
+    </b-row>
+
+    <client-only keep-alive>
       <offer-slider :busy="busy" :items="offers" />
-    </no-ssr>
+    </client-only>
 
     <b-row>
+      <b-col cols="12">
+        <div class="top-bar">
+          <h4>
+            Choice Categories
+          </h4>
+        </div>
+        <CategoriesComponent :items="categories" />
+      </b-col>
       <b-col v-for="(obj, index) in collection" :key="index" cols="12">
-        <no-ssr v-if="obj.meta.with_slider">
+        <client-only v-if="obj.meta.with_slider">
           <product-slider
             :busy="obj.busy"
             :items="obj.data"
             :name="obj.meta.display_title"
           />
-        </no-ssr>
+        </client-only>
         <product-no-slider
           v-else
           :show-more="obj.meta.offset ? true : false"
@@ -30,6 +49,8 @@
 </template>
 
 <script>
+import VendorsComponent from '@/components/Pages/Index/Sub/Vendors.vue'
+import CategoriesComponent from '@/components/Pages/Index/Sub/Categories.vue'
 import OfferSlider from '@/components/Pages/Index/Sub/OfferSlider.vue'
 import ProductSlider from '@/components/Pages/Index/Sub/ProductSlider.vue'
 import TopCarosole from '@/components/Pages/Index/Sub/TopCarosole.vue'
@@ -47,16 +68,22 @@ export default {
     TopCarosole,
     OfferSlider,
     ProductSlider,
-    ProductNoSlider
+    ProductNoSlider,
+    CategoriesComponent,
+    VendorsComponent
   },
   data () {
     return {
       busy: false,
       banners: [],
       offers: [],
+      categories: [],
+      vendors: [],
       collection: []
     }
   },
+  fetchOnServer: true,
+
   async fetch () {
     try {
       const url = this.$apiUrl('app.homePage', {}, false)
@@ -71,6 +98,14 @@ export default {
         // eslint-disable-next-line no-throw-literal
         throw 'data.offers missing'
       }
+      if (!hasIn(data, 'vendors')) {
+        // eslint-disable-next-line no-throw-literal
+        throw 'data.vendors missing'
+      }
+      if (!hasIn(data, 'categories')) {
+        // eslint-disable-next-line no-throw-literal
+        throw 'data.categories missing'
+      }
       if (!hasIn(data, 'collection')) {
         // eslint-disable-next-line no-throw-literal
         throw 'data.collection missing'
@@ -80,6 +115,8 @@ export default {
         throw 'data.collection must be Array'
       }
 
+      this.categories = data.categories
+      this.vendors = data.vendors
       this.banners = data.banners
       this.offers = data.offers
       this.collection = data.collection.map((item) => {
@@ -91,7 +128,6 @@ export default {
       console.error(error)
     }
   },
-
   created () {
     //  await this.fetchBannars();
     // await this.fetchOffers();
