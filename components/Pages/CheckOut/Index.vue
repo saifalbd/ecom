@@ -24,8 +24,11 @@
               :payment-method.sync="paymentMethod"
               :selected-address.sync="selectedAddress"
               :shiping-addresses="shipingAddresses"
+              :show-bkash-dialog.sync="bkashDialog"
               @createdUser="createdUser = $event"
               @next="shippingFillup"
+              @payment-close="paymentDailogOnClose"
+              @payment-done="paymentDone"
             />
           </b-col>
         </b-row>
@@ -42,13 +45,14 @@ import ReViewOrder from './sub/ReViewOrder.vue'
 import ShipingDetails from './sub/ShipingDetails.vue'
 import checkoutApi from './indernal/checkoutApi'
 import forSubmit from './indernal/forSubmit'
+import paymentCreate from './indernal/paymentCreate'
 
 export default {
   components: {
     ShipingDetails,
     ReViewOrder
   },
-  mixins: [checkoutApi, forSubmit],
+  mixins: [checkoutApi, paymentCreate, forSubmit],
   data () {
     return {
       tabIndex: 0,

@@ -9,7 +9,9 @@
             <b-spinner type="grow" variant="dark" />
             <b-spinner small type="grow" variant="secondary" />
             <!-- We add an SR only text for screen readers -->
-            <span class="sr-only">8225522</span>
+            <span>
+              {{ busyText }}
+            </span>
           </div>
         </template>
         <Vo ref="shiping">

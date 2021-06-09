@@ -69,21 +69,37 @@
         <hr>
       </b-col>
       <b-col cols="12">
-        <payment-methods v-model="paymentMethodName" />
+        <b-overlay
+          opacity="0.5"
+          bg-color="#150235"
+          :show="selectedAddress ? false : true"
+          rounded="sm"
+        >
+          <template #overlay>
+            <div class="text-center  text-light rounded">
+              Please Select Address First
+            </div>
+          </template>
+          <payment-methods v-model="paymentMethodName" />
+        </b-overlay>
       </b-col>
     </b-row>
 
-    <b-row align-h="end" class="mt-4 pt-4" @click.once="next">
-      <button class="submit-button">
+    <b-row align-h="end" class="mt-4 pt-4">
+      <button class="submit-button" @click.once="next">
         APPLY
       </button>
     </b-row>
     <shiping-address-model
       v-model="add"
-      :with-register="withRegister"
       @createdUser="$emit('createdUser', $event)"
       @done="addOrEdit"
     />
+    <!-- <Bkash
+      v-model="bkashDialog"
+      @close="$emit('payment-close', true)"
+      @done="$emit('payment-done', $event)"
+    /> -->
   </b-card>
 </template>
 
@@ -93,13 +109,15 @@ import ShipingAddressModel from './spDetails/ShipingAddressModel.vue'
 import ShipingAddressCreate from './spDetails/ShipingAddressCreate.vue'
 import ShipingAddressEdit from './spDetails/ShipingAddressEdit.vue'
 import PaymentMethods from './spDetails/PaymentMethods.vue'
+import Bkash from './payments/bkash.vue'
 export default {
   name: 'ShipingDetails',
   components: {
     ShipingAddressModel,
     ShipingAddressEdit,
     PaymentMethods,
-    ShipingAddressCreate
+    ShipingAddressCreate,
+    Bkash
   },
   props: {
     shipingAddresses: {
@@ -114,6 +132,10 @@ export default {
       type: String,
       required: true
     },
+    showBkashDialog: {
+      type: Boolean,
+      required: true
+    },
     withRegister: {
       type: Boolean,
       required: true
@@ -123,6 +145,8 @@ export default {
     return {
       selectedItem: 1,
       add: false,
+
+      nagadDialog: false,
 
       busy: false
     }
@@ -134,6 +158,14 @@ export default {
       },
       set (val) {
         this.$emit('update:paymentMethod', val)
+      }
+    },
+    bkashDialog: {
+      get () {
+        return this.showBkashDialog
+      },
+      set (val) {
+        this.$emit('update:showBkashDialog', val)
       }
     }
   },
