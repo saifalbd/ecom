@@ -1,6 +1,6 @@
 export default ({ $axios, redirect }, inject) => {
   $axios.defaults.headers.common.token = process.env.API_TOKEN
-  $axios.defaults.headers.common.baseURL = 'http://ginnibazar.lara'
+  $axios.defaults.headers.common.baseURL = 'https://redcom.cloud'
 
   inject('axiosWithoutToken', $axios)
 

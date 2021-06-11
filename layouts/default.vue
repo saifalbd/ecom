@@ -3,7 +3,7 @@
     <client-only>
       <Header :categories="categories" />
     </client-only>
-    <b-container fluid class="relative" style="height:3000px">
+    <b-container fluid class="relative">
       <div class="page" :class="{ hide: searchView }">
         <Nuxt />
       </div>
