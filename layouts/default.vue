@@ -39,17 +39,7 @@ export default {
   computed: {
     ...mapState('Search', ['searchView'])
   },
-  mounted () {
-    // this.$nextTick(() => {
-    //   window.onload = () => {
-    //     const header = document.getElementById('header')
-    //     const sticky = header.offsetTop
-    //     window.onscroll = () => {
-    //       this.myFunction(header, sticky)
-    //     }
-    //   }
-    // })
-  },
+
   methods: {
     ...mapActions('Search', ['removeData']),
     async allCategories () {
