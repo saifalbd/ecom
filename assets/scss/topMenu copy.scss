@@ -1,0 +1,93 @@
+.top-menu-box {
+  $bar-item-height: 3rem;
+  $bar-sub-item-height: 2rem;
+  list-style-type: none;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  background-color: white;
+  margin: 0;
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  border-bottom: 0.01rem solid rgb(202, 169, 175);
+
+  a {
+    text-decoration: none;
+    color: black;
+  }
+
+  >li {
+    list-style: none;
+    border-right: 0.01rem solid pink;
+    text-align: center;
+    cursor: pointer;
+
+    >a {
+      line-height: $bar-item-height;
+      height: $bar-item-height;
+      display: block;
+
+    }
+
+
+    &.has-child {
+
+      >a {
+        &::after {
+          content: " \25BE";
+        }
+      }
+
+
+
+
+      .sub-items {
+        list-style-type: none;
+        grid-template-columns: repeat(5, 1fr);
+        background-color: white;
+        margin: 0;
+        padding: 0;
+        padding-top: 1rem;
+        width: 100%;
+        position: absolute;
+        left: 0;
+        display: grid;
+        border-top: 1px solid black;
+
+        >li {
+          list-style: none;
+          text-align: center;
+          cursor: pointer;
+
+          a {
+            height: $bar-sub-item-height;
+            line-height: $bar-sub-item-height;
+
+          }
+
+          &:nth-child(even) {
+
+            background-color: rgba(63, 81, 181, 0.10);
+          }
+
+
+        }
+
+      }
+
+      &:hover {
+        .sub-items {
+          display: grid;
+        }
+
+        >a {
+          &::after {
+            content: " \25B4";
+          }
+        }
+
+      }
+    }
+
+  }
+}

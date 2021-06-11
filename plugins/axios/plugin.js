@@ -1,7 +1,7 @@
 import axiosIs from 'axios'
 
 const mix = (ax) => {
-  ax.defaults.baseURL = 'https://redcom.cloud'
+  ax.defaults.baseURL = 'http://ginnibazar.lara'
 
   // axiosWithoutToken.defaults.withCredentials = true;
   ax.defaults.headers.common['Access-Control-Allow-Origin'] = true

@@ -31,15 +31,15 @@ const mutations = {
       if (!isPlainObject(payload)) {
         throw new Error('search data must be object')
       }
-      if (!hasIn(payload, 'meta')) {
-        throw new Error('search data.meta not found')
-      }
-      if (!hasIn(payload.meta, 'total')) {
-        throw new Error('search data.meta.total not found')
-      }
+      // if (!hasIn(payload, 'meta')) {
+      //   throw new Error('search data.meta not found')
+      // }
+      // if (!hasIn(payload.meta, 'total')) {
+      //   throw new Error('search data.meta.total not found')
+      // }
       state.searchItems = payload.data.filter(item => item.images.length)
-      state.pagination = payload.meta
-      state.searchCount = payload.meta.total
+     // state.pagination = payload.meta
+      state.searchCount = payload.data.length
     } catch (error) {
       console.error(error)
     }
@@ -76,56 +76,7 @@ const mutations = {
 }
 const actions = {
   searchFetch({ commit }, payload) {
-    try {
-      if (isUndefined(payload)) {
-        throw new Error('Search input value not found')
-      }
-      if (!isPlainObject(payload)) {
-        throw new Error('Search action Payload must be object')
-      }
-      if (!hasIn(payload, 'value')) {
-        throw new Error('Search action Payload.value not found')
-      }
-      if (isEmpty(payload.value)) {
-        throw new Error('Search input value not found')
-      }
-
-      if (hasIn(payload, 'start')) {
-        if (!isFunction(payload.start)) {
-          throw new Error('payload start must be function')
-        }
-      }
-
-      const params = {
-        search: payload.value
-      }
-      if (payload.page) {
-        params.page = payload.page
-      }
-
-      commit('SET_BUSY', true)
-
-      restApi
-        .getIs(this)
-        .items(params)
-        .then(({ data }) => {
-          commit('SET_DATA', data)
-
-          if (hasIn(payload, 'done')) {
-            if (!isFunction(payload.done)) {
-              throw new Error('payload done must be function')
-            }
-            payload.done(data)
-          }
-          commit('SET_BUSY', false)
-        })
-        .catch(error => {
-          console.error(error)
-          commit('SET_BUSY', false)
-        })
-    } catch (error) {
-      console.error(error)
-    }
+  
   },
   removeData({ commit }) {
     commit('REMOVE_DATA')
@@ -135,6 +86,12 @@ const actions = {
   },
   set_value({ commit }, payload) {
     commit('SET_VALUE', payload)
+  },
+  set_busy({ commit }, payload) {
+    commit('SET_BUSY', payload)
+  },
+  set_data({ commit }, payload) {
+    commit('SET_DATA', payload)
   }
 }
 

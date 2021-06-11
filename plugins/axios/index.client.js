@@ -1,6 +1,6 @@
 export default ({ $axios, redirect }, inject) => {
   $axios.defaults.headers.common.token = window.app.app_access_key
-  $axios.defaults.headers.common.baseURL = 'https://redcom.cloud'
+  $axios.defaults.headers.common.baseURL = 'http://ginnibazar.lara'
 
   inject('axiosWithoutToken', $axios)
 

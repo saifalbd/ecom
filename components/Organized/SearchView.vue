@@ -5,7 +5,7 @@
         <!-- {{ items }} -->
         <product-list :title="title" :items="items" />
       </b-col>
-      <b-col cols="12">
+      <!-- <b-col cols="12">
         <pagination-more
           v-if="searchCount"
           hide-on-no-next
@@ -14,7 +14,7 @@
           size="lg"
           @next-params="fetchItems"
         />
-      </b-col>
+      </b-col> -->
     </b-row>
 
     <div class="onBack" @click="onBack">
@@ -25,12 +25,12 @@
 
 <script>
 import { mapActions, mapState } from 'vuex'
-import PaginationMore from './PaginationMore.vue'
+// import PaginationMore from './PaginationMore.vue'
 import ProductList from './ProductList.vue'
 export default {
   components: {
-    ProductList,
-    PaginationMore
+    ProductList
+    // PaginationMore
   },
 
   computed: {

@@ -52,8 +52,22 @@
       "HEAD"
     ]
   },
+  "app.vendors": {
+    "uri": "json\/vendors",
+    "methods": [
+      "GET",
+      "HEAD"
+    ]
+  },
   "app.item.index": {
     "uri": "json\/items",
+    "methods": [
+      "GET",
+      "HEAD"
+    ]
+  },
+  "app.item.search": {
+    "uri": "json\/items-search",
     "methods": [
       "GET",
       "HEAD"

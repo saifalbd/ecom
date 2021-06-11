@@ -3,30 +3,12 @@
     <client-only>
       <top-carosole :busy="busy" :items="banners" />
     </client-only>
-    <b-row>
-      <b-col cols="12">
-        <div class="top-bar">
-          <h4>
-            Choice Vendors
-          </h4>
-        </div>
-        <VendorsComponent :busy="busy" :items="vendors" />
-      </b-col>
-    </b-row>
 
     <client-only keep-alive>
       <offer-slider :busy="busy" :items="offers" />
     </client-only>
 
     <b-row>
-      <b-col cols="12">
-        <div class="top-bar">
-          <h4>
-            Choice Categories
-          </h4>
-        </div>
-        <CategoriesComponent :items="categories" />
-      </b-col>
       <b-col v-for="(obj, index) in collection" :key="index" cols="12">
         <client-only v-if="obj.meta.with_slider">
           <product-slider
@@ -68,9 +50,9 @@ export default {
     TopCarosole,
     OfferSlider,
     ProductSlider,
-    ProductNoSlider,
-    CategoriesComponent,
-    VendorsComponent
+    ProductNoSlider
+    // CategoriesComponent,
+    // VendorsComponent
   },
   data () {
     return {
@@ -98,14 +80,7 @@ export default {
         // eslint-disable-next-line no-throw-literal
         throw 'data.offers missing'
       }
-      if (!hasIn(data, 'vendors')) {
-        // eslint-disable-next-line no-throw-literal
-        throw 'data.vendors missing'
-      }
-      if (!hasIn(data, 'categories')) {
-        // eslint-disable-next-line no-throw-literal
-        throw 'data.categories missing'
-      }
+
       if (!hasIn(data, 'collection')) {
         // eslint-disable-next-line no-throw-literal
         throw 'data.collection missing'
@@ -116,8 +91,7 @@ export default {
       }
 
       this.categories = data.categories
-      this.vendors = data.vendors
-      this.banners = data.banners
+
       this.offers = data.offers
       this.collection = data.collection.map((item) => {
         item.busy = false

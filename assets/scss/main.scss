@@ -11,6 +11,17 @@ $baseBgColor:#e2e4c9;
 
 }
 
+button {
+  border: none;
+  outline: none;
+
+  &:focus {
+    border: none;
+    outline: none;
+  }
+}
+
+@import './header.scss';
 @import './Pragment/Index.scss';
 @import './Organized/Index.scss';
 // @import './chatApp.scss';
@@ -26,8 +37,17 @@ $baseBgColor:#e2e4c9;
 @import './Dashboard/Index.scss';
 @import './LoginRegister.scss';
 @import './searchpage.scss';
+@import './topMenu.scss';
 
 
+
+.page {
+  padding-top: 1rem;
+}
+
+.search-layout {
+  padding-top: 1rem;
+}
 
 .page.hide {
   display: none

@@ -3,9 +3,8 @@
     :to="{ name: 'products-slug', params: { slug } }"
     class="rd-item-name"
     v-bind="$attrs"
-  >
-    {{ title }}
-  </b-link>
+    v-text="title"
+  />
 </template>
 
 <script>

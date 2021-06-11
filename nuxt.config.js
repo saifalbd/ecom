@@ -16,14 +16,14 @@ export default {
       {
         hid: 'og:image',
         name: 'og:image',
-        content: `https://redcom.cloud/assets-media/${process.env.COMPANY_ID}/logo/logo.png`
+        content: `http://ginnibazar.lara/assets-media/${process.env.COMPANY_ID}/logo/logo.png`
       }
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
-    // https://redcom.cloudAPI_TOKEN
+    // http://ginnibazar.laraAPI_TOKEN
     script: [
       {
-        src: `https://redcom.cloud/assets-media/${process.env.COMPANY_ID}/content/config-new.js`
+        src: `http://ginnibazar.lara/assets-media/${process.env.COMPANY_ID}/content/config-new.js`
       }
 
       // {
@@ -73,14 +73,14 @@ export default {
     { src: '~/plugins/vue-plugins.js', mode: 'client' },
     { src: '~/plugins/validate/formVError.client.js', mode: 'client' }
   ],
-  // 'https://redcom.cloud/json'
+  // 'http://ginnibazar.lara/json'
   proxy: {
     '/json': {
-      target: 'https://redcom.cloud',
+      target: 'http://ginnibazar.lara',
       pathRewrite: { '^/json': '/json' }
     },
     '/laravel': {
-      target: 'https://redcom.cloud',
+      target: 'http://ginnibazar.lara',
       pathRewrite: { '^/laravel': '/' }
     }
   },
@@ -168,7 +168,7 @@ export default {
   generate: {
     minify: false
     // routes () {
-    //   return axios.get('https://redcom.cloud/json/items?all=1').then((res) => {
+    //   return axios.get('http://ginnibazar.lara/json/items?all=1').then((res) => {
     //     return res.data.data.map((p) => {
     //       return '/products/' + p.id
     //     })

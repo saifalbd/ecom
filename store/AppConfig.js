@@ -12,7 +12,7 @@ const mutations = {
 const actions = {
   async fetch_config ({ commit }, payload) {
     try {
-      const url = 'https://redcom.cloud/assets-media/1/content/confignew.json'
+      const url = 'http://ginnibazar.lara/assets-media/1/content/confignew.json'
       const res = await this.$axios.get(url)
       commit('ADD_CONFIG', res)
       console.log(res)
