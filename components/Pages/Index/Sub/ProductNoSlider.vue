@@ -22,7 +22,12 @@
 
     <div class="product-list" :class="{ horizontal: !isBox }">
       <div v-for="(item, index) in items" :key="item.id" class="product-item">
-        <product-card v-if="isBox" class="responsive" :item="item" />
+        <product-card
+          v-if="isBox"
+          :show-category="false"
+          class="responsive"
+          :item="item"
+        />
         <product-card-horizontal
           v-else
           :item-id="item.id"

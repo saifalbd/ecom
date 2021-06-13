@@ -18,6 +18,13 @@
   z-index: 1000;
   width: 100%;
 
+  .menu-button {
+    border: 2px solid rgba(0, 0, 0, 0.27);
+    outline: 2px solid rgba(0, 0, 0, 0.50);
+    background-color: black;
+    color: #ffde96;
+  }
+
   .top {
 
     background-color: #f3e9e9;
@@ -33,12 +40,7 @@
 
         align-items: center;
 
-        .menu-button {
-          border: 2px solid rgba(0, 0, 0, 0.27);
-          outline: 2px solid rgba(0, 0, 0, 0.50);
-          background-color: black;
-          color: #ffde96;
-        }
+
 
         .logo-box {
           padding: 0rem;
@@ -80,9 +82,19 @@
       display: none;
     }
 
+    .menu-button {
+      display: none;
+    }
+
+    .menu-open-box {
+      display: none;
+    }
+
+
+
     .center-box {
 
-      padding: 0.5rem;
+      padding: 0.2rem;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -234,7 +246,23 @@
 
     .middle {
       .logo-box {
-        display: none;
+        img {
+          max-height: 2rem;
+        }
+
+
+      }
+
+      .menu-open-box {
+        display: block;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .menu-button {
+          display: block;
+        }
       }
 
 
@@ -242,15 +270,40 @@
         display: none;
       }
 
-      grid-template-columns:1fr;
+      grid-template-columns:3rem 1fr;
     }
 
     .bottom {
-      display: none;
+      // display: none;
     }
   }
 
   @media (min-width: 768px) {
+    .menu-open-box {
+      display: none;
+    }
+
+    &.sticky {
+      .middle {
+        grid-template-columns: 1fr 4fr;
+
+        .center-box {
+          padding: 0.3rem;
+        }
+
+        .menu-open-box {
+          display: none;
+        }
+      }
+
+
+    }
+
+    .menu-open-box {
+      display: none;
+    }
+
+
     .logo-box {
       display: flex;
     }
@@ -268,6 +321,10 @@
       display: grid;
       grid-template-columns: 1fr 3fr 1fr;
 
+      .center-box {
+        padding: 0.5rem;
+      }
+
       .logo-box {
         display: flex;
       }
@@ -282,7 +339,7 @@
       display: block;
       height: auto;
       position: static;
-      background-color: #ffffff;
+      background-color: #ffde96;
       padding: 0 1rem;
 
       .close-button {
@@ -296,6 +353,7 @@
         padding: 0;
         margin: 0;
         left: 0;
+        background-color: #ffde96;
 
         .home-link {
           display: none;

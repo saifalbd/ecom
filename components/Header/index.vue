@@ -15,6 +15,12 @@
     </div>
     <div class="middle">
       <LogoBox />
+      <div class="menu-open-box">
+        <button class="menu-button" @click="menuOpen = !menuOpen">
+          <BIconMenuButton />
+        </button>
+      </div>
+
       <div class="center-box">
         <CenterBox />
       </div>

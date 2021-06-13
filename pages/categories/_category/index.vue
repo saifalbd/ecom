@@ -1,5 +1,5 @@
 <template>
-  <ShowCategory />
+  <ShowCategory :title="title" />
 </template>
 
 <script>

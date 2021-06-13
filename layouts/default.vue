@@ -62,6 +62,16 @@ export default {
     }
   },
   // eslint-disable-next-line vue/order-in-components
+  mounted () {
+    this.$nextTick(() => {
+      const header = document.getElementById('header')
+      const sticky = header.offsetTop
+      window.onscroll = () => {
+        this.myFunction(header, sticky)
+      }
+    })
+  },
+  // eslint-disable-next-line vue/order-in-components
   watch: {
     $route () {
       this.removeData()

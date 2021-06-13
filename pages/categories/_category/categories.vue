@@ -39,7 +39,7 @@ export default {
       const { data } = await this.$axiosWithoutToken.get(url)
       this.categories = data.data.map((c) => {
         let name
-        if (c.childrens_count) {
+        if (parseInt(c.childrens_count)) {
           name = 'categories-category-categories'
         } else {
           name = 'categories-category'

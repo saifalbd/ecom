@@ -2,7 +2,7 @@
   <div class="category">
     <b-row>
       <b-col cols="12">
-        <product-list :busy="busy" :items="items" :title="name" />
+        <product-list :busy="busy" :items="items" :title="title" />
       </b-col>
       <client-only>
         <b-col cols="12">
@@ -31,7 +31,7 @@ export default {
     PaginationMore
   },
   props: {
-    name: {
+    title: {
       type: String,
       default: ''
     }

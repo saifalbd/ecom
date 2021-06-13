@@ -26,9 +26,9 @@
 
         <categories-links v-if="showCategory" :categories="item.categories" />
         <!-- <h6 class="card-subtitle mb-2 text-muted">Style: VA33TXRJ5</h6> -->
-        <p class="card-text mt-1">
+        <!-- <p class="card-text mt-1">
           {{ str_take(item.description) }}
-        </p>
+        </p> -->
         <client-only>
           <variants-select
             v-if="item.available_vartians"

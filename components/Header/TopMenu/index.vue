@@ -38,13 +38,10 @@ export default {
           subItems: []
         },
         {
-          title: 'Publisher',
+          title: 'Brands',
           subItems: []
         },
-        {
-          title: 'Authors',
-          subItems: []
-        },
+
         {
           title: 'Offers',
           to: {}
@@ -83,7 +80,7 @@ export default {
     },
     async allVendors () {
       try {
-        const url = this.$apiUrl('app.vendors', {}, false)
+        const url = this.$apiUrl('app.vendor.index', {}, false)
         const { data } = await this.$axiosWithoutToken.get(url)
         this.items[1].subItems = data.data.map((c) => {
           const name = 'vendors-vendor'

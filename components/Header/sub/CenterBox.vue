@@ -74,6 +74,9 @@ export default {
     }
   },
   methods: {
+    showCart () {
+      this.$store.dispatch('toggleCart', true)
+    },
     async fetchItems (search) {
       this.set_busy(true)
       this.fetchDone = false
