@@ -44,6 +44,7 @@ export default {
         } else {
           name = 'categories-category'
         }
+
         const params = { category: c.id }
         const to = { name, params }
         c.to = to

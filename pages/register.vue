@@ -161,19 +161,8 @@ export default {
         this.busy = true
         const url = this.$apiUrl('app.register', this.loginForm, false)
 
-        const { data } = await this.$http.axiosWithoutToken.get(url)
-        await this.setToken(data)
-
-        if (this.isModel) {
-          this.$emit('done', true)
-        } else {
-          setTimeout(() => {
-            this.busy = false
-            this.$router.push({
-              name: 'index'
-            })
-          }, 1000)
-        }
+        const { data } = await this.$axiosWithoutToken.get(url)
+        this.$router.push({ name: 'login' })
       } catch (error) {
         console.error(error)
         this.$formVError({ error, vue: this, ref: 'form', callBack () {} })

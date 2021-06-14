@@ -121,8 +121,8 @@ export default {
     return {
       busy: false,
       loginForm: {
-        email: 'user@gmail.com',
-        password: '12345678'
+        email: this.$isDev('user@gmail.com', ''),
+        password: this.$isDev('12345678', '')
       },
       fromRoute: null
     }
@@ -157,36 +157,7 @@ export default {
         }
       } catch (error) {
         console.error(error)
-      }
-      this.busy = false
-    },
-
-    async onSubmits () {
-      const valid = await this.$refs.form.validate()
-      if (!valid) {
-        return false
-      }
-
-      try {
-        this.busy = true
-        const url = this.$apiUrl('app.login', this.loginForm, false)
-
-        const { data } = await this.$axiosWithoutToken.get(url)
-        await this.setToken(data)
-
-        if (this.isModel) {
-          this.$emit('done', true)
-        } else if (this.fromRoute) {
-          this.$router.back()
-        } else {
-          this.busy = false
-          this.$router.push({
-            name: 'auth.home'
-          })
-        }
-      } catch (error) {
-        console.error(error)
-        this.$formVError({ error, vue: this, ref: 'form', callBack () {} })
+        this.$formVError({ error, vue: this, ref: 'form' })
       }
       this.busy = false
     }

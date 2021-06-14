@@ -63,12 +63,13 @@ export default {
         const url = this.$apiUrl('app.category.index', {}, false)
         const { data } = await this.$axiosWithoutToken.get(url)
         this.items[0].subItems = data.data.map((c) => {
-          let name
-          if (c.childrens_count) {
-            name = 'categories-category-categories'
-          } else {
-            name = 'categories-category'
-          }
+          // let name
+          // if (c.childrens_count) {
+          //   name = 'categories-category-categories'
+          // } else {
+          //   name = 'categories-category'
+          // }
+          const name = 'categories-category'
           const params = { category: c.id }
           const to = { name, params }
           c.to = to

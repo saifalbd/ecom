@@ -4,7 +4,7 @@
       <BIconUnlock /> <span>Login</span>
     </b-button>
 
-    <b-button v-if="user" squared variant="primary" :to="{ name: 'index' }">
+    <b-button v-if="user" squared variant="primary" :to="{ name: 'dashboard' }">
       <b-avatar
         v-if="user && user.image"
         size="sm"

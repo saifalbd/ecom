@@ -6,6 +6,8 @@ $baseBgColor:#e2e4c9;
 // @import '../../../node_modules/filepond/dist/filepond.min.css';
 // @import '../../../node_modules/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.css';
 
+@import '../../node_modules/vue-advanced-cropper/dist/style.css';
+
 #__layout {
   min-height: 100vh;
 
