@@ -80,7 +80,10 @@
               Please Select Address First
             </div>
           </template>
-          <payment-methods v-model="paymentMethodName" />
+          <payment-methods
+            v-model="paymentMethodName"
+            :payment-options="paymentOptions"
+          />
         </b-overlay>
       </b-col>
     </b-row>
@@ -95,11 +98,12 @@
       @createdUser="$emit('createdUser', $event)"
       @done="addOrEdit"
     />
-    <!-- <Bkash
+    <Bkash
       v-model="bkashDialog"
+      :option="bkashOption"
       @close="$emit('payment-close', true)"
       @done="$emit('payment-done', $event)"
-    /> -->
+    />
   </b-card>
 </template>
 
@@ -139,6 +143,11 @@ export default {
     withRegister: {
       type: Boolean,
       required: true
+    },
+    // paymentMethod options with active inactiv
+    paymentOptions: {
+      type: Array,
+      required: true
     }
   },
   data () {
@@ -152,6 +161,9 @@ export default {
     }
   },
   computed: {
+    bkashOption () {
+      return this.paymentOptions.find(e => lowerCase(e.method) === 'bkash')
+    },
     paymentMethodName: {
       get () {
         return this.paymentMethod

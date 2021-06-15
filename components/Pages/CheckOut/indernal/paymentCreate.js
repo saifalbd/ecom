@@ -1,7 +1,7 @@
 export default {
   data () {
     return {
-      bkashDialog: true
+      bkashDialog: false
     }
   },
   methods: {

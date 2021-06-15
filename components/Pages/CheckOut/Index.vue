@@ -25,6 +25,7 @@
               :selected-address.sync="selectedAddress"
               :shiping-addresses="shipingAddresses"
               :show-bkash-dialog.sync="bkashDialog"
+              :payment-options="paymentOptions"
               @createdUser="createdUser = $event"
               @next="shippingFillup"
               @payment-close="paymentDailogOnClose"
@@ -57,6 +58,7 @@ export default {
     return {
       tabIndex: 0,
       shipingAddresses: [],
+      paymentOptions: [],
       selectedAddress: null,
       paymentMethod: 'cash',
       busy: false,
@@ -68,11 +70,21 @@ export default {
   created () {
     this.$store.dispatch('toggleCart', false)
     this.isLogin()
+    this.fetchPaymentOptions()
   },
 
   methods: {
     shippingFillup () {
       this.submit()
+    },
+    async fetchPaymentOptions () {
+      try {
+        const url = this.$apiUrl('app.paymentOptions', {}, false)
+        const { data } = await this.$authAxios(this.$auth).get(url)
+        this.paymentOptions = data
+      } catch (error) {
+        console.error(error)
+      }
     },
     async fetchShipingAddresses (user) {
       try {

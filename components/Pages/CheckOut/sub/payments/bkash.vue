@@ -36,11 +36,14 @@
                 label-cols-sm="3"
                 :label-cols-lg="labelColLg"
                 label-align-sm="right"
+                :disabled="true"
+                description="You can send money on this number"
               >
                 <b-form-input
                   id="receiveNumber"
-                  v-model="receiveNumber"
+                  :value="option.number"
                   :size="size"
+                  :disabled="true"
                 />
               </b-form-group>
             </Vp>
@@ -59,11 +62,13 @@
                 label-cols-sm="3"
                 :label-cols-lg="labelColLg"
                 label-align-sm="right"
+                description="Write here which number from your are send"
               >
                 <b-form-input
                   id="SenderNumber"
                   v-model="senderNumber"
                   :size="size"
+                  placeholder="sender number"
                 />
               </b-form-group>
             </Vp>
@@ -82,6 +87,7 @@
                 label-cols-sm="3"
                 :label-cols-lg="labelColLg"
                 label-align-sm="right"
+                description="transition refarence number"
               >
                 <b-form-input
                   id="RefarenceNumber"
@@ -108,6 +114,25 @@
                 label-align-sm="right"
               >
                 <b-form-input id="amount" v-model="amount" :size="size" />
+              </b-form-group>
+            </Vp>
+            <Vp
+              v-slot="{ valid, errors }"
+              name="note"
+              :vid="`note`"
+              :rules="{ required: false, phone: true }"
+              tag="div"
+            >
+              <b-form-group
+                :invalid-feedback="errors[0]"
+                :state="vs(valid, errors)"
+                label="Note"
+                label-for="note"
+                label-cols-sm="3"
+                :label-cols-lg="labelColLg"
+                label-align-sm="right"
+              >
+                <b-form-textarea id="note" v-model="note" :size="size" />
               </b-form-group>
             </Vp>
 
@@ -139,6 +164,10 @@ export default {
     value: {
       type: Boolean,
       default: false
+    },
+    option: {
+      type: Object,
+      required: true
     }
   },
   data () {
@@ -152,7 +181,8 @@ export default {
       refarenceNumber: '',
       senderNumber: '01715045042',
       amount: 200,
-      method: 'bkash'
+      method: 'bkash',
+      note: ''
     }
   },
   computed: {

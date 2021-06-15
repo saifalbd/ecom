@@ -38,6 +38,13 @@
       "HEAD"
     ]
   },
+  "app.paymentOptions": {
+    "uri": "json\/payment-options",
+    "methods": [
+      "GET",
+      "HEAD"
+    ]
+  },
   "app.homePage": {
     "uri": "json\/home",
     "methods": [

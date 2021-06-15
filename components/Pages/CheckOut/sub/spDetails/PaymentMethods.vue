@@ -12,7 +12,7 @@
           Cash On Delivery
         </a>
       </b-col>
-      <b-col cols="auto">
+      <b-col v-show="is('bkash')" cols="auto">
         <a
           class="pay-button"
           :class="{ active: paymentMethod == 'bkash' }"
@@ -26,7 +26,7 @@
           >
         </a>
       </b-col>
-      <b-col cols="auto">
+      <b-col v-show="is('nagad')" cols="auto">
         <a
           class="pay-button"
           :class="{ active: paymentMethod == 'nagad' }"
@@ -40,7 +40,7 @@
           >
         </a>
       </b-col>
-      <b-col cols="auto">
+      <b-col v-show="is('international')" cols="auto">
         <a
           class="pay-button"
           :class="{ active: paymentMethod == 'international' }"
@@ -71,10 +71,16 @@
 </template>
 
 <script>
+import { lowerCase } from 'lodash'
 export default {
   props: {
     value: {
       type: String,
+      required: true
+    },
+    // paymentMethod options with active inactiv come from server
+    paymentOptions: {
+      type: Array,
       required: true
     }
   },
@@ -89,6 +95,18 @@ export default {
       set (val) {
         this.$emit('input', val)
       }
+    }
+  },
+  methods: {
+    is (method) {
+      return (
+        this.paymentOptions.findIndex((item) => {
+          return (
+            lowerCase(item.method) === lowerCase(method) &&
+            parseInt(item.active)
+          )
+        }) > -1
+      )
     }
   }
 }
