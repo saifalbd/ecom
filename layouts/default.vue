@@ -42,17 +42,17 @@ export default {
 
   methods: {
     ...mapActions('Search', ['removeData']),
-    async allCategories () {
-      try {
-        const { data } = await restApi
-          .ctx(this)
-          .getIs()
-          .categories()
-        this.categories = data.data
-      } catch (error) {
-        console.error(error)
-      }
-    },
+    // async allCategories () {
+    //   try {
+    //     const { data } = await restApi
+    //       .ctx(this)
+    //       .getIs()
+    //       .categories()
+    //     this.categories = data.data
+    //   } catch (error) {
+    //     console.error(error)
+    //   }
+    // },
     myFunction (header, sticky) {
       if (window.pageYOffset > sticky) {
         header.classList.add('sticky')

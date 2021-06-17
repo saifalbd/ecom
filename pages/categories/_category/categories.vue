@@ -45,7 +45,7 @@ export default {
           name = 'categories-category'
         }
 
-        const params = { category: c.id }
+        const params = { category: c.slug }
         const to = { name, params }
         c.to = to
         return c

@@ -8,7 +8,7 @@
       :key="index"
       :to="{
         name: 'categories-category',
-        params: { category: c.id }
+        params: { category: c.slug }
       }"
     >
       {{ c.title }}

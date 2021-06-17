@@ -45,8 +45,9 @@ export default {
     }
   },
   async fetch (params = {}) {
-    const category = this.$route.params.category
-    const paramsIs = { ...params, ...{ category } }
+    // eslint-disable-next-line camelcase
+    const category_slug = this.$route.params.category
+    const paramsIs = { ...params, ...{ category_slug } }
 
     try {
       this.busy = true

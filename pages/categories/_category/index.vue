@@ -9,10 +9,12 @@ export default {
     ShowCategory
   },
   async asyncData ({ $apiUrl, params, $axios }) {
-    const category = params.category
-    const paramsIs = { ...{ category } }
+    // eslint-disable-next-line camelcase
+    const category_slug = params.category
+    const paramsIs = { category_slug }
     const url = $apiUrl('app.category.show', paramsIs, false)
     const res = await $axios.get(url)
+
     const meta = res.data.meta
     const title = res.data.title
 

@@ -56,6 +56,7 @@ export default {
   mounted () {
     this.allCategories()
     this.allVendors()
+    this.allBrands()
   },
   methods: {
     async allCategories () {
@@ -63,14 +64,8 @@ export default {
         const url = this.$apiUrl('app.category.index', {}, false)
         const { data } = await this.$axiosWithoutToken.get(url)
         this.items[0].subItems = data.data.map((c) => {
-          // let name
-          // if (c.childrens_count) {
-          //   name = 'categories-category-categories'
-          // } else {
-          //   name = 'categories-category'
-          // }
           const name = 'categories-category'
-          const params = { category: c.id }
+          const params = { category: c.slug }
           const to = { name, params }
           c.to = to
           return c
@@ -87,6 +82,21 @@ export default {
           const name = 'vendors-vendor'
           c.title = c.name
           const params = { vendor: c.id }
+          const to = { name, params }
+          c.to = to
+          return c
+        })
+      } catch (error) {
+        console.error(error)
+      }
+    },
+    async allBrands () {
+      try {
+        const url = this.$apiUrl('app.brand.index', {}, false)
+        const { data } = await this.$axiosWithoutToken.get(url)
+        this.items[2].subItems = data.data.map((c) => {
+          const name = 'brands-brand'
+          const params = { brand: c.slug }
           const to = { name, params }
           c.to = to
           return c

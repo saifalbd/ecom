@@ -80,7 +80,7 @@ export default {
     async fetchPaymentOptions () {
       try {
         const url = this.$apiUrl('app.paymentOptions', {}, false)
-        const { data } = await this.$authAxios(this.$auth).get(url)
+        const { data } = await this.$axiosWithoutToken.get(url)
         this.paymentOptions = data
       } catch (error) {
         console.error(error)

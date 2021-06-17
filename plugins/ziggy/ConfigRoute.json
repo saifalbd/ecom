@@ -104,6 +104,23 @@
       "HEAD"
     ]
   },
+  "app.brand.index": {
+    "uri": "json\/brands",
+    "methods": [
+      "GET",
+      "HEAD"
+    ]
+  },
+  "app.brand.show": {
+    "uri": "json\/brands\/{brand_slug}",
+    "methods": [
+      "GET",
+      "HEAD"
+    ],
+    "bindings": {
+      "brand": "id"
+    }
+  },
   "app.bannars": {
     "uri": "json\/bannars",
     "methods": [
@@ -119,7 +136,7 @@
     ]
   },
   "app.category.show": {
-    "uri": "json\/categories\/{category}",
+    "uri": "json\/categories\/{category_slug}",
     "methods": [
       "GET",
       "HEAD"
@@ -129,7 +146,7 @@
     }
   },
   "app.category.show.items": {
-    "uri": "json\/categories\/{category}\/items",
+    "uri": "json\/categories\/{category_slug}\/items",
     "methods": [
       "GET",
       "HEAD"
