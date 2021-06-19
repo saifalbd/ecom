@@ -19,7 +19,7 @@
             </span>
           </div>
         </template>
-        <Vo ref="shiping">
+        <Vo ref="form">
           <b-card bg-variant="light" no-footer border-variant="light">
             <Vp
               v-slot="{ valid, errors }"
@@ -76,7 +76,7 @@
               v-slot="{ valid, errors }"
               name="refarenceNumber"
               :vid="`refarenceNumber`"
-              :rules="{ required: false, phone: true }"
+              :rules="{ required: false }"
               tag="div"
             >
               <b-form-group
@@ -101,7 +101,7 @@
               v-slot="{ valid, errors }"
               name="amount"
               :vid="`amount`"
-              :rules="{ required: false, phone: true }"
+              :rules="{ required: false }"
               tag="div"
             >
               <b-form-group
@@ -113,14 +113,19 @@
                 :label-cols-lg="labelColLg"
                 label-align-sm="right"
               >
-                <b-form-input id="amount" v-model="amount" :size="size" />
+                <b-form-input
+                  id="amount"
+                  v-model="amount"
+                  type="number"
+                  :size="size"
+                />
               </b-form-group>
             </Vp>
             <Vp
               v-slot="{ valid, errors }"
               name="note"
               :vid="`note`"
-              :rules="{ required: false, phone: true }"
+              :rules="{ required: false }"
               tag="div"
             >
               <b-form-group
@@ -182,6 +187,7 @@ export default {
       senderNumber: '01715045042',
       amount: 200,
       method: 'bkash',
+      type: 'mobile',
       note: ''
     }
   },
@@ -199,7 +205,40 @@ export default {
     vs (valid, errors) {
       return errors[0] ? false : valid ? true : null
     },
-    submit () {}
+    params () {
+      const method = this.method
+      const type = this.type
+      const note = this.note
+      const senderNumber = this.senderNumber
+      const receiveNumber = this.receiveNumber
+      const refarenceNumber = this.refarenceNumber
+      const amount = this.amount
+
+      return {
+        method,
+        type,
+        note,
+        senderNumber,
+        receiveNumber,
+        refarenceNumber,
+        amount
+      }
+    },
+    async submit () {
+      try {
+        this.busy = true
+        const url = this.$apiUrl('app.payment.store', {}, false)
+        const { data } = await this.$authAxios(this.$auth).post(
+          url,
+          this.params()
+        )
+        this.$emit('done', true)
+      } catch (error) {
+        this.$formVError({ error, vue: this, ref: 'form' })
+        console.error(error)
+      }
+      this.busy = false
+    }
   }
 }
 </script>

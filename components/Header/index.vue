@@ -63,7 +63,7 @@ export default {
   data () {
     return {
       logo: null,
-      menuOpen: true
+      menuOpen: false
     }
   },
   computed: {

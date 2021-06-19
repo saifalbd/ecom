@@ -98,9 +98,11 @@ import AddToCartButton from '@/components/Pragment/AddToCartButton.vue'
 import CategoriesLinks from '@/components/Pragment/CategoriesLinks.vue'
 import VariantsSelect from '@/components/Pragment/VariantsSelect.vue'
 import QuantityGroupAdderWithUnit from '@/components/Pragment/QuantityGroupAdderWithUnit.vue'
+import { BIconTrashFill } from 'bootstrap-vue'
 
 export default {
   components: {
+    BIconTrashFill,
     PriceTag,
     AddToCartButton,
     // QuantityGroupAdder,

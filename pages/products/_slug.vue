@@ -3,7 +3,6 @@
 </template>
 
 <script>
-
 import ShowProduct from '@/components/Pages/Products/Show/Index.vue'
 export default {
   components: {
@@ -11,8 +10,9 @@ export default {
   },
   async asyncData ({ $apiUrl, params, $axios }) {
     const url = $apiUrl('app.item.show', { item: params.slug }, false)
-    const res = await $axios.get(url)
-    return { product: res.data }
+    const { data } = await $axios.get(url)
+    data.cartQuantities = 1
+    return { product: data }
   },
 
   // async fetch () {

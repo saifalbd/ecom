@@ -99,6 +99,7 @@
       @done="addOrEdit"
     />
     <Bkash
+      v-if="bkashOption"
       v-model="bkashDialog"
       :option="bkashOption"
       @close="$emit('payment-close', true)"

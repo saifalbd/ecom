@@ -8,7 +8,18 @@ export default {
     paymentDailogOnClose () {
       this.paymentMethod = 'cash'
     },
-    paymentDone (payment) {}
+    paymentDone (payment) {
+      this.$bvModal.msgBoxOk('Payment successfully done', {
+        title: '',
+        size: 'sm',
+        buttonSize: 'sm',
+        okVariant: 'success',
+        headerClass: 'p-2 border-bottom-0',
+        footerClass: 'p-2 border-top-0',
+        centered: true
+      })
+      this.bkashDialog = false
+    }
   },
   watch: {
     paymentMethod (newValue, oldValue) {

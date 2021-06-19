@@ -54,8 +54,8 @@ export default {
 
 <style lang="scss" scoped>
 .imageBox {
-  // height: 800px;
-  // width: 700px;
+  height: 100%;
+  width: 100%;
   background: red;
 
   img {
@@ -64,4 +64,3 @@ export default {
   }
 }
 </style>
-m

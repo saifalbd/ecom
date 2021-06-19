@@ -233,6 +233,7 @@ import { ValidationProvider, ValidationObserver } from 'vee-validate'
 import isNotLogin from '../../indernal/isNotLogin'
 import phoneConverter from '../../indernal/phoneConverter'
 export default {
+  name: 'ShipingAddressCreate',
   components: {
     Vo: ValidationObserver,
     Vp: ValidationProvider
@@ -384,7 +385,9 @@ export default {
         this.busyText = '...Wait Create Address'
 
         const user = this.userId
-        if (!user) {
+        if (user && !this.$auth.loggedIn) {
+          await this.loginById(this.userId)
+        } else if (!this.$auth.loggedIn) {
           await this.doResister(params.phone)
           this.submit()
           return false

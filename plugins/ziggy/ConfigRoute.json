@@ -116,10 +116,7 @@
     "methods": [
       "GET",
       "HEAD"
-    ],
-    "bindings": {
-      "brand": "id"
-    }
+    ]
   },
   "app.bannars": {
     "uri": "json\/bannars",
@@ -140,20 +137,14 @@
     "methods": [
       "GET",
       "HEAD"
-    ],
-    "bindings": {
-      "category": "id"
-    }
+    ]
   },
   "app.category.show.items": {
     "uri": "json\/categories\/{category_slug}\/items",
     "methods": [
       "GET",
       "HEAD"
-    ],
-    "bindings": {
-      "category": "id"
-    }
+    ]
   },
   "app.offer-bannars": {
     "uri": "json\/offer-bannars",
@@ -173,6 +164,33 @@
     "uri": "json\/login",
     "methods": [
       "POST"
+    ]
+  },
+  "app.loginById": {
+    "uri": "json/login-by-id/{id}",
+    "methods": [
+      "GET",
+      "HEAD"
+    ]
+  },
+  "app.payment.index": {
+    "uri": "json\/payments",
+    "methods": [
+      "GET",
+      "HEAD"
+    ]
+  },
+  "app.payment.store": {
+    "uri": "json\/payments",
+    "methods": [
+      "POST"
+    ]
+  },
+  "app.payment.show": {
+    "uri": "json\/payments\/{payment}",
+    "methods": [
+      "GET",
+      "HEAD"
     ]
   },
   "app.item.review.index": {

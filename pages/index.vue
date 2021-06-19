@@ -31,8 +31,8 @@
 </template>
 
 <script>
-import VendorsComponent from '@/components/Pages/Index/Sub/Vendors.vue'
-import CategoriesComponent from '@/components/Pages/Index/Sub/Categories.vue'
+// import VendorsComponent from '@/components/Pages/Index/Sub/Vendors.vue'
+// import CategoriesComponent from '@/components/Pages/Index/Sub/Categories.vue'
 import OfferSlider from '@/components/Pages/Index/Sub/OfferSlider.vue'
 import ProductSlider from '@/components/Pages/Index/Sub/ProductSlider.vue'
 import TopCarosole from '@/components/Pages/Index/Sub/TopCarosole.vue'
@@ -59,8 +59,8 @@ export default {
       busy: false,
       banners: [],
       offers: [],
-      categories: [],
-      vendors: [],
+      // categories: [],
+      // vendors: [],
       collection: []
     }
   },
@@ -90,9 +90,10 @@ export default {
         throw 'data.collection must be Array'
       }
 
-      this.categories = data.categories
+      // this.categories = data.categories
 
       this.offers = data.offers
+      this.banners = data.banners
       this.collection = data.collection.map((item) => {
         item.busy = false
         item.data = item.data.map(obj => mixer(obj))
