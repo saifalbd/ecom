@@ -14,8 +14,10 @@
                 <account />
               </b-card-text>
             </b-tab>
-            <b-tab title="Tab 3">
-              <b-card-text>Tab contents 3</b-card-text>
+            <b-tab title="Payments">
+              <b-card-text>
+                <Payment />
+              </b-card-text>
             </b-tab>
           </b-tabs>
         </b-card>
@@ -27,12 +29,14 @@
 <script>
 import Order from '@/components/Pages/dashboard/order/Index.vue'
 import Account from '@/components/Pages/dashboard/account/index.vue'
+import Payment from '@/components/Pages/dashboard/payments/index.vue'
 
 export default {
   auth: true,
   components: {
     Order,
-    Account
+    Account,
+    Payment
   }
 }
 </script>

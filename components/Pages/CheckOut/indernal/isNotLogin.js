@@ -24,7 +24,6 @@ export default {
       return Promise.resolve({ data: userRes.data })
     },
     async loginById (id) {
-      alert(id)
       try {
         const url = this.$apiUrl('app.loginById', { id }, false)
         const res = await this.$axiosWithoutToken.get(url)

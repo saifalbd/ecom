@@ -193,6 +193,15 @@
       "HEAD"
     ]
   },
+  "app.payment.response.store": {
+    "uri": "json/payments/{payment}/responses",
+    "methods": [
+      "POST"
+    ],
+    "bindings": {
+      "payment": "id"
+    }
+  },
   "app.item.review.index": {
     "uri": "json\/items\/{item}\/review",
     "methods": [

@@ -38,12 +38,10 @@ import ProductSlider from '@/components/Pages/Index/Sub/ProductSlider.vue'
 import TopCarosole from '@/components/Pages/Index/Sub/TopCarosole.vue'
 import ProductNoSlider from '@/components/Pages/Index/Sub/ProductNoSlider.vue'
 import {
-  asyncData,
   methods
 } from '@/components/Pages/Index/Internal/fetchCollectionAll.js'
-import { hasIn, isUndefined } from 'lodash'
-import { validate, mixer } from '@/plugins/product/index'
-
+import { hasIn } from 'lodash'
+import { mixer } from '@/plugins/product/index'
 export default {
   // mixins: [fetchColletions],
   components: {
@@ -94,15 +92,23 @@ export default {
 
       this.offers = data.offers
       this.banners = data.banners
-      this.collection = data.collection.map((item) => {
+      const collection = data.collection.map((item) => {
         item.busy = false
         item.data = item.data.map(obj => mixer(obj))
         return item
       })
+      this.collection = collection
     } catch (error) {
       console.error(error)
     }
   },
+  activated () {
+    // Call fetch again if last fetch more than 30 sec ago
+    if (this.$fetchState.timestamp <= Date.now() - 30000) {
+      this.$fetch()
+    }
+  },
+  mounted () {},
   created () {
     //  await this.fetchBannars();
     // await this.fetchOffers();
@@ -110,6 +116,7 @@ export default {
     // await this.fetchRecents();
     // await this.fetchTrandring();
   },
+
   methods
 }
 </script>

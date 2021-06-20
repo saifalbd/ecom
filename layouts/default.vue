@@ -5,7 +5,7 @@
     </client-only>
     <b-container fluid class="relative">
       <div class="page" :class="{ hide: searchView }">
-        <Nuxt />
+        <Nuxt keep-alive />
       </div>
       <div class="search-layout" :class="{ show: searchView }">
         <SearchView />

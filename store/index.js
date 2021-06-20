@@ -2,6 +2,7 @@
 import AppConfig from './AppConfig'
 import { ShopingCart } from './ShopingCart'
 import Search from './Search'
+import HomePage from './HomePage'
 
 // import createPersistedState from "vuex-persistedstate";
 import { isBoolean } from 'lodash'
@@ -12,6 +13,7 @@ import { isBoolean } from 'lodash'
 
 export default {
   modules: {
+    HomePage,
     ShopingCart,
     Search,
     AppConfig
