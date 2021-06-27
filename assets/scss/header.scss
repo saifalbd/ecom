@@ -202,7 +202,9 @@
   /**------------------------------------------------------------------------
  end middle
  ------------------------------------------------------------------------**/
-
+/**
+START BOTTOM SMALL DEVICE
+**/
   .bottom {
 
 
@@ -213,6 +215,7 @@
     width: 100%;
     z-index: 200;
     background-color: rgba(82, 57, 220, 0.28);
+    z-index: 5;
 
     .top-menu-box {
       left: -100%;
@@ -275,6 +278,9 @@
 
     .bottom {
       display: none;
+      &.show{
+        display: block;
+      }
     }
   }
 
@@ -295,7 +301,9 @@
           display: none;
         }
       }
-
+      .bottom {
+        display: block;
+      }
 
     }
 
@@ -389,6 +397,8 @@
     }
 
   }
+
+
 
   &.sticky+.container-fluid {
     padding-top: $input-height;

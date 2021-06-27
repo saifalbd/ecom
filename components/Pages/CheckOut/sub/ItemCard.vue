@@ -21,7 +21,10 @@
         </b-link>
       </div>
       <div class="item-catd-price">
-        <span>
+        <span v-if="item.hasDiscount">
+          {{ item.discount.formatted_with_code }}
+        </span>
+        <span v-else>
           {{ item.price.formatted_with_code }}
         </span>
       </div>
@@ -38,7 +41,7 @@
 </template>
 
 <script>
-import { isPlainObject } from 'lodash'
+import { isPlainObject, head } from 'lodash'
 
 import { mapActions } from 'vuex'
 import QuantityGroupAdderWithUnit from '@/components/Pragment/QuantityGroupAdderWithUnit.vue'
@@ -73,7 +76,7 @@ export default {
   methods: {
     ...mapActions('ShopingCart', ['updateQuantity']),
     img (images) {
-      const img = _.head(images)
+      const img = head(images)
       return img
     },
     variantOption (key, optionId) {

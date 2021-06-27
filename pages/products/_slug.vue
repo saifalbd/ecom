@@ -4,6 +4,7 @@
 
 <script>
 import ShowProduct from '@/components/Pages/Products/Show/Index.vue'
+import { has } from 'lodash'
 export default {
   components: {
     ShowProduct
@@ -12,23 +13,14 @@ export default {
     const url = $apiUrl('app.item.show', { item: params.slug }, false)
     const { data } = await $axios.get(url)
     data.cartQuantities = 1
+    if (has(data, 'specification')) {
+      if (!Array.isArray(data.specification)) {
+        data.specification = []
+      }
+    }
     return { product: data }
   },
 
-  // async fetch () {
-  //   try {
-  //     const { data } = await restApi
-  //       .ctx(this)
-  //       .getIs()
-  //       .itemShow(this.$route.params.slug)
-
-  //     this.product = data
-  //     return Promise.resolve(data)
-  //   } catch (error) {
-  //     console.error(error)
-  //   }
-  //   this.busy = false
-  // },
   head () {
     const meta = this.product.meta
     const title = meta.title

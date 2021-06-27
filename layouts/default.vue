@@ -1,5 +1,5 @@
 <template>
-  <div class="guest-layout">
+  <div class="guest-layout hind-siliguri-font">
     <client-only>
       <Header :categories="categories" />
     </client-only>

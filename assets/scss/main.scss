@@ -1,5 +1,7 @@
 $baseBgColor:#e2e4c9;
-;
+
+@import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@500;600;700&display=swap');
+
 // Import Bootstrap an BootstrapVue CSS files (order is important)
 // @import '../bootstrap/scss/bootstrap.scss';
 // @import '../../../node_modules/bootstrap-vue/dist/bootstrap-vue.css';
@@ -8,6 +10,10 @@ $baseBgColor:#e2e4c9;
 
 @import '../../node_modules/vue-advanced-cropper/dist/style.css';
 
+
+.hind-siliguri-font{
+  font-family: 'Hind Siliguri', sans-serif;
+}
 #__layout {
   min-height: 100vh;
 

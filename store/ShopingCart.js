@@ -88,7 +88,11 @@ export const ShopingCart = {
     },
     totalCartPrices(state) {
       return sumBy(state.carts, item => {
-        return parseFloat(item.price.raw) * item.cartQuantities
+        if (item.hasDiscount) {
+          return parseFloat(item.discount.raw) * item.cartQuantities
+        } else {
+          return parseFloat(item.price.raw) * item.cartQuantities
+        }
       })
     }
   }

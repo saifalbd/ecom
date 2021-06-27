@@ -16,11 +16,20 @@
       position: absolute;
       top: 0;
       z-index: 2;
-      background-color: rgba(103, 58, 183, 0.7);
+       background-color: rgba(7,0,21 , 0.21);
       display: flex;
       justify-content: center;
       align-items: center;
+     // top: 50%;
+    //  right:0;
+      // transform: translate(100%,-50%);
+      // :hover{transform: translate(0%,-50%);}&
+      .btn{
+        &.btn-secondary{
+          background-color:#2200ff;
 
+        }
+      }
     }
   }
 

@@ -1,5 +1,8 @@
 <template>
   <div class="product-card card h-100" :class="hasClass">
+    <div v-show="item.hasDiscount" class="off-status">
+      {{ item.off }}
+    </div>
     <image-box
       :class="imgClass"
       :images="item.images"
@@ -7,7 +10,7 @@
       :is-hover="true"
     >
       <b-button
-        variant="primary"
+        squared
         :to="{ name: 'products-slug', params: { slug: item.id } }"
       >
         show details
@@ -41,9 +44,20 @@
 
       <div class="buy">
         <div class="price text-success">
-          <span class="amount"> {{ item.price.formatted_with_symbol }}</span>
+          <span v-if="item.hasDiscount" class="amount">
+            {{ item.discount.formatted_with_symbol }}
+            <i>
+              {{ item.price.formatted_with_symbol }}
+              <div class="close-line" />
+            </i>
+          </span>
+
+          <span v-else class="amount">
+            {{ item.price.formatted_with_symbol }}
+          </span>
+
           <small class="unit">
-            per
+            Per
             {{ item.unit.title }}
           </small>
         </div>

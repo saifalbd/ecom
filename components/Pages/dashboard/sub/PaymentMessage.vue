@@ -42,6 +42,7 @@
 <script>
 
 export default {
+  name: 'PaymentMessage',
   components: {},
   props: {
     item: {
@@ -59,10 +60,10 @@ export default {
   computed: {
     responses () {
       return this.item.responses.map((r) => {
-        if (parseInt(r.user_id) === parseInt(this.item.user_id)) {
-          r.sender = false
-        } else {
+        if (parseInt(r.user_id) === parseInt(this.$auth.user.id)) {
           r.sender = true
+        } else {
+          r.sender = false
         }
         return r
       })

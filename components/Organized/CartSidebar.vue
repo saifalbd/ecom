@@ -47,8 +47,11 @@
                 </b-link>
               </div>
               <div class="item-catd-price">
-                <span>
-                  {{ item.price.formatted_with_symbol }}
+                <span v-if="item.hasDiscount">
+                  {{ item.discount.formatted_with_code }}
+                </span>
+                <span v-else>
+                  {{ item.price.formatted_with_code }}
                 </span>
               </div>
               <div class="bottom-box">
@@ -86,12 +89,7 @@
         </div>
       </div>
       <div class="checkout-box">
-        <b-button
-          squared
-          variant="primary"
-          block
-          :to="{ name: 'checkout' }"
-        >
+        <b-button squared variant="primary" block :to="{ name: 'checkout' }">
           <BIconShopWindow />
           Checkout
         </b-button>
@@ -106,6 +104,7 @@
 
 <script>
 import { mapState, mapActions, mapGetters } from 'vuex'
+import { head } from 'lodash'
 import { BIconShopWindow, BIconTrashFill, BIconXOctagon } from 'bootstrap-vue'
 import QuantityGroupAdderWithUnit from '@/components/Pragment/QuantityGroupAdderWithUnit.vue'
 
@@ -145,7 +144,7 @@ export default {
     },
     ...mapActions('ShopingCart', ['updateQuantity', 'removeItem']),
     img (images) {
-      const img = _.head(images)
+      const img = head(images)
       return img
     },
     variantOption (key, optionId) {

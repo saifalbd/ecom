@@ -1,6 +1,6 @@
 {
   "app.": {
-    "uri": "json\/{any?}",
+    "uri": "json/{any?}",
     "methods": [
       "GET",
       "HEAD",
@@ -12,83 +12,97 @@
     ]
   },
   "app.info": {
-    "uri": "json\/app",
+    "uri": "json/app",
     "methods": [
       "GET",
       "HEAD"
     ]
   },
   "app.visitor": {
-    "uri": "json\/visitor",
+    "uri": "json/visitor",
     "methods": [
       "PUT"
     ]
   },
   "app.aboutUs.show": {
-    "uri": "json\/about-us",
+    "uri": "json/about-us",
     "methods": [
       "GET",
       "HEAD"
     ]
   },
   "app.shipingChargers": {
-    "uri": "json\/shiping-chargers",
+    "uri": "json/shiping-chargers",
     "methods": [
       "GET",
       "HEAD"
     ]
   },
   "app.paymentOptions": {
-    "uri": "json\/payment-options",
+    "uri": "json/payment-options",
+    "methods": [
+      "GET",
+      "HEAD"
+    ]
+  },
+  "app.location.index": {
+    "uri": "json/locations",
+    "methods": [
+      "GET",
+      "HEAD"
+    ]
+  },
+  "app.location.show": {
+    "uri": "json/locations/{location}",
     "methods": [
       "GET",
       "HEAD"
     ]
   },
   "app.homePage": {
-    "uri": "json\/home",
+    "uri": "json/home",
     "methods": [
       "GET",
       "HEAD"
     ]
   },
   "app.homePage.moreItems": {
-    "uri": "json\/home-items",
+    "uri": "json/home-items",
     "methods": [
       "GET",
       "HEAD"
     ]
   },
   "app.vendor.index": {
-    "uri": "json\/vendor",
+    "uri": "json/vendor",
     "methods": [
       "GET",
       "HEAD"
     ]
   },
   "app.vendor.show": {
-    "uri": "json\/vendor\/{vendor}",
+    "uri": "json/vendor/{vendor}",
     "methods": [
       "GET",
       "HEAD"
     ]
   },
   "app.item.index": {
-    "uri": "json\/items",
+    "uri": "json/items",
     "methods": [
       "GET",
       "HEAD"
     ]
   },
   "app.item.search": {
-    "uri": "json\/items-search",
+    "uri": "json/items-search",
     "methods": [
       "GET",
       "HEAD"
     ]
   },
   "app.item.show": {
-    "uri": "json\/items\/{item}",
+    "uri": "json/items/{item}",
     "methods": [
       "GET",
       "HEAD"
@@ -98,70 +112,70 @@
     }
   },
   "app.orders": {
-    "uri": "json\/orders",
+    "uri": "json/orders",
     "methods": [
       "GET",
       "HEAD"
     ]
   },
   "app.brand.index": {
-    "uri": "json\/brands",
+    "uri": "json/brands",
     "methods": [
       "GET",
       "HEAD"
     ]
   },
   "app.brand.show": {
-    "uri": "json\/brands\/{brand_slug}",
+    "uri": "json/brands/{brand_slug}",
     "methods": [
       "GET",
       "HEAD"
     ]
   },
   "app.bannars": {
-    "uri": "json\/bannars",
+    "uri": "json/bannars",
     "methods": [
       "GET",
       "HEAD"
     ]
   },
   "app.category.index": {
-    "uri": "json\/categories",
+    "uri": "json/categories",
     "methods": [
       "GET",
       "HEAD"
     ]
   },
   "app.category.show": {
-    "uri": "json\/categories\/{category_slug}",
+    "uri": "json/categories/{category_slug}",
     "methods": [
       "GET",
       "HEAD"
     ]
   },
   "app.category.show.items": {
-    "uri": "json\/categories\/{category_slug}\/items",
+    "uri": "json/categories/{category_slug}/items",
     "methods": [
       "GET",
       "HEAD"
     ]
   },
   "app.offer-bannars": {
-    "uri": "json\/offer-bannars",
+    "uri": "json/offer-bannars",
     "methods": [
       "GET",
       "HEAD"
     ]
   },
   "app.register": {
-    "uri": "json\/register",
+    "uri": "json/register",
     "methods": [
       "GET",
       "HEAD"
     ]
   },
   "app.login": {
-    "uri": "json\/login",
+    "uri": "json/login",
     "methods": [
       "POST"
     ]
@@ -173,21 +187,212 @@
       "HEAD"
     ]
   },
+  "app.item.review.index": {
+    "uri": "json/items/{item}/review",
+    "methods": [
+      "GET",
+      "HEAD"
+    ],
+    "bindings": {
+      "product": "id"
+    }
+  },
+  "app.item.review.show": {
+    "uri": "json/items/{item}/review/{review}",
+    "methods": [
+      "GET",
+      "HEAD"
+    ]
+  },
+  "app.item.rating.index": {
+    "uri": "json/items/{item}/rating",
+    "methods": [
+      "GET",
+      "HEAD"
+    ],
+    "bindings": {
+      "product": "id"
+    }
+  },
+  "app.item.rating.store": {
+    "uri": "json/items/{item}/rating",
+    "methods": [
+      "POST"
+    ],
+    "bindings": {
+      "product": "id"
+    }
+  },
+  "app.findAddressByPhone": {
+    "uri": "json/find-user-by-phone",
+    "methods": [
+      "GET",
+      "HEAD"
+    ]
+  },
+  "app.user.shipingAddress.index": {
+    "uri": "json/user/{user}/shiping-address",
+    "methods": [
+      "GET",
+      "HEAD"
+    ],
+    "bindings": {
+      "user": "id"
+    }
+  },
+  "app.user.shipingAddress.store": {
+    "uri": "json/user/{user}/shiping-address",
+    "methods": [
+      "POST"
+    ],
+    "bindings": {
+      "user": "id"
+    }
+  },
+  "app.user.shipingAddress.show": {
+    "uri": "json/user/{user}/shiping-address/{shiping_address}",
+    "methods": [
+      "GET",
+      "HEAD"
+    ]
+  },
+  "app.user.shipingAddress.update": {
+    "uri": "json/user/{user}/shiping-address/{shiping_address}",
+    "methods": [
+      "PUT",
+      "PATCH"
+    ],
+    "bindings": {
+      "user": "id"
+    }
+  },
+  "app.user.shipingAddress.destroy": {
+    "uri": "json/user/{user}/shiping-address/{shiping_address}",
+    "methods": [
+      "DELETE"
+    ],
+    "bindings": {
+      "user": "id",
+      "address": "id"
+    }
+  },
+  "app.logout": {
+    "uri": "json/logout",
+    "methods": [
+      "POST"
+    ]
+  },
+  "app.item.review.store": {
+    "uri": "json/items/{item}/review",
+    "methods": [
+      "POST"
+    ],
+    "bindings": {
+      "product": "id"
+    }
+  },
+  "app.item.review.update": {
+    "uri": "json/items/{item}/review/{review}",
+    "methods": [
+      "PUT",
+      "PATCH"
+    ]
+  },
+  "app.item.review.destroy": {
+    "uri": "json/items/{item}/review/{review}",
+    "methods": [
+      "DELETE"
+    ]
+  },
+  "app.user.profile.update": {
+    "uri": "json/user/profile/{profile}",
+    "methods": [
+      "PUT",
+      "PATCH"
+    ],
+    "bindings": {
+      "user": "id"
+    }
+  },
+  "app.user.profile.show": {
+    "uri": "json/user/profile/{profile}",
+    "methods": [
+      "GET",
+      "HEAD"
+    ],
+    "bindings": {
+      "user": "id"
+    }
+  },
+  "app.user.profile": {
+    "uri": "json/user/profile",
+    "methods": [
+      "GET",
+      "HEAD"
+    ]
+  },
+  "app.orderPlace.index": {
+    "uri": "json/palce-order",
+    "methods": [
+      "GET",
+      "HEAD"
+    ]
+  },
+  "app.orderPlace.store": {
+    "uri": "json/palce-order",
+    "methods": [
+      "POST"
+    ]
+  },
+  "app.orderPlace.show": {
+    "uri": "json/palce-order/{palce_order}",
+    "methods": [
+      "GET",
+      "HEAD"
+    ]
+  },
+  "app.orderPlace.update": {
+    "uri": "json/palce-order/{palce_order}",
+    "methods": [
+      "PUT",
+      "PATCH"
+    ]
+  },
+  "app.orderPlace.destroy": {
+    "uri": "json/palce-order/{palce_order}",
+    "methods": [
+      "DELETE"
+    ]
+  },
+  "app.dashboard.order": {
+    "uri": "json/dashboard/orders",
+    "methods": [
+      "GET",
+      "HEAD"
+    ]
+  },
+  "app.dashboard.order.cancel": {
+    "uri": "json/dashboard/orders/{order}/cancel",
+    "methods": [
+      "GET",
+      "HEAD"
+    ]
+  },
   "app.payment.index": {
-    "uri": "json\/payments",
+    "uri": "json/payments",
     "methods": [
       "GET",
       "HEAD"
     ]
   },
   "app.payment.store": {
-    "uri": "json\/payments",
+    "uri": "json/payments",
     "methods": [
       "POST"
     ]
   },
   "app.payment.show": {
-    "uri": "json\/payments\/{payment}",
+    "uri": "json/payments/{payment}",
     "methods": [
       "GET",
       "HEAD"
@@ -201,196 +406,5 @@
     "bindings": {
       "payment": "id"
     }
-  },
-  "app.item.review.index": {
-    "uri": "json\/items\/{item}\/review",
-    "methods": [
-      "GET",
-      "HEAD"
-    ],
-    "bindings": {
-      "product": "id"
-    }
-  },
-  "app.item.review.show": {
-    "uri": "json\/items\/{item}\/review\/{review}",
-    "methods": [
-      "GET",
-      "HEAD"
-    ]
-  },
-  "app.item.rating.index": {
-    "uri": "json\/items\/{item}\/rating",
-    "methods": [
-      "GET",
-      "HEAD"
-    ],
-    "bindings": {
-      "product": "id"
-    }
-  },
-  "app.item.rating.store": {
-    "uri": "json\/items\/{item}\/rating",
-    "methods": [
-      "POST"
-    ],
-    "bindings": {
-      "product": "id"
-    }
-  },
-  "app.findAddressByPhone": {
-    "uri": "json\/find-user-by-phone",
-    "methods": [
-      "GET",
-      "HEAD"
-    ]
-  },
-  "app.user.shipingAddress.index": {
-    "uri": "json\/user\/{user}\/shiping-address",
-    "methods": [
-      "GET",
-      "HEAD"
-    ],
-    "bindings": {
-      "user": "id"
-    }
-  },
-  "app.user.shipingAddress.store": {
-    "uri": "json\/user\/{user}\/shiping-address",
-    "methods": [
-      "POST"
-    ],
-    "bindings": {
-      "user": "id"
-    }
-  },
-  "app.user.shipingAddress.show": {
-    "uri": "json\/user\/{user}\/shiping-address\/{shiping_address}",
-    "methods": [
-      "GET",
-      "HEAD"
-    ]
-  },
-  "app.user.shipingAddress.update": {
-    "uri": "json\/user\/{user}\/shiping-address\/{shiping_address}",
-    "methods": [
-      "PUT",
-      "PATCH"
-    ],
-    "bindings": {
-      "user": "id"
-    }
-  },
-  "app.user.shipingAddress.destroy": {
-    "uri": "json\/user\/{user}\/shiping-address\/{shiping_address}",
-    "methods": [
-      "DELETE"
-    ],
-    "bindings": {
-      "user": "id",
-      "address": "id"
-    }
-  },
-  "app.logout": {
-    "uri": "json\/logout",
-    "methods": [
-      "POST"
-    ]
-  },
-  "app.item.review.store": {
-    "uri": "json\/items\/{item}\/review",
-    "methods": [
-      "POST"
-    ],
-    "bindings": {
-      "product": "id"
-    }
-  },
-  "app.item.review.update": {
-    "uri": "json\/items\/{item}\/review\/{review}",
-    "methods": [
-      "PUT",
-      "PATCH"
-    ]
-  },
-  "app.item.review.destroy": {
-    "uri": "json\/items\/{item}\/review\/{review}",
-    "methods": [
-      "DELETE"
-    ]
-  },
-  "app.user.profile.update": {
-    "uri": "json\/user\/profile\/{profile}",
-    "methods": [
-      "PUT",
-      "PATCH"
-    ],
-    "bindings": {
-      "user": "id"
-    }
-  },
-  "app.user.profile.show": {
-    "uri": "json\/user\/profile\/{profile}",
-    "methods": [
-      "GET",
-      "HEAD"
-    ],
-    "bindings": {
-      "user": "id"
-    }
-  },
-  "app.user.profile": {
-    "uri": "json\/user\/profile",
-    "methods": [
-      "GET",
-      "HEAD"
-    ]
-  },
-  "app.orderPlace.index": {
-    "uri": "json\/palce-order",
-    "methods": [
-      "GET",
-      "HEAD"
-    ]
-  },
-  "app.orderPlace.store": {
-    "uri": "json\/palce-order",
-    "methods": [
-      "POST"
-    ]
-  },
-  "app.orderPlace.show": {
-    "uri": "json\/palce-order\/{palce_order}",
-    "methods": [
-      "GET",
-      "HEAD"
-    ]
-  },
-  "app.orderPlace.update": {
-    "uri": "json\/palce-order\/{palce_order}",
-    "methods": [
-      "PUT",
-      "PATCH"
-    ]
-  },
-  "app.orderPlace.destroy": {
-    "uri": "json\/palce-order\/{palce_order}",
-    "methods": [
-      "DELETE"
-    ]
-  },
-  "app.dashboard.order": {
-    "uri": "json\/dashboard\/orders",
-    "methods": [
-      "GET",
-      "HEAD"
-    ]
-  },
-  "app.dashboard.order.cancel": {
-    "uri": "json\/dashboard\/orders\/{order}\/cancel",
-    "methods": [
-      "GET",
-      "HEAD"
-    ]
   }
 }
