@@ -110,11 +110,13 @@
 
 <script>
 import { head, lowerCase } from 'lodash'
+import { mapActions, mapState } from 'vuex'
 import ShipingAddressModel from './spDetails/ShipingAddressModel.vue'
 import ShipingAddressCreate from './spDetails/ShipingAddressCreate.vue'
 import ShipingAddressEdit from './spDetails/ShipingAddressEdit.vue'
 import PaymentMethods from './spDetails/PaymentMethods.vue'
 import Bkash from './payments/bkash.vue'
+
 export default {
   name: 'ShipingDetails',
   components: {
@@ -162,6 +164,7 @@ export default {
     }
   },
   computed: {
+    ...mapState('CheckOut', ['shipingChargesTariffs']),
     bkashOption () {
       return this.paymentOptions.find(e => lowerCase(e.method) === 'bkash')
     },
@@ -192,6 +195,7 @@ export default {
   },
   created () {},
   methods: {
+    ...mapActions('CheckOut', ['set_selected_tariff']),
     addOrEdit (item) {
       const index = this.shipingAddresses.findIndex((el) => {
         return (

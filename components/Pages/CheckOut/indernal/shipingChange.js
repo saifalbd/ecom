@@ -1,4 +1,6 @@
 import * as yup from 'yup'
+
+import { mapState } from 'vuex'
 const integer = yup
   .number()
   .required()
@@ -13,6 +15,7 @@ const schema = yup.array(
 
 export default {
   computed: {
+    ...mapState('CheckOut', ['selectedTariff']),
     chargeObject () {
       // bind on computed
 
@@ -48,12 +51,28 @@ export default {
         }
       }
     },
+    tariff () {
+      const t = this.selectedTariff
+      if (t) {
+        const total = this.sumOfPrices
+        if (t.free_on <= total) {
+          return { amount: 0 }
+        } else {
+          return { amount: t.charge }
+        }
+      }
+    },
 
     shipCharge () {
       // bind on computed
       try {
-        const chargeObject = this.chargeObject
-        return chargeObject.amount
+        if (this.selectedTariff) {
+          const chargeObject = this.tariff
+          return chargeObject.amount
+        } else {
+          const chargeObject = this.chargeObject
+          return chargeObject.amount
+        }
       } catch (error) {
         console.error(error)
         return 0
@@ -63,7 +82,7 @@ export default {
   methods: {
     async fetchCharges () {
       try {
-        if (window.app.shiping_charges == undefined) {
+        if (window.app.shiping_charges === undefined) {
           // eslint-disable-next-line no-throw-literal
           throw 'window.app.shiping_charges not found'
         }

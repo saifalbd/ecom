@@ -59,6 +59,42 @@
       "HEAD"
     ]
   },
+  "app.shipingChargeTariff.index": {
+    "uri": "json/shiping-charge-tariffs",
+    "methods": [
+      "GET",
+      "HEAD"
+    ]
+  },
+  "app.shipingChargeTariff.store": {
+    "uri": "json/shiping-charge-tariffs",
+    "methods": [
+      "POST"
+    ]
+  },
+  "app.shipingChargeTariff.show": {
+    "uri": "json/shiping-charge-tariffs/{shiping_charge_tariff}",
+    "methods": [
+      "GET",
+      "HEAD"
+    ],
+    "bindings": {
+      "shipingChargeTariff": "id"
+    }
+  },
+  "app.shipingChargeTariff.update": {
+    "uri": "json/shiping-charge-tariffs/{shiping_charge_tariff}",
+    "methods": [
+      "PUT",
+      "PATCH"
+    ]
+  },
+  "app.shipingChargeTariff.destroy": {
+    "uri": "json/shiping-charge-tariffs/{shiping_charge_tariff}",
+    "methods": [
+      "DELETE"
+    ]
+  },
   "app.homePage": {
     "uri": "json/home",
     "methods": [

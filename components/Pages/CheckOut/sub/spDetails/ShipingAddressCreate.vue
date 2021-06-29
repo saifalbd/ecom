@@ -134,9 +134,24 @@
               <b-form-input
                 id="nested-city"
                 v-model="address.city"
+                list="nested-city-list"
                 :size="size"
                 :read-only="readOnly"
               />
+              <datalist id="nested-city-list">
+                <option
+                  v-for="d in shipingChargesTariffs"
+                  :key="d.district.name"
+                >
+                  {{ d.district.name }}
+                </option>
+                <option
+                  v-for="b in shipingChargesTariffs"
+                  :key="b.district.bn_name"
+                >
+                  {{ b.district.bn_name }}
+                </option>
+              </datalist>
             </b-form-group>
           </Vp>
 
@@ -229,9 +244,11 @@
 
 <script>
 import { has, head, lowerCase } from 'lodash'
+import { mapState } from 'vuex'
 import { ValidationProvider, ValidationObserver } from 'vee-validate'
 import isNotLogin from '../../indernal/isNotLogin'
 import phoneConverter from '../../indernal/phoneConverter'
+import Locations from '../../indernal/Locations.js'
 export default {
   name: 'ShipingAddressCreate',
   components: {
@@ -268,6 +285,7 @@ export default {
     }
   },
   computed: {
+    ...mapState('CheckOut', ['shipingChargesTariffs']),
     dialog: {
       get () {
         return this.value

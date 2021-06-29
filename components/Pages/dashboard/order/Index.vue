@@ -52,6 +52,8 @@
                   class="text-capitalize"
                   placeholder="Order Id"
                   :options="statusList"
+                  value-field="id"
+                  text-field="title"
                   trim
                 />
               </b-input-group>
@@ -85,7 +87,11 @@ import { lowerCase, isEmpty } from 'lodash'
 import OrderSingle from '@/components/Pages/dashboard/order/OrderSingle.vue'
 export default {
   name: 'Orders',
-  components: { OrderSingle, Vo: ValidationObserver, Vp: ValidationProvider },
+  components: {
+    OrderSingle,
+    Vo: ValidationObserver,
+    Vp: ValidationProvider
+  },
   data () {
     return {
       finder: {
@@ -110,7 +116,7 @@ export default {
   computed: {
     statusList () {
       const list = this.order_status_list
-      list.push({ value: '', text: 'All Orders' })
+      list.push({ id: '', title: 'All Orders' })
       return list
     }
   },
@@ -143,7 +149,7 @@ export default {
 
       // console.log({ statusIsEmpty, orderIsEmpty })
       if (!statusIsEmpty && orderIsEmpty) {
-        this.tempOrders = this.orders.filter(o => parseInt(o.status) === status)
+        this.tempOrders = this.orders.filter(o => parseInt(o.status.id) === status)
       } else if (statusIsEmpty && !orderIsEmpty) {
         this.tempOrders = this.orders.filter(
           o => lowerCase(o.order_id) === lowerCase(order_id)
@@ -151,7 +157,7 @@ export default {
       } else if (!statusIsEmpty && !orderIsEmpty) {
         this.tempOrders = this.orders.filter((o) => {
           return (
-            parseInt(o.status) === status &&
+            parseInt(o.status.id) === status &&
             lowerCase(o.order_id) === lowerCase(order_id)
           )
         })

@@ -42,6 +42,7 @@
 
 <script>
 import { head } from 'lodash'
+import { mapActions } from 'vuex'
 import ReViewOrder from './sub/ReViewOrder.vue'
 import ShipingDetails from './sub/ShipingDetails.vue'
 import checkoutApi from './indernal/checkoutApi'
@@ -66,14 +67,28 @@ export default {
       createdUser: null
     }
   },
+  watch: {
+    selectedAddress (val) {
+      const add = this.shipingAddresses.find(item => item.id === val)
+      if (!add) {
+        alert('selected tarif not found')
+      }
+      this.set_selected_tariff(add.city)
+    }
+  },
 
   created () {
     this.$store.dispatch('toggleCart', false)
     this.isLogin()
     this.fetchPaymentOptions()
+    this.set_shiping_charge_tariff()
   },
 
   methods: {
+    ...mapActions('CheckOut', [
+      'set_shiping_charge_tariff',
+      'set_selected_tariff'
+    ]),
     shippingFillup () {
       this.submit()
     },

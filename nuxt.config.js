@@ -6,6 +6,9 @@ export default {
   target: 'server',
   ssr: true,
 
+  privateRuntimeConfig: {
+    API_TOKEN: process.env.API_TOKEN
+  },
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'bookman online book store',

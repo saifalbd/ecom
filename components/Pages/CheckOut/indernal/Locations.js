@@ -6,6 +6,7 @@ export default {
   },
   methods: {
     async fetchDistricts () {
+      this.busy = true
       try {
         const type = 'district'
         const url = this.$apiUrl('app.location.index', { type }, false)
@@ -14,6 +15,10 @@ export default {
       } catch (error) {
         console.error(error)
       }
+      this.busy = false
     }
+  },
+  created () {
+    this.fetchDistricts()
   }
 }
