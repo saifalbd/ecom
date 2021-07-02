@@ -1,6 +1,13 @@
 // import axios from 'axios'
 // axios.defaults.headers.common.token = process.env.API_TOKEN
 
+var title = 'ecommerce online store';
+if(process.env.COMPANY_ID==1){
+   title = 'ginni bazar online grocery shop';
+}else if(process.env.COMPANY_ID==3){
+  title = 'bookman online book store';
+}
+
 export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'server',
@@ -11,7 +18,7 @@ export default {
   },
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'bookman online book store',
+    title:process.env.COMPANY_ID==1? 'bookman online book store',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
