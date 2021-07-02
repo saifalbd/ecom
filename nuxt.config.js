@@ -1,13 +1,13 @@
 // import axios from 'axios'
 // axios.defaults.headers.common.token = process.env.API_TOKEN
 
-let title = 'ecommerce online store'
+// let title = 'ecommerce online store'
 
-if (process.env.COMPANY_ID === 1) {
-  title = 'ginni bazar online grocery shop'
-} else if (process.env.COMPANY_ID === 3) {
-  title = 'bookman online book store'
-}
+// if (process.env.COMPANY_ID === 1) {
+//   title = 'ginni bazar online grocery shop'
+// } else if (process.env.COMPANY_ID === 3) {
+//   title = 'bookman online book store'
+// }
 
 export default {
   // Target: https://go.nuxtjs.dev/config-target
@@ -17,9 +17,12 @@ export default {
   privateRuntimeConfig: {
     API_TOKEN: process.env.API_TOKEN
   },
+  publicRuntimeConfig: {
+    APP_TITLE: process.env.APP_TITLE
+  },
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-   title,
+    title: process.env.APP_TITLE,
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
