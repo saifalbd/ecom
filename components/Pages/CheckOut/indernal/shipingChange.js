@@ -1,3 +1,5 @@
+/* eslint-disable no-throw-literal */
+/* eslint-disable no-unreachable */
 import * as yup from 'yup'
 
 import { mapState } from 'vuex'
@@ -21,10 +23,13 @@ export default {
 
       try {
         const total = this.sumOfPrices
+
         const collection = this.shipingCharges
         // eslint-disable-next-line no-throw-literal
         if (!collection.length) {
           // eslint-disable-next-line no-throw-literal
+          console.error('this.shipingCharges can"t be empty')
+
           throw 'this.shipingCharges can"t be empty'
         }
 
@@ -36,16 +41,25 @@ export default {
 
         schema.validate(collection)
 
-        const isGreter = collection.find((item) => {
+        const isGreter = collection.findIndex((item) => {
           return total < item.greaterThan
         })
-        if (isGreter) {
-          return isGreter
+        console.log(isGreter, total)
+        if (isGreter > -1) {
+          const next = collection[isGreter - 1]
+          if (next) {
+            return next
+          } else {
+            return collection[isGreter]
+          }
         } else {
-          return collection[collection.length - 1]
+          const obj = collection[collection.length - 1]
+
+          return obj
         }
       } catch (error) {
         console.error(error)
+
         return {
           amount: 0
         }
@@ -58,19 +72,24 @@ export default {
         if (t.free_on <= total) {
           return { amount: 0 }
         } else {
-          return { amount: t.charge }
+          return { amount: 0 }
         }
       }
     },
 
     shipCharge () {
       // bind on computed
+      // return 50000
+      // eslint-disable-next-line no-unreachable
+
       try {
         if (this.selectedTariff) {
           const chargeObject = this.tariff
+          console.log('changed from tariff')
           return chargeObject.amount
         } else {
           const chargeObject = this.chargeObject
+          console.log('changed from settings')
           return chargeObject.amount
         }
       } catch (error) {
