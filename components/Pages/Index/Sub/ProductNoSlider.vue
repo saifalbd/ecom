@@ -43,7 +43,7 @@
     </div>
 
     <b-row no-gutters align-h="center">
-      <b-col cols="12" class="text-center">
+      <b-col cols="12" class="text-center mt-2">
         <b-button
           v-show="showMore"
           size="sm"
@@ -51,7 +51,10 @@
           squared
           @click.stop="$emit('clickMore', $event)"
         >
-          More
+          <BIconMinecartLoaded />
+          <span class="ml-1">
+            MORE
+          </span>
         </b-button>
       </b-col>
     </b-row>
@@ -59,7 +62,7 @@
 </template>
 
 <script>
-import { BIconBox, BIconCardList } from 'bootstrap-vue'
+import { BIconBox, BIconCardList, BIconMinecartLoaded } from 'bootstrap-vue'
 import ProductCard from '@/components/Organized/ProductCard.vue'
 import ProductCardHorizontal from '@/components/Organized/ProductCardHorizontal.vue'
 export default {
@@ -67,7 +70,8 @@ export default {
     ProductCard,
     ProductCardHorizontal,
     BIconBox,
-    BIconCardList
+    BIconCardList,
+    BIconMinecartLoaded
   },
   props: {
     name: {

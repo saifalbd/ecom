@@ -70,7 +70,7 @@
             fill-width
             @input="addQuantityOnCart"
           >
-            {{ hasOnCart ? 'Checkout' : 'Add' }}
+            {{ hasOnCart ? 'Checkout' : 'Add to Cart' }}
           </add-to-cart-button>
         </client-only>
       </div>
