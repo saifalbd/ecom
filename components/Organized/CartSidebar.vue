@@ -15,7 +15,7 @@
           Carts
         </div>
       </template>
-      <div class="cart-sidebar-body">
+      <div v-show="countCarts" class="cart-sidebar-body">
         <div class="top-toolbar">
           <span> items: {{ countCarts }} </span>
         </div>
@@ -82,17 +82,21 @@
             </div>
           </div>
         </div>
+
         <!-- end cart item list -->
         <div class="bottom-toolbar">
           <span class="total"> Total Price </span>
           <span class="amount"> {{ totalCartPrices }} {{ currencyCode }} </span>
         </div>
       </div>
-      <div class="checkout-box">
+      <div v-show="countCarts" class="checkout-box">
         <b-button squared variant="primary" block :to="{ name: 'checkout' }">
           <BIconShopWindow />
           Checkout
         </b-button>
+      </div>
+      <div v-show="!countCarts">
+        <EmtyCart />
       </div>
 
       <!-- ecommerce carts -->
@@ -107,10 +111,12 @@ import { mapState, mapActions, mapGetters } from 'vuex'
 import { head } from 'lodash'
 import { BIconShopWindow, BIconTrashFill, BIconXOctagon } from 'bootstrap-vue'
 import QuantityGroupAdderWithUnit from '@/components/Pragment/QuantityGroupAdderWithUnit.vue'
+import EmtyCart from '@/components/Pragment/EmtyCart.vue'
 
 export default {
   components: {
     QuantityGroupAdderWithUnit,
+    EmtyCart,
     BIconShopWindow,
     BIconTrashFill,
     BIconXOctagon

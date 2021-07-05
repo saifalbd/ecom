@@ -1,0 +1,75 @@
+.add-to-card-button {
+  $beforeAfterColor: #0334a7;
+  overflow: hidden;
+  outline: none;
+  background-color: #06112b;
+  color: gold;
+  font-weight: bold;
+  border: none;
+  outline: 1px solid #FF9800;
+  position: relative;
+  z-index: 1;
+
+  display: flex;
+  justify-content: center;
+
+  &:focus {
+    outline: 1px solid #FF5722;
+    border: none;
+    background-color: $beforeAfterColor;
+    color: gold;
+  }
+
+  &::before {
+    z-index: -1;
+    content: "";
+    background-color: $beforeAfterColor;
+    width: 0%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    transition: width 1s ease-in-out;
+  }
+
+  &::after {
+    z-index: -1;
+    content: "";
+    background-color: $beforeAfterColor;
+    width: 0%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    transition: width 1s;
+  }
+
+  &:hover {
+
+
+    &::before {
+
+      width: 51%;
+
+    }
+
+    &::after {
+
+      width: 51%;
+
+    }
+  }
+
+  .text {
+    padding-left: 0.5rem;
+  }
+
+  &.hasOn {
+    background-color: rgb(4, 18, 117);
+    color: var(--white);
+
+  }
+  &.fillWidth{
+    width: 100%;
+  }
+}

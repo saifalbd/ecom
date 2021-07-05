@@ -2,12 +2,12 @@
   <b-button
     squared
     :size="size"
-    :variant="variant"
-    :disabled="hasOn"
     class="add-to-card-button"
+    :class="{ hasOn, fillWidth }"
     @click="onOnCart"
   >
-    <BIconBagPlus variant="warning" />
+    <BIconBagPlus v-show="!hasOn" />
+    <BIconLink v-show="hasOn" />
     <span class="text">
       <slot />
     </span>
@@ -17,10 +17,11 @@
 <script>
 import { mapActions } from 'vuex'
 import { keys } from 'lodash'
-import { BIconBagPlus } from 'bootstrap-vue'
+import { BIconBagPlus, BIconLink } from 'bootstrap-vue'
 export default {
   components: {
-    BIconBagPlus
+    BIconBagPlus,
+    BIconLink
   },
   props: {
     value: {
@@ -49,12 +50,16 @@ export default {
     variant: {
       type: String,
       default: 'primary'
+    },
+    fillWidth: {
+      type: Boolean,
+      default: false
     }
   },
   methods: {
     ...mapActions('ShopingCart', ['addItem', 'removeItem']),
     makeToast (variant = null) {
-      this.$bvToast.toast('Add item on carts lIST', {
+      this.$bvToast.toast('Add item on carts list', {
         title: 'Cart Notifications',
         variant,
         toaster: 'b-toaster-top-center',
@@ -87,11 +92,12 @@ export default {
     },
 
     onOnCart () {
-      this.addItem(this.item)
-      this.makeToast('success')
-      // if (this.variantIsValid(this.item)) {
-
-      // }
+      if (!this.hasOn) {
+        this.addItem(this.item)
+        this.makeToast('success')
+      } else {
+        this.$router.push({ name: 'checkout' })
+      }
     }
   }
 }

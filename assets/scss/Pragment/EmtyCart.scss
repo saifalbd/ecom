@@ -1,0 +1,24 @@
+.emty-carts {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  svg {
+    height: 5rem;
+    width: 5rem;
+    fill: #696b7d;
+  }
+
+  .text {
+    margin: 1rem 0;
+    font-size: 1.2rem;
+  }
+
+  button {
+    padding: 0.5rem 1rem;
+    background-color: #fbf0d1;
+    border: 2px solid black;
+    color: #02070c;
+  }
+}

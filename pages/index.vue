@@ -1,5 +1,6 @@
 <template>
   <div class="home-page">
+    <CartSideIconBox />
     <client-only>
       <top-carosole :busy="busy" :items="banners" />
     </client-only>
@@ -33,6 +34,7 @@
 <script>
 // import VendorsComponent from '@/components/Pages/Index/Sub/Vendors.vue'
 // import CategoriesComponent from '@/components/Pages/Index/Sub/Categories.vue'
+import CartSideIconBox from '@/components/Pragment/CartSideIconBox.vue'
 import OfferSlider from '@/components/Pages/Index/Sub/OfferSlider.vue'
 import ProductSlider from '@/components/Pages/Index/Sub/ProductSlider.vue'
 import TopCarosole from '@/components/Pages/Index/Sub/TopCarosole.vue'
@@ -48,7 +50,8 @@ export default {
     TopCarosole,
     OfferSlider,
     ProductSlider,
-    ProductNoSlider
+    ProductNoSlider,
+    CartSideIconBox
     // CategoriesComponent,
     // VendorsComponent
   },

@@ -33,8 +33,9 @@
               <b-form-input
                 id="nested-phone"
                 v-model="address.phone"
-                :size="size"
+                :dense="dense"
                 :read-only="readOnly"
+                placeholder="Phone Number"
               />
             </b-form-group>
           </Vp>
@@ -57,7 +58,7 @@
               <b-form-select
                 id="nested-type"
                 v-model="address.type"
-                :size="size"
+                :dense="dense"
                 :read-only="readOnly"
                 :options="['Home', 'Office']"
               />
@@ -79,11 +80,12 @@
               label-cols-sm="3"
               :label-cols-lg="labelColLg"
               label-align-sm="right"
+              placeholder="Name"
             >
               <b-form-input
                 id="nested-name"
                 v-model="address.name"
-                :size="size"
+                :dense="dense"
                 :read-only="readOnly"
               />
             </b-form-group>
@@ -110,7 +112,7 @@
                 v-model="address.alt_phone"
                 placeholder="Alternative Phone Number"
                 :read-only="readOnly"
-                :size="size"
+                :dense="dense"
               />
             </b-form-group>
           </Vp>
@@ -135,8 +137,9 @@
                 id="nested-city"
                 v-model="address.city"
                 list="nested-city-list"
-                :size="size"
+                :dense="dense"
                 :read-only="readOnly"
+                placeholder="City"
               />
               <datalist id="nested-city-list">
                 <option
@@ -175,13 +178,14 @@
               <b-form-input
                 id="nested-area"
                 v-model="address.area"
-                :size="size"
+                :dense="dense"
                 :read-only="readOnly"
+                placeholder="Area"
               />
             </b-form-group>
           </Vp>
 
-          <Vp
+          <!-- <Vp
             v-slot="{ valid, errors }"
             name="country"
             vid="country"
@@ -201,11 +205,11 @@
                 id="nested-country"
                 v-model="address.country"
                 disabled
-                :size="size"
+                :dense="dense"
                 :read-only="readOnly"
               />
             </b-form-group>
-          </Vp>
+          </Vp> -->
           <Vp
             v-slot="{ valid, errors }"
             name="House/Street/Village"
@@ -225,7 +229,7 @@
               <b-form-textarea
                 id="nested-details"
                 v-model="address.details"
-                :size="size"
+                :dense="dense"
                 :read-only="readOnly"
               />
             </b-form-group>
@@ -264,7 +268,7 @@ export default {
   },
   data () {
     return {
-      size: 'lg',
+      dense: true,
       labelColLg: '2',
       readOnly: true,
       busyText: 'Please Wait...',

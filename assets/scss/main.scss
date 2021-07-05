@@ -11,9 +11,10 @@ $baseBgColor:#e2e4c9;
 @import '../../node_modules/vue-advanced-cropper/dist/style.css';
 
 
-.hind-siliguri-font{
+.hind-siliguri-font {
   font-family: 'Hind Siliguri', sans-serif;
 }
+
 #__layout {
   min-height: 100vh;
 
@@ -28,6 +29,8 @@ button {
     outline: none;
   }
 }
+
+
 
 @import './header.scss';
 @import './Pragment/Index.scss';

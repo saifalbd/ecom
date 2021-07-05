@@ -21,13 +21,12 @@
 </template>
 
 <script>
-import HeadBox from '@/components/Organized/header/HeadBox.vue'
 import Header from '@/components/Header/index.vue'
 import AppFooter from '@/components/Organized/AppFooter/AppFooter.vue'
 import CartSidebar from '@/components/Organized/CartSidebar.vue'
-import { restApi } from '@/plugins/restApi/index'
 import { mapState, mapActions } from 'vuex'
 import SearchView from '@/components/Organized/SearchView.vue'
+
 export default {
   fetchOnServer: true,
   components: { Header, AppFooter, CartSidebar, SearchView },

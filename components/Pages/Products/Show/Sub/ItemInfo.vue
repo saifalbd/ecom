@@ -62,7 +62,7 @@
           :has-on="hasOnCart"
           :item="item"
         >
-          {{ hasOnCart ? 'Added' : 'Add to Cart' }}
+          {{ hasOnCart ? 'Go to Shiping' : 'Add to Cart' }}
         </add-to-cart-button>
         <b-button
           v-if="hasOnCart"
@@ -72,7 +72,7 @@
           variant="outline-danger"
           @click.stop="removeItem(item)"
         >
-          <b-icon-trash-fill variant="danger" />
+          <b-icon-trash-fill />
           Remove On Cart
         </b-button>
       </b-col>

@@ -1,30 +1,30 @@
 <template>
   <div class="w-100 text-center">
     <b-button
-      v-show="show"
+      v-show="hasNext"
       squared
       :variant="variant"
       :size="size"
       :disabled="disabled"
       @click="more"
     >
-      more
+      {{ title }}
     </b-button>
   </div>
 </template>
 
 <script>
-import Pagination from '@/plugins/product/Pagination'
+import Pagination from '@/plugins/product/SimplePaginate.js'
 export default {
   name: 'PaginationMore',
   props: {
-    meta: {
+    links: {
       type: Object,
       required: true
     },
     title: {
       type: String,
-      default: 'more'
+      default: 'MORE'
     },
     variant: {
       type: String,
@@ -50,25 +50,24 @@ export default {
   },
   computed: {
     hasNext () {
-      return this.pagination.hasNext()
-    },
-    show () {
-      if (!this.hasNext) {
-        return !this.hideOnNoNext
+      if (this.links) {
+        console.log('has', this.pagination.hasNext())
+        return this.pagination.hasNext()
+      } else {
+        return false
       }
-      return true
     },
     disabled () {
       return !this.hasNext || this.busy
     }
   },
   created () {
-    this.pagination = Pagination.info(this.meta)
+    this.pagination = Pagination.info(this.links)
   },
   methods: {
     more () {
       try {
-        const p = Pagination.info(this.meta)
+        const p = this.pagination
         if (p.hasNext()) {
           this.$emit('next-params', p.nextPageParams())
         } else {
@@ -76,7 +75,6 @@ export default {
         }
       } catch (error) {
         console.error(error)
-        alert(error)
       }
     }
   }

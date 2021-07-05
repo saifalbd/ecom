@@ -4,6 +4,7 @@
       {{ item.off }}
     </div>
     <image-box
+      v-if="item.images"
       :class="imgClass"
       :images="item.images"
       :want-love="true"
@@ -66,9 +67,10 @@
             :value="item.cartQuantities"
             :has-on="hasOnCart"
             :item="item"
+            fill-width
             @input="addQuantityOnCart"
           >
-            {{ hasOnCart ? 'Added' : 'Add' }}
+            {{ hasOnCart ? 'Checkout' : 'Add' }}
           </add-to-cart-button>
         </client-only>
       </div>

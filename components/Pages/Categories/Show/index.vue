@@ -1,22 +1,26 @@
 <template>
   <div class="category">
-    <b-row>
-      <b-col cols="12">
-        <product-list :busy="busy" :items="items" :title="title" />
-      </b-col>
-      <client-only>
+    <client-only>
+      <CartSideIconBox />
+      <ItemsCanEmpty :show="items.length ? false : true && !busy" />
+      <b-row>
         <b-col cols="12">
+          <product-list :busy="busy" :items="items" :title="title" />
+        </b-col>
+
+        <b-col cols="12" class="mt-2">
           <pagination-more
-            v-if="loaded"
+            v-if="loaded && metaLinks"
             hide-on-no-next
-            :meta="meta"
+            :links="metaLinks"
             :busy="busy"
-            size="lg"
+            size="normal"
+            title="Load more"
             @next-params="$fetch($event)"
           />
         </b-col>
-      </client-only>
-    </b-row>
+      </b-row>
+    </client-only>
   </div>
 </template>
 
@@ -24,11 +28,14 @@
 import { validate, mixer } from '@/plugins/product/index'
 import PaginationMore from '@/components/Organized/PaginationMore.vue'
 import ProductList from '@/components/Organized/ProductList.vue'
-import restApi from '@/plugins/restApi'
+import CartSideIconBox from '@/components/Pragment/CartSideIconBox.vue'
+import ItemsCanEmpty from '@/components/Pragment/ItemsCanEmpty.vue'
 export default {
   components: {
     ProductList,
-    PaginationMore
+    PaginationMore,
+    CartSideIconBox,
+    ItemsCanEmpty
   },
   props: {
     title: {
@@ -41,7 +48,7 @@ export default {
       busy: false,
       loaded: false,
       items: [],
-      meta: {}
+      metaLinks: null
     }
   },
   async fetch (params = {}) {
@@ -52,12 +59,12 @@ export default {
     try {
       this.busy = true
 
-      const { data } = await restApi
-        .ctx(this)
-        .getIs()
-        .categoryShowItems(paramsIs)
+      const url = this.$apiUrl('app.category.show.items', paramsIs, false)
+      const { data } = await this.$axiosWithoutToken.get(url)
 
-      this.meta = data.meta
+      // console.log(data)
+
+      this.metaLinks = data.links
       this.loaded = true
 
       this.items = data.data.map((item) => {
@@ -72,9 +79,7 @@ export default {
   },
   computed: {},
 
-  created () {
-    // this.fethCategory()
-  },
+  created () {},
 
   methods: {}
 }

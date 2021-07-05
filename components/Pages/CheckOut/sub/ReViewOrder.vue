@@ -103,7 +103,8 @@ export default {
       return this.priceWithCode(this.sumOfPrices)
     },
     shipingCharge () {
-      return this.priceWithCode(this.sumOfPrices ? this.shipCharge : 0)
+      const charge = this.sumOfPrices ? this.shipCharge : 0
+      return this.priceWithCode(this.shipCharge)
     },
     totalPrice () {
       const shiping = this.sumOfPrices ? this.shipCharge : 0

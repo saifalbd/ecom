@@ -1,5 +1,6 @@
 <template>
   <div class="categories">
+    <CartSideIconBox />
     <div class="top-title">
       Categories
     </div>
@@ -23,7 +24,11 @@
 
 <script>
 // all categories list
+import CartSideIconBox from '@/components/Pragment/CartSideIconBox.vue'
 export default {
+  components: {
+    CartSideIconBox
+  },
   data () {
     return {
       categories: []
