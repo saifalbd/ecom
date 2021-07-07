@@ -7,9 +7,9 @@
       </b-col>
       <!-- <b-col cols="12">
         <pagination-more
-          v-if="searchCount"
+          v-if="searchCount && pagination"
           hide-on-no-next
-          :meta="pagination"
+          :links="pagination"
           :busy="searchBusy"
           size="lg"
           @next-params="fetchItems"
@@ -25,12 +25,13 @@
 
 <script>
 import { mapActions, mapState } from 'vuex'
+import { mixer } from '@/plugins/product/index'
 // import PaginationMore from './PaginationMore.vue'
 import ProductList from './ProductList.vue'
+
 export default {
   components: {
     ProductList
-    // PaginationMore
   },
 
   computed: {
@@ -43,7 +44,7 @@ export default {
       'searchView'
     ]),
     items () {
-      return this.searchItems
+      return this.searchItems.map(e => mixer(e))
     },
 
     title () {
@@ -54,14 +55,23 @@ export default {
     this.removeData()
   },
   methods: {
-    ...mapActions('Search', ['removeData', 'searchFetch']),
+    ...mapActions('Search', ['removeData', 'searchFetch', 'set_data']),
     onBack () {
       this.removeData()
     },
-    fetchItems (params) {
-      const value = this.searchValue
-      const obj = { ...params, value }
-      this.searchFetch(obj)
+    async fetchItems (params = {}) {
+      alert(5)
+      try {
+        const value = this.searchValue
+        const obj = { ...params, value }
+        console.log(params)
+        const url = this.$apiUrl('app.item.search', obj, false)
+        const { data } = await this.$axiosWithoutToken.get(url)
+
+        // this.set_data(data)
+      } catch (error) {
+        console.error(error)
+      }
     }
   }
 }

@@ -8,12 +8,10 @@ import {
   isUndefined
 } from 'lodash'
 
-import { restApi } from '@/plugins/restApi/index'
-
 const state = () => {
   return {
     searchItems: [],
-    pagination: {},
+    pagination: null,
     searchCount: 0,
     searchHistory: [],
     searchView: false,
@@ -31,17 +29,16 @@ const mutations = {
       if (!isPlainObject(payload)) {
         throw new Error('search data must be object')
       }
-      // if (!hasIn(payload, 'meta')) {
-      //   throw new Error('search data.meta not found')
-      // }
-      // if (!hasIn(payload.meta, 'total')) {
-      //   throw new Error('search data.meta.total not found')
-      // }
+      if (!hasIn(payload, 'links')) {
+        throw new Error('search data.meta not found')
+      }
+
       state.searchItems = payload.data.filter(item => item.images.length)
-     // state.pagination = payload.meta
+
+      state.pagination = payload.links
       state.searchCount = payload.data.length
     } catch (error) {
-      console.error(error)
+      console.log(error)
     }
   },
   SET_BUSY(state, payload) {
@@ -75,9 +72,7 @@ const mutations = {
   }
 }
 const actions = {
-  searchFetch({ commit }, payload) {
-  
-  },
+  searchFetch({ commit }, payload) {},
   removeData({ commit }) {
     commit('REMOVE_DATA')
   },

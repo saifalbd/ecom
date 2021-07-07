@@ -33,6 +33,7 @@
 <script>
 import { BIconSearch, BIconCart4 } from 'bootstrap-vue'
 import { mapActions, mapState, mapGetters } from 'vuex'
+
 export default {
   components: {
     BIconSearch,
@@ -83,6 +84,7 @@ export default {
       try {
         const url = this.$apiUrl('app.item.search', { search }, false)
         const { data } = await this.$axiosWithoutToken.get(url)
+
         this.set_data(data)
       } catch (error) {
         console.error(error)
