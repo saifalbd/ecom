@@ -1,18 +1,20 @@
 <template>
   <div>
-    <h1 v-if="error.statusCode === 404">
-      Page not found
-    </h1>
-    <h1 v-else>
-      An error occurred
-    </h1>
-    {{ error }}
+    <div v-if="error.statusCode === 404">
+      <div class="page404">
+        <img :src="page404">
+      </div>
+    </div>
+    <div v-else>
+      {{ error }}
+    </div>
   </div>
 </template>
 <script>
+import page404 from '@/assets/404.jpg'
 export default {
   components: {},
-  layout: 'basic',
+  layout: 'default',
   props: {
     error: {
       type: Object,
@@ -21,6 +23,7 @@ export default {
   },
   data () {
     return {
+      page404,
       pageTitle: 'patterson.travel'
     }
   },

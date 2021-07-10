@@ -64,9 +64,11 @@ export default {
   mounted () {
     this.$nextTick(() => {
       const header = document.getElementById('header')
-      const sticky = header.offsetTop
-      window.onscroll = () => {
-        this.myFunction(header, sticky)
+      if (header) {
+        const sticky = header.offsetTop
+        window.onscroll = () => {
+          this.myFunction(header, sticky)
+        }
       }
     })
   },
