@@ -67,7 +67,7 @@ export default {
       type: Array,
       required: true,
       validator (arr) {
-        return !(arr.findIndex(img => !(img.url && img.name)) > -1)
+        return !(arr.findIndex(img => !(img.url)) > -1)
       }
     }
 

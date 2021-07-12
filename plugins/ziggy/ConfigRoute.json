@@ -102,6 +102,13 @@
       "HEAD"
     ]
   },
+  "app.homePage.nextCategory": {
+    "uri": "json/next-category/{category_id}",
+    "methods": [
+      "GET",
+      "HEAD"
+    ]
+  },
   "app.homePage.moreItems": {
     "uri": "json/home-items",
     "methods": [
@@ -147,8 +154,15 @@
       "product": "id"
     }
   },
-  "app.orders": {
+  "app.order.index": {
     "uri": "json/orders",
+    "methods": [
+      "GET",
+      "HEAD"
+    ]
+  },
+  "app.order.show": {
+    "uri": "json/orders/{order_id}",
     "methods": [
       "GET",
       "HEAD"
@@ -340,21 +354,27 @@
       "DELETE"
     ]
   },
-  "app.user.profile.update": {
-    "uri": "json/user/profile/{profile}",
+  "app.user.profile.update.thumbnail": {
+    "uri": "json/user/profile/thumbnail",
     "methods": [
-      "PUT",
-      "PATCH"
-    ],
-    "bindings": {
-      "user": "id"
-    }
+      "PUT"
+    ]
   },
   "app.user.profile.show": {
     "uri": "json/user/profile/{profile}",
     "methods": [
       "GET",
       "HEAD"
+    ],
+    "bindings": {
+      "user": "id"
+    }
+  },
+  "app.user.profile.update": {
+    "uri": "json/user/profile/{profile}",
+    "methods": [
+      "PUT",
+      "PATCH"
     ],
     "bindings": {
       "user": "id"
@@ -412,7 +432,10 @@
     "methods": [
       "GET",
       "HEAD"
-    ]
+    ],
+    "bindings": {
+      "order": "id"
+    }
   },
   "app.payment.index": {
     "uri": "json/payments",

@@ -63,16 +63,5 @@ export const schema = yup.object().shape({
   specification: yup.array('specification must be array'),
   variant_options: yup.array(),
   available_variant_options: yup.array()
-  // group: yup.object().shape({
-  //   id: id('product group'),
-  //   unit,
-  //   brand,
-  //   categories,
-  //   images,
-  //   description: yup.string().nullable(),
-  //   specification: yup.array('specification must be array'),
-  //   available_variant_options: yup.array(
-  //     'available_variant_option must be array'
-  //   )
-  // })
+
 })

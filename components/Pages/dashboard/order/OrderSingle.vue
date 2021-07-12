@@ -6,9 +6,16 @@
     >
       <b-col cols="12" class="h4">
         <div>
-          <span>Order ID : </span><span class="order_id">
+          <span>Order ID : </span>
+          <b-link
+            :to="{
+              name: 'dashboard-orders-order',
+              params: { order: order.order_id }
+            }"
+            class="order_id"
+          >
             {{ order.order_id }}
-          </span>
+          </b-link>
         </div>
         <div class="h5">
           Items 8 {{ statusVariant }}

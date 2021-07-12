@@ -4,7 +4,7 @@
       {{ item.off }}
     </div>
     <image-box
-      v-if="item.images"
+      v-if="item.images && item.images.length"
       :class="imgClass"
       :images="item.images"
       :want-love="true"

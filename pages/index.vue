@@ -39,13 +39,10 @@ import OfferSlider from '@/components/Pages/Index/Sub/OfferSlider.vue'
 import ProductSlider from '@/components/Pages/Index/Sub/ProductSlider.vue'
 import TopCarosole from '@/components/Pages/Index/Sub/TopCarosole.vue'
 import ProductNoSlider from '@/components/Pages/Index/Sub/ProductNoSlider.vue'
-import {
-  methods
-} from '@/components/Pages/Index/Internal/fetchCollectionAll.js'
+import { methods } from '@/components/Pages/Index/Internal/fetchCollectionAll.js'
 import { hasIn } from 'lodash'
 import { mixer } from '@/plugins/product/index'
 export default {
-  // mixins: [fetchColletions],
   components: {
     TopCarosole,
     OfferSlider,
@@ -60,7 +57,7 @@ export default {
       busy: false,
       banners: [],
       offers: [],
-      // categories: [],
+      categories: [],
       // vendors: [],
       collection: []
     }
@@ -91,7 +88,7 @@ export default {
         throw 'data.collection must be Array'
       }
 
-      // this.categories = data.categories
+      this.categories = data.categories
 
       this.offers = data.offers
       this.banners = data.banners
@@ -111,14 +108,11 @@ export default {
       this.$fetch()
     }
   },
-  mounted () {},
-  created () {
-    //  await this.fetchBannars();
-    // await this.fetchOffers();
-    // await this.fetchFetureds();
-    // await this.fetchRecents();
-    // await this.fetchTrandring();
+
+  mounted () {
+    this.fetchNextAll()
   },
+  created () {},
 
   methods
 }

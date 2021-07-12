@@ -1,7 +1,7 @@
+/* eslint-disable camelcase */
 // import { axiosWithoutToken } from '@/plugins/axios'
 import { validate, mixer } from '@/plugins/product/index'
-import { hasIn, isUndefined } from 'lodash'
-import { restApi } from '@/plugins/restApi/index'
+import { hasIn, isUndefined, head } from 'lodash'
 
 const itemsMixer = (items) => {
   return items.map((item) => {
@@ -96,5 +96,40 @@ export const methods = {
       console.error(error)
     }
     obj.busy = false
+  },
+  nextCategoryId () {
+    const fetchedCatagories = this.collection.map(item =>
+      parseInt(item.meta.category_id)
+    )
+    const nextAll = this.categories.filter((item) => {
+      return !fetchedCatagories.includes(parseInt(item))
+    })
+    return head(nextAll)
+  },
+  async nextCategoryItems (category_id) {
+    try {
+      const url = this.$apiUrl(
+        'app.homePage.nextCategory',
+        { category_id },
+        false
+      )
+      const { data } = await this.$axiosWithoutToken.get(url)
+
+      data.busy = false
+      data.data = itemsMixer(data.data)
+      this.collection.push(data)
+      return Promise.resolve({ data })
+    } catch (error) {
+      return Promise.reject(error)
+    }
+  },
+  async fetchNextAll () {
+    const cats = this.categories
+    for (let index = 0; index < cats.length; index++) {
+      const next = this.nextCategoryId()
+      if (next) {
+        await this.nextCategoryItems(next)
+      }
+    }
   }
 }

@@ -1,8 +1,8 @@
-import { schema } from './Schema'
+// import { schema } from './Schema'
 
 export default (item) => {
   try {
-    schema.validate(item)
+    // schema.validate(item)
 
     return item
   } catch (error) {

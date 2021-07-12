@@ -129,7 +129,7 @@ export default {
     },
     async fetchOrders () {
       try {
-        const url = this.$apiUrl('app.dashboard.order', {}, false)
+        const url = this.$apiUrl('app.order.index', {}, false)
         const { data } = await this.$authAxios(this.$auth).get(url)
 
         this.orders = data.data
