@@ -20,16 +20,11 @@
           <b-tabs
             card
             fill
-            nav-wrapper-class="h3 font-weight-bold text-success card-title"
+            nav-wrapper-class="font-weight-bold text-success card-title"
           >
             <b-tab title="Summary" active>
               <b-card-text>
                 <specifications :items="item.specification" />
-              </b-card-text>
-            </b-tab>
-            <b-tab title="Description">
-              <b-card-text>
-                {{ item.description }}
               </b-card-text>
             </b-tab>
             <b-tab title="Review">

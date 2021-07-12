@@ -5,7 +5,7 @@
         <product-title :title="item.title" class="lg" :slug="item.id" />
       </b-col>
       <b-col cols="12" class="mt-2 mb-2">
-        <categories-links size="lg" :categories="item.categories" />
+        <category-link size="lg" :category="item.category" />
       </b-col>
 
       <b-col cols="12" class="mt-2 mb-2">
@@ -95,7 +95,7 @@ import ProductTitle from '@/components/Pragment/ProductTitle.vue'
 import PriceTag from '@/components/Pragment/PriceTag.vue'
 import AddToCartButton from '@/components/Pragment/AddToCartButton.vue'
 // import QuantityGroupAdder from '@/components/Pragment/QuantityGroupAdder.vue'
-import CategoriesLinks from '@/components/Pragment/CategoriesLinks.vue'
+import CategoryLink from '@/components/Pragment/CategoryLink.vue'
 import VariantsSelect from '@/components/Pragment/VariantsSelect.vue'
 import QuantityGroupAdderWithUnit from '@/components/Pragment/QuantityGroupAdderWithUnit.vue'
 import { BIconTrashFill } from 'bootstrap-vue'
@@ -106,7 +106,7 @@ export default {
     PriceTag,
     AddToCartButton,
     // QuantityGroupAdder,
-    CategoriesLinks,
+    CategoryLink,
     ProductTitle,
     VariantsSelect,
     QuantityGroupAdderWithUnit

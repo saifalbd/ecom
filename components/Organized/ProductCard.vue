@@ -28,7 +28,7 @@
       <div>
         <product-title :title="item.title" :slug="item.id" />
 
-        <categories-links v-if="showCategory" :categories="item.categories" />
+        <category-link v-if="showCategory" :category="item.category" />
         <!-- <h6 class="card-subtitle mb-2 text-muted">Style: VA33TXRJ5</h6> -->
         <!-- <p class="card-text mt-1">
           {{ str_take(item.description) }}
@@ -83,7 +83,7 @@
 import { isPlainObject, hasIn, head } from 'lodash'
 import VariantsSelect from '../Pragment/VariantsSelect.vue'
 import AddToCartButton from '../Pragment/AddToCartButton.vue'
-import CategoriesLinks from '../Pragment/CategoriesLinks.vue'
+import CategoryLink from '../Pragment/CategoryLink.vue'
 import ProductTitle from '../Pragment/ProductTitle.vue'
 import ImageBox from '../Pragment/ImageBox.vue'
 
@@ -91,7 +91,7 @@ export default {
   components: {
     VariantsSelect,
     AddToCartButton,
-    CategoriesLinks,
+    CategoryLink,
     ProductTitle,
     ImageBox
   },

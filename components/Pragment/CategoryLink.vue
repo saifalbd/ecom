@@ -1,17 +1,15 @@
 <template>
   <b-card-sub-title class="category-links">
     <span>
-      Categories:
+      Category:
     </span>
     <b-link
-      v-for="(c, index) in categories"
-      :key="index"
       :to="{
         name: 'categories-category',
-        params: { category: c.slug }
+        params: { category: category.slug }
       }"
     >
-      {{ c.title }}
+      {{ category.title }}
     </b-link>
   </b-card-sub-title>
 </template>
@@ -19,7 +17,7 @@
 <script>
 export default {
   props: {
-    categories: {
+    category: {
       type: Array,
       required: true
     }

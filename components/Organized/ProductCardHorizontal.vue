@@ -17,7 +17,7 @@
           :class="titleClass"
         />
 
-        <categories-links v-if="showCategory" :categories="item.categories" />
+        <category-link v-if="showCategory" :category="item.category" />
       </div>
 
       <div class="card-text text-left mt-0">
@@ -127,7 +127,7 @@ import { isPlainObject } from 'lodash'
 import ImageBox from '../Pragment/ImageBox.vue'
 import PriceTag from '../Pragment/PriceTag.vue'
 import AddToCartButton from '../Pragment/AddToCartButton.vue'
-import CategoriesLinks from '../Pragment/CategoriesLinks.vue'
+import CategoryLink from '../Pragment/CategoryLink.vue'
 import ProductTitle from '../Pragment/ProductTitle.vue'
 import QuantityGroupAdderWithUnit from '../Pragment/QuantityGroupAdderWithUnit.vue'
 
@@ -139,7 +139,7 @@ export default {
     BIconTrashFill,
 
     QuantityGroupAdderWithUnit,
-    CategoriesLinks,
+    CategoryLink,
     ProductTitle
   },
 
