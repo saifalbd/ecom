@@ -123,6 +123,11 @@ export default {
       this.order = data
     } catch (error) {
       console.error(error)
+      if (error.response) {
+        if (error.response.status === 404) {
+          this.$router.push({ name: 'not-found' })
+        }
+      }
     }
     this.busy = false
   },
