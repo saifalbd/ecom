@@ -10,12 +10,6 @@ import page404 from '@/assets/404.jpg'
 export default {
   components: {},
   layout: 'default',
-  props: {
-    error: {
-      type: Object,
-      required: true
-    }
-  },
   data () {
     return {
       page404,
@@ -29,5 +23,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss"></style>
