@@ -11,14 +11,19 @@ export default {
   async asyncData ({ $apiUrl, params, $axios }) {
     // eslint-disable-next-line camelcase
     const category_slug = params.category
-    const paramsIs = { category_slug }
+    const paramsIs = {
+      category_slug
+    }
     const url = $apiUrl('app.category.show', paramsIs, false)
     const res = await $axios.get(url)
 
     const meta = res.data.meta
     const title = res.data.title
 
-    return { meta, title }
+    return {
+      meta,
+      title
+    }
   },
   head () {
     const meta = this.meta
@@ -29,7 +34,11 @@ export default {
       const hid = x
       const name = x
       const content = meta[x]
-      metaArr.push({ hid, name, content })
+      metaArr.push({
+        hid,
+        name,
+        content
+      })
     }
     return {
       title,

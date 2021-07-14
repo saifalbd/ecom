@@ -5,7 +5,12 @@
       <ItemsCanEmpty :show="items.length ? false : true && !busy" />
       <b-row>
         <b-col cols="12">
-          <product-list :busy="busy" :items="items" :title="title" />
+          <product-list
+            :busy="busy"
+            :settings="settings"
+            :items="items"
+            :title="title"
+          />
         </b-col>
 
         <b-col cols="12" class="mt-2">
@@ -48,7 +53,8 @@ export default {
       busy: false,
       loaded: false,
       items: [],
-      metaLinks: null
+      metaLinks: null,
+      settings: {}
     }
   },
   async fetch (params = {}) {
@@ -65,6 +71,7 @@ export default {
       // console.log(data)
 
       this.metaLinks = data.links
+      this.settings = data.meta.settings
       this.loaded = true
 
       this.items = data.data.map((item) => {

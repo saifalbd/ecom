@@ -3,7 +3,7 @@
     <b-row v-if="searchCount">
       <b-col cols="12">
         <!-- {{ items }} -->
-        <product-list :title="title" :items="items" />
+        <product-list :title="title" :items="items" :settings="settings" />
       </b-col>
       <!-- <b-col cols="12">
         <pagination-more
@@ -41,7 +41,8 @@ export default {
       'searchValue',
       'searchCount',
       'pagination',
-      'searchView'
+      'searchView',
+      'settings'
     ]),
     items () {
       return this.searchItems.map(e => mixer(e))
@@ -60,7 +61,6 @@ export default {
       this.removeData()
     },
     async fetchItems (params = {}) {
-      alert(5)
       try {
         const value = this.searchValue
         const obj = { ...params, value }

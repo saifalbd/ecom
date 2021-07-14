@@ -6,7 +6,12 @@
         <b-card-title v-text="vendor.name" />
       </b-col>
       <b-col v-for="cat in vendor.categories" :key="cat.id" cols="12">
-        <product-list :busy="busy" :items="cat.items" :title="cat.title" />
+        <product-list
+          :busy="busy"
+          :items="items(cat.items.data)"
+          :title="cat.title"
+          :settings="cat.items.meta.settings"
+        />
       </b-col>
     </b-row>
   </div>
@@ -14,6 +19,7 @@
 
 <script>
 import ProductList from '@/components/Organized/ProductList.vue'
+import { mixer } from '@/plugins/product/index'
 export default {
   components: {
     ProductList
@@ -44,6 +50,11 @@ export default {
     // Call fetch again if last fetch more than 30 sec ago
     if (this.$fetchState.timestamp <= Date.now() - 30000) {
       this.$fetch()
+    }
+  },
+  methods: {
+    items (items) {
+      return items.map(e => mixer(e))
     }
   }
 }

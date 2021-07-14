@@ -12,6 +12,7 @@ const state = () => {
   return {
     searchItems: [],
     pagination: null,
+    settings:{},
     searchCount: 0,
     searchHistory: [],
     searchView: false,
@@ -33,9 +34,14 @@ const mutations = {
         throw new Error('search data.meta not found')
       }
 
-      state.searchItems = payload.data.filter(item => item.images.length)
+      const { data, links ,meta} = payload;
+      state.searchItems = data.filter(item => item.images.length)
 
-      state.pagination = payload.links
+
+      state.pagination = links
+      if(meta && meta.settings){
+        state.settings =meta.settings;
+      }
       state.searchCount = payload.data.length
     } catch (error) {
       console.log(error)

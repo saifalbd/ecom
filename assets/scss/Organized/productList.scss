@@ -1,0 +1,70 @@
+$xSmall:576px;
+$small:576px;
+$medium:768px;
+$large:992px;
+$xLarge:1200px;
+$xxLarge:1400px;
+
+@mixin titleSize($index,$size:1.2rem) {
+  .product-item {
+    .rd-item-name {
+      font-size: $size - ($index /50);
+      line-height: $size - ($index /50);
+    }
+  }
+
+}
+
+@mixin mediaMix($infix) {
+
+  @for $i from 1 through $infix {
+    &.xSmall-#{$i} {
+      @media (max-width: $small) {
+        grid-template-columns: repeat($i, calc(100% / #{$i}));
+        @include titleSize($i,1rem);
+      }
+    }
+
+    &.small-#{$i} {
+      @media (min-width: $small) {
+        grid-template-columns: repeat($i, calc(100% / #{$i}));
+        @include titleSize($i);
+      }
+    }
+
+    &.medium-#{$i} {
+      @media (min-width: $medium) {
+        grid-template-columns: repeat($i, calc(100% / #{$i}));
+        @include titleSize($i);
+      }
+    }
+
+    &.large-#{$i} {
+      @media (min-width: $large) {
+        grid-template-columns: repeat($i, calc(100% / #{$i}));
+        @include titleSize($i);
+      }
+    }
+
+    &.xLarge-#{$i} {
+      @media (min-width: $xLarge) {
+        grid-template-columns: repeat($i, calc(100% / #{$i}));
+        @include titleSize($i);
+      }
+    }
+
+    &.xxLarge-#{$i} {
+      @media (min-width: $xxLarge) {
+        grid-template-columns: repeat($i, calc(100% / #{$i}));
+        @include titleSize($i);
+      }
+    }
+
+  }
+}
+
+.product-list {
+  display: grid;
+
+  @include mediaMix(10);
+}

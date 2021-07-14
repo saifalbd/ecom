@@ -1,6 +1,6 @@
 <template>
   <b-aspect :aspect="aspect">
-    <div class="image-box">
+    <div class="image-box" :style="`background-image: url('${placeholder}')`">
       <div v-if="wantLove" class="is-love" :class="{ isLoved }">
         <slot name="want-love">
           <BIconHeartFill />
@@ -26,7 +26,7 @@
 <script>
 import { head, shuffle, has } from 'lodash'
 import { BIconHeartFill } from 'bootstrap-vue'
-import placeholder from '@/assets/placeholder.svg'
+import placeholder from '@/assets/image-placeholder.svg'
 export default {
   name: 'ImageBox',
   components: {

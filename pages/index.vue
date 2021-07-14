@@ -24,6 +24,7 @@
           :busy="obj.busy"
           :items="obj.data"
           :name="obj.meta.display_title"
+          :settings="obj.meta.settings"
           @clickMore="loadMoreItems(index)"
         />
       </b-col>
@@ -67,7 +68,7 @@ export default {
   async fetch () {
     try {
       const url = this.$apiUrl('app.homePage', {}, false)
-
+      console.log(url)
       const { data } = await this.$axiosWithoutToken.get(url)
 
       if (!hasIn(data, 'banners')) {

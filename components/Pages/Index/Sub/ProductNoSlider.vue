@@ -20,7 +20,7 @@
       </b-button-group>
     </div>
 
-    <div class="product-list" :class="{ horizontal: !isBox }">
+    <div class="product-list" :class="{ horizontal: !isBox, ...breakpoint }">
       <div v-for="(item, index) in items" :key="item.id" class="product-item">
         <product-card
           v-if="isBox"
@@ -86,6 +86,12 @@ export default {
       type: Array,
       required: true
     },
+    settings: {
+      type: Object,
+      default () {
+        return {}
+      }
+    },
     showMore: {
       type: Boolean,
       required: true
@@ -107,6 +113,19 @@ export default {
 
         isNavigation: false
       }
+    }
+  },
+  computed: {
+    breakpoint () {
+      const { breakpoint } = this.settings
+      if (!breakpoint) { return {} }
+      const result = {}
+
+      for (const key in breakpoint) {
+        result[`${key}-${breakpoint[key]}`] = true
+      }
+
+      return result
     }
   },
   created () {},

@@ -21,7 +21,7 @@
     </div>
 
     <b-overlay :show="busy" tag="div">
-      <div class="product-list" :class="{ horizontal: !isBox }">
+      <div class="product-list" :class="{ horizontal: !isBox, ...breakpoint }">
         <div v-for="(item, index) in items" :key="item.id" class="product-item">
           <product-card
             v-if="isBox"
@@ -70,6 +70,12 @@ export default {
     busy: {
       type: Boolean,
       default: false
+    },
+    settings: {
+      type: Object,
+      default () {
+        return {}
+      }
     }
   },
   data () {
@@ -78,6 +84,19 @@ export default {
     }
   },
   computed: {
+    breakpoint () {
+      const { breakpoint } = this.settings
+      if (!breakpoint) {
+        return {}
+      }
+      const result = {}
+
+      for (const key in breakpoint) {
+        result[`${key}-${breakpoint[key]}`] = true
+      }
+
+      return result
+    },
     cols () {
       if (this.isBox) {
         return 'col-auto'

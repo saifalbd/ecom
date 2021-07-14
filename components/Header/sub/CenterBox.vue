@@ -82,7 +82,13 @@ export default {
       this.set_busy(true)
       this.fetchDone = false
       try {
-        const url = this.$apiUrl('app.item.search', { search }, false)
+        const url = this.$apiUrl(
+          'app.item.search',
+          {
+            search
+          },
+          false
+        )
         const { data } = await this.$axiosWithoutToken.get(url)
 
         this.set_data(data)
