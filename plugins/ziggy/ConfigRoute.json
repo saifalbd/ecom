@@ -387,6 +387,12 @@
       "HEAD"
     ]
   },
+  "app.dirtyCheck": {
+    "uri": "json/dirty-check",
+    "methods": [
+      "POST"
+    ]
+  },
   "app.orderPlace.index": {
     "uri": "json/palce-order",
     "methods": [

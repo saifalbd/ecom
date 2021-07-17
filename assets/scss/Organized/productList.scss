@@ -15,47 +15,53 @@ $xxLarge:1400px;
 
 }
 
-@mixin mediaMix($infix) {
+@mixin columns($i,$gap) {
+  $w: 100%/$i;
+  grid-template-columns: repeat($i, calc(#{$w} - #{$gap}));
+}
+
+@mixin mediaMix($infix,$gap:0.5rem) {
+
 
   @for $i from 1 through $infix {
     &.xSmall-#{$i} {
       @media (max-width: $small) {
-        grid-template-columns: repeat($i, calc(100% / #{$i}));
+        @include columns($i,$gap);
         @include titleSize($i,1rem);
       }
     }
 
     &.small-#{$i} {
       @media (min-width: $small) {
-        grid-template-columns: repeat($i, calc(100% / #{$i}));
+        @include columns($i,$gap);
         @include titleSize($i);
       }
     }
 
     &.medium-#{$i} {
       @media (min-width: $medium) {
-        grid-template-columns: repeat($i, calc(100% / #{$i}));
+        @include columns($i,$gap);
         @include titleSize($i);
       }
     }
 
     &.large-#{$i} {
       @media (min-width: $large) {
-        grid-template-columns: repeat($i, calc(100% / #{$i}));
+        @include columns($i,$gap);
         @include titleSize($i);
       }
     }
 
     &.xLarge-#{$i} {
       @media (min-width: $xLarge) {
-        grid-template-columns: repeat($i, calc(100% / #{$i}));
+        @include columns($i,$gap);
         @include titleSize($i);
       }
     }
 
     &.xxLarge-#{$i} {
       @media (min-width: $xxLarge) {
-        grid-template-columns: repeat($i, calc(100% / #{$i}));
+        @include columns($i,$gap);
         @include titleSize($i);
       }
     }
@@ -64,7 +70,9 @@ $xxLarge:1400px;
 }
 
 .product-list {
+  $gap:0.3rem;
+  box-sizing: border-box;
   display: grid;
-
-  @include mediaMix(10);
+  grid-gap:  $gap;
+  @include mediaMix(10, $gap);
 }

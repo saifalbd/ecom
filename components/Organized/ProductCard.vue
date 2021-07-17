@@ -12,7 +12,7 @@
     >
       <b-button
         squared
-        :to="{ name: 'products-slug', params: { slug: item.id } }"
+        :to="{ name: 'products-slug', params: { slug: item.slug } }"
       >
         show details
       </b-button>
@@ -26,7 +26,7 @@
     </div>
     <div class="card-body d-flex flex-column justify-content-between">
       <div>
-        <product-title :title="item.title" :slug="item.id" />
+        <product-title :title="item.title" :slug="item.slug" />
 
         <category-link v-if="showCategory" :category="item.category" />
         <!-- <h6 class="card-subtitle mb-2 text-muted">Style: VA33TXRJ5</h6> -->
