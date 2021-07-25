@@ -28,18 +28,38 @@
           <div class="input-box">
             <label for="">
               <span>
-                Username or Email or PhoneNumber
+                new Password
               </span>
             </label>
             <Vp
               v-slot="{ errors }"
-              name="user name"
-              vid="email"
+              name="new password"
+              vid="password"
               rules="required"
               class="input-parent"
               tag="div"
             >
-              <input v-model="loginForm.email">
+              <input v-model="loginForm.password">
+              <span v-if="errors.length" class="invalid">
+                {{ errors[0] }}
+              </span>
+            </Vp>
+          </div>
+          <div class="input-box">
+            <label for="">
+              <span>
+                ReType Password
+              </span>
+            </label>
+            <Vp
+              v-slot="{ errors }"
+              name="reype password"
+              vid="password_confirmation"
+              rules="required"
+              class="input-parent"
+              tag="div"
+            >
+              <input v-model="loginForm.password_confirmation">
               <span v-if="errors.length" class="invalid">
                 {{ errors[0] }}
               </span>
@@ -79,8 +99,41 @@ export default {
       vector,
       busy: false,
       loginForm: {
-        email: this.$isDev('user@gmail.com', '')
+        password: '',
+        password_confirmation: ''
       }
+    }
+  },
+  created () {
+    // eslint-disable-next-line camelcase
+    const { user_name, otp } = this.$route.query
+    // eslint-disable-next-line camelcase
+    if (!user_name && otp) {
+      this.$router.go(-1)
+      return false
+    }
+  },
+  methods: {
+    params () {
+      // eslint-disable-next-line camelcase
+      const { user_name, otp } = this.$route.query
+      return { user_name, otp, ...this.loginForm }
+    },
+    async onSubmit () {
+      try {
+        const params = this.params()
+        this.busy = true
+        const url = this.$apiUrl('app.newPassword', {}, false)
+
+        await this.$axiosWithoutToken.post(url, params)
+        this.$router.push({
+          name: 'login'
+        })
+      } catch (error) {
+        console.error(error)
+        this.$formVError({ error, vue: this, ref: 'form' })
+      }
+      this.busy = false
     }
   }
 }

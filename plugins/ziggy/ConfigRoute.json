@@ -24,6 +24,13 @@
       "PUT"
     ]
   },
+  "app.socialLinks": {
+    "uri": "json/social-links",
+    "methods": [
+      "GET",
+      "HEAD"
+    ]
+  },
   "app.aboutUs.show": {
     "uri": "json/about-us",
     "methods": [
@@ -95,6 +102,12 @@
       "DELETE"
     ]
   },
+  "app.dirtyCheck": {
+    "uri": "json/dirty-check",
+    "methods": [
+      "POST"
+    ]
+  },
   "app.homePage": {
     "uri": "json/home",
     "methods": [
@@ -136,6 +149,16 @@
       "GET",
       "HEAD"
     ]
+  },
+  "app.item.related": {
+    "uri": "json/related-items",
+    "methods": [
+      "GET",
+      "HEAD"
+    ],
+    "bindings": {
+      "product": "id"
+    }
   },
   "app.item.search": {
     "uri": "json/items-search",
@@ -235,6 +258,24 @@
     "methods": [
       "GET",
       "HEAD"
+    ]
+  },
+  "app.forgotPasswod": {
+    "uri": "json/forgot-passwod",
+    "methods": [
+      "POST"
+    ]
+  },
+  "app.otpValidate": {
+    "uri": "json/otp-validate",
+    "methods": [
+      "POST"
+    ]
+  },
+  "app.newPassword": {
+    "uri": "json/new-password",
+    "methods": [
+      "POST"
     ]
   },
   "app.item.review.index": {
@@ -385,12 +426,6 @@
     "methods": [
       "GET",
       "HEAD"
-    ]
-  },
-  "app.dirtyCheck": {
-    "uri": "json/dirty-check",
-    "methods": [
-      "POST"
     ]
   },
   "app.orderPlace.index": {

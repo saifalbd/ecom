@@ -9,7 +9,7 @@
       <offer-slider :busy="busy" :items="offers" />
     </client-only>
 
-    <b-row>
+    <b-row class="mb-2">
       <b-col v-for="(obj, index) in collection" :key="index" cols="12">
         <client-only v-if="obj.meta.with_slider">
           <product-slider

@@ -10,7 +10,7 @@
       :key="index"
       :class="{ 'has-child': m.subItems ? true : false }"
     >
-      <b-link>
+      <b-link :to="m.to">
         {{ m.title }}
       </b-link>
 
@@ -48,7 +48,7 @@ export default {
         },
         {
           title: 'About us',
-          to: {}
+          to: { name: 'aboutus' }
         }
       ]
     }

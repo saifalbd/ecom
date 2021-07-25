@@ -5,7 +5,7 @@ $large:992px;
 $xLarge:1200px;
 $xxLarge:1400px;
 
-@mixin titleSize($index,$size:1.2rem) {
+@mixin titleSize($index, $size:1.2rem) {
   .product-item {
     .rd-item-name {
       font-size: $size - ($index /50);
@@ -15,53 +15,53 @@ $xxLarge:1400px;
 
 }
 
-@mixin columns($i,$gap) {
+@mixin columns($i, $gap) {
   $w: 100%/$i;
   grid-template-columns: repeat($i, calc(#{$w} - #{$gap}));
 }
 
-@mixin mediaMix($infix,$gap:0.5rem) {
+@mixin mediaMix($infix, $gap:0.5rem) {
 
 
   @for $i from 1 through $infix {
     &.xSmall-#{$i} {
       @media (max-width: $small) {
-        @include columns($i,$gap);
-        @include titleSize($i,1rem);
+        @include columns($i, $gap);
+        @include titleSize($i, 1rem);
       }
     }
 
     &.small-#{$i} {
       @media (min-width: $small) {
-        @include columns($i,$gap);
+        @include columns($i, $gap);
         @include titleSize($i);
       }
     }
 
     &.medium-#{$i} {
       @media (min-width: $medium) {
-        @include columns($i,$gap);
+        @include columns($i, $gap);
         @include titleSize($i);
       }
     }
 
     &.large-#{$i} {
       @media (min-width: $large) {
-        @include columns($i,$gap);
+        @include columns($i, $gap);
         @include titleSize($i);
       }
     }
 
     &.xLarge-#{$i} {
       @media (min-width: $xLarge) {
-        @include columns($i,$gap);
+        @include columns($i, $gap);
         @include titleSize($i);
       }
     }
 
     &.xxLarge-#{$i} {
       @media (min-width: $xxLarge) {
-        @include columns($i,$gap);
+        @include columns($i, $gap);
         @include titleSize($i);
       }
     }
@@ -69,10 +69,10 @@ $xxLarge:1400px;
   }
 }
 
-.product-list {
-  $gap:0.3rem;
+.product-list:not(.horizontal) {
+  $gap: 0.3rem;
   box-sizing: border-box;
   display: grid;
-  grid-gap:  $gap;
+  grid-gap: $gap;
   @include mediaMix(10, $gap);
 }

@@ -75,7 +75,7 @@
               <span>
                 Password
               </span>
-              <a href="/password-reset">
+              <a href="/password/reset">
                 Forgot password
               </a>
             </label>

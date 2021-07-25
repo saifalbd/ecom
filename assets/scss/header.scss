@@ -202,7 +202,7 @@
   /**------------------------------------------------------------------------
  end middle
  ------------------------------------------------------------------------**/
-/**
+  /**
 START BOTTOM SMALL DEVICE
 **/
   .bottom {
@@ -278,7 +278,8 @@ START BOTTOM SMALL DEVICE
 
     .bottom {
       display: none;
-      &.show{
+
+      &.show {
         display: block;
       }
     }
@@ -301,6 +302,7 @@ START BOTTOM SMALL DEVICE
           display: none;
         }
       }
+
       .bottom {
         display: block;
       }
@@ -387,7 +389,20 @@ START BOTTOM SMALL DEVICE
 
               top: 100%;
 
-              >li {}
+              >li {
+                transition: transform 500ms;
+                transform: scale(1);
+
+                &:hover {
+                  transform: scale(1.1);
+
+                  a {
+                    color: var(--blue);
+
+                  }
+                }
+
+              }
             }
           }
 

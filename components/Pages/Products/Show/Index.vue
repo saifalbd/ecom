@@ -68,7 +68,22 @@ export default {
   data () {
     return {
       busy: false,
-      newRating: false
+      newRating: false,
+      items: []
+    }
+  },
+  created () {
+    this.relatedItems()
+  },
+  methods: {
+    async relatedItems () {
+      try {
+        const url = this.$apiUrl('app.item.related')
+        const { data } = await this.$axiosWithoutToken.get(url)
+        console.log(data)
+      } catch (error) {
+        console.error(error)
+      }
     }
   }
 }
