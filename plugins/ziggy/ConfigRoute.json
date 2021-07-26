@@ -108,6 +108,13 @@
       "POST"
     ]
   },
+  "app.topMenus": {
+    "uri": "json/top-menus",
+    "methods": [
+      "GET",
+      "HEAD"
+    ]
+  },
   "app.homePage": {
     "uri": "json/home",
     "methods": [

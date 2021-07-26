@@ -6,16 +6,18 @@
       </b-link>
     </li>
     <li
-      v-for="(m, index) in items"
+      v-for="(m, index) in menus"
       :key="index"
-      :class="{ 'has-child': m.subItems ? true : false }"
+      :class="{ 'has-child': m.sub_items ? true : false }"
     >
       <b-link :to="m.to">
         {{ m.title }}
       </b-link>
 
       <ul class="sub-items">
-        <li v-for="(sub, i) in m.subItems" :key="i">
+        <li v-for="(sub, i) in m.sub_items" :key="i">
+          <b-avatar size="sm" class="mr-1" :src="sub.src" />
+
           <b-link :to="sub.to">
             {{ sub.title }}
           </b-link>
@@ -28,79 +30,18 @@
 export default {
   data () {
     return {
-      items: [
-        {
-          title: 'Categories',
-          subItems: []
-        },
-        {
-          title: 'Vendors',
-          subItems: []
-        },
-        {
-          title: 'Brands',
-          subItems: []
-        },
-
-        {
-          title: 'Offers',
-          to: {}
-        },
-        {
-          title: 'About us',
-          to: { name: 'aboutus' }
-        }
-      ]
+      menus: []
     }
   },
   mounted () {
-    this.allCategories()
-    this.allVendors()
-    this.allBrands()
+    this.topMenus()
   },
   methods: {
-    async allCategories () {
+    async topMenus () {
       try {
-        const url = this.$apiUrl('app.category.index', {}, false)
+        const url = this.$apiUrl('app.topMenus', {}, false)
         const { data } = await this.$axiosWithoutToken.get(url)
-        this.items[0].subItems = data.data.map((c) => {
-          const name = 'categories-category'
-          const params = { category: c.slug }
-          const to = { name, params }
-          c.to = to
-          return c
-        })
-      } catch (error) {
-        console.error(error)
-      }
-    },
-    async allVendors () {
-      try {
-        const url = this.$apiUrl('app.vendor.index', {}, false)
-        const { data } = await this.$axiosWithoutToken.get(url)
-        this.items[1].subItems = data.data.map((c) => {
-          const name = 'vendors-vendor'
-          c.title = c.name
-          const params = { vendor: c.id }
-          const to = { name, params }
-          c.to = to
-          return c
-        })
-      } catch (error) {
-        console.error(error)
-      }
-    },
-    async allBrands () {
-      try {
-        const url = this.$apiUrl('app.brand.index', {}, false)
-        const { data } = await this.$axiosWithoutToken.get(url)
-        this.items[2].subItems = data.data.map((c) => {
-          const name = 'brands-brand'
-          const params = { brand: c.slug }
-          const to = { name, params }
-          c.to = to
-          return c
-        })
+        this.menus = data
       } catch (error) {
         console.error(error)
       }
