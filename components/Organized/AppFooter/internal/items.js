@@ -41,6 +41,7 @@ export const contacts = () => {
 }
 export const links = () => {
   const links = window.app.footer_links
+  console.log({ links })
   if (isUndefined(contacts)) {
     return false
   }

@@ -115,6 +115,34 @@
       "HEAD"
     ]
   },
+  "app.static.aboutUs": {
+    "uri": "json/static/aboutus",
+    "methods": [
+      "GET",
+      "HEAD"
+    ]
+  },
+  "app.static.policy": {
+    "uri": "json/static/policy",
+    "methods": [
+      "GET",
+      "HEAD"
+    ]
+  },
+  "app.static.refundPolicy": {
+    "uri": "json/static/refund-policy",
+    "methods": [
+      "GET",
+      "HEAD"
+    ]
+  },
+  "app.static.contractUs": {
+    "uri": "json/static/contractus",
+    "methods": [
+      "GET",
+      "HEAD"
+    ]
+  },
   "app.homePage": {
     "uri": "json/home",
     "methods": [

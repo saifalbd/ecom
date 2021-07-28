@@ -1,0 +1,46 @@
+.contactus {
+  .content {
+    display: grid;
+    grid-template-columns: 1fr;
+
+    .form-box {
+      margin: 2rem 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+
+      .item {
+        min-width: 600px;
+
+        .form-group {
+          margin-bottom: 0;
+          .form-control {
+            border: 2px solid black;
+          }
+        }
+      }
+    }
+
+    .map-box {
+      margin: 2rem 0;
+
+      iframe {
+        width: 100%;
+        height: 400px;
+      }
+    }
+  }
+
+  @media (min-width: 992px) {
+    .content {
+
+      .map-box {
+        iframe {
+          width: 100%;
+          height: 400px;
+        }
+      }
+    }
+  }
+}

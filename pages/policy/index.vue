@@ -7,29 +7,32 @@
       :ratio="info.imageRatio"
     />
     <div class="text-box">
-      <p v-for="(p, index) in info.contents" :key="index">
-        {{ p.text }}
-      </p>
+      <div v-for="(p, index) in info.contents" :key="index">
+        <h3>
+          {{ p.title }}
+        </h3>
+        <p>
+          {{ p.text }}
+        </p>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import placeholder from '@/assets/aboutus.jpg'
 import StaticBannerBox from '@/components/Organized/StaticBannerBox.vue'
 export default {
   components: {
     StaticBannerBox
   },
   async asyncData ({ $apiUrl, $axiosWithoutToken }) {
-    const url = $apiUrl('app.static.aboutUs', {}, false)
+    const url = $apiUrl('app.static.policy', {}, false)
     const { data } = await $axiosWithoutToken.get(url)
     const info = data
     return { info }
   },
   data () {
     return {
-      placeholder,
       info: null
     }
   }

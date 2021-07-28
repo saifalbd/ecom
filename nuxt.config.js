@@ -37,7 +37,7 @@ export default {
     // https://redcom.cloudAPI_TOKEN
     script: [
       {
-        src: `https://redcom.cloud/assets-media/${process.env.COMPANY_ID}/content/config-new.js`
+        src: `https://redcom.cloud/assets-media/${process.env.COMPANY_ID}/content/confignew.js`
       }
 
       // {
