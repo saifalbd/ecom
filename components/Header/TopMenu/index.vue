@@ -16,8 +16,7 @@
 
       <ul class="sub-items">
         <li v-for="(sub, i) in m.sub_items" :key="i">
-          <b-avatar size="sm" class="mr-1" :src="sub.src" />
-
+          <b-avatar v-if="sub.src" size="sm" class="mr-1" :src="sub.src" />
           <b-link :to="sub.to">
             {{ sub.title }}
           </b-link>

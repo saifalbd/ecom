@@ -392,6 +392,7 @@ START BOTTOM SMALL DEVICE
               >li {
                 transition: transform 500ms;
                 transform: scale(1);
+                text-align: left;
 
                 &:hover {
                   transform: scale(1.1);

@@ -68,7 +68,6 @@ export default {
   async fetch () {
     try {
       const url = this.$apiUrl('app.homePage', {}, false)
-      console.log(url)
       const { data } = await this.$axiosWithoutToken.get(url)
 
       if (!hasIn(data, 'banners')) {

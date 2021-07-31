@@ -184,6 +184,20 @@
       "HEAD"
     ]
   },
+  "app.author.index": {
+    "uri": "json/author",
+    "methods": [
+      "GET",
+      "HEAD"
+    ]
+  },
+  "app.author.show": {
+    "uri": "json/author/{author}",
+    "methods": [
+      "GET",
+      "HEAD"
+    ]
+  },
   "app.item.index": {
     "uri": "json/items",
     "methods": [
