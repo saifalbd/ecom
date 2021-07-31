@@ -143,6 +143,12 @@
       "HEAD"
     ]
   },
+  "app.static.postContract": {
+    "uri": "json/static/contractus",
+    "methods": [
+      "POST"
+    ]
+  },
   "app.homePage": {
     "uri": "json/home",
     "methods": [

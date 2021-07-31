@@ -72,7 +72,11 @@ export default {
         if (t.free_on <= total) {
           return { amount: 0 }
         } else {
-          return { amount: 0 }
+          const val =
+            this.paymentMethod === 'cash'
+              ? t.charge_on_hand
+              : t.charge_on_prepaid
+          return { amount: val }
         }
       }
     },

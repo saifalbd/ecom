@@ -11,6 +11,7 @@
               :number-of-items="numberOfItems()"
               :sum-of-prices="sumOfPrices()"
               :items="carts"
+              :payment-method="paymentMethod"
               @back="tabIndex = 0"
             />
           </b-col>

@@ -98,13 +98,13 @@
       @createdUser="$emit('createdUser', $event)"
       @done="addOrEdit"
     />
-    <Bkash
+    <!-- <Bkash
       v-if="bkashOption"
       v-model="bkashDialog"
       :option="bkashOption"
       @close="$emit('payment-close', true)"
       @done="$emit('payment-done', $event)"
-    />
+    /> -->
   </b-card>
 </template>
 
@@ -123,8 +123,8 @@ export default {
     ShipingAddressModel,
     ShipingAddressEdit,
     PaymentMethods,
-    ShipingAddressCreate,
-    Bkash
+    ShipingAddressCreate
+    // Bkash
   },
   props: {
     shipingAddresses: {

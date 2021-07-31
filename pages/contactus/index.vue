@@ -7,7 +7,7 @@
     />
     <div class="content">
       <b-overlay :show="busy">
-        <Vo ref="from" tag="div" class="form-box">
+        <Vo ref="form" tag="div" class="form-box">
           <Vp
             v-slot="{ valid, errors }"
             name="name"
@@ -96,11 +96,15 @@
               label-for="message"
               label-cols-sm="12"
             >
-              <b-form-textarea id="message" v-model="form.name" :size="size" />
+              <b-form-textarea
+                id="message"
+                v-model="form.message"
+                :size="size"
+              />
             </b-form-group>
           </Vp>
           <div class="text-center mt-3">
-            <b-button squared variant="primary">
+            <b-button squared variant="primary" @click.once="submit">
               Submit
             </b-button>
           </div>
@@ -122,6 +126,18 @@
 import placeholder from '@/assets/aboutus.jpg'
 import StaticBannerBox from '@/components/Organized/StaticBannerBox.vue'
 import { ValidationProvider, ValidationObserver } from 'vee-validate'
+const form = (v) => {
+  return {
+    name: v.$isDev('saiful islam', ''),
+    phone: v.$isDev('01714048043', ''),
+    email: v.$isDev('demo@gmail.com', ''),
+    subject: v.$isDev('contact message subject', ''),
+    message: v.$isDev(
+      ' Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro eos soluta ipsum maiores natus quaerat officia a. Ea repellendus rerum, similique hic sit, excepturi, cupiditate maxime dicta obcaecati ad doloremque?',
+      ''
+    )
+  }
+}
 export default {
   components: {
     StaticBannerBox,
@@ -133,18 +149,40 @@ export default {
       placeholder,
       size: 'normal',
       busy: false,
-      form: {
-        name: '',
-        phone: '',
-        email: '',
-        subject: '',
-        message: ''
-      }
+      form: form(this)
     }
   },
   methods: {
     vs (valid, errors) {
       return errors[0] ? false : valid ? true : null
+    },
+    params () {
+      const { name, phone, email, subject, message } = this.form
+      return { name, phone, email, subject, message }
+    },
+    makeToast (variant = 'success') {
+      this.$bvToast.toast('Toast body content', {
+        title: `Variant ${variant || 'default'}`,
+        variant,
+        solid: true
+      })
+    },
+    async submit () {
+      const valid = await this.$refs.form.validate()
+      if (!valid) {
+        return false
+      }
+      try {
+        this.busy = true
+        const url = this.$apiUrl('app.static.postContract', {}, false)
+        await this.$axiosWithoutToken.post(url, this.params())
+        this.makeToast()
+        this.form = form(this)
+      } catch (error) {
+        console.error(error)
+        this.$formVError({ error, vue: this, ref: 'form' })
+      }
+      this.busy = false
     }
   }
 }

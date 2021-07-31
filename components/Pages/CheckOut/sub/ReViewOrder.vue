@@ -91,6 +91,10 @@ export default {
     sumOfPrices: {
       type: [String, Number],
       required: true
+    },
+    paymentMethod: {
+      type: String,
+      default: 'cash'
     }
   },
   data () {

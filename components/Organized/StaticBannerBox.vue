@@ -21,7 +21,7 @@ export default {
     },
     ratio: {
       type: [String, Number],
-      default: 2
+      default: 4
     },
     title: {
       type: String,
