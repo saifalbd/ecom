@@ -53,60 +53,27 @@ export default {
     // CategoriesComponent,
     // VendorsComponent
   },
+  async asyncData ({ $axiosWithoutToken, $apiUrl }) {
+    const url = $apiUrl('app.homePage', {}, false)
+    const { data } = await $axiosWithoutToken.get(url)
+    const categories = data.categories
+    const offers = data.offers
+    const banners = data.banners
+    const collection = data.collection.map((item) => {
+      item.busy = false
+      item.data = item.data.map(obj => mixer(obj))
+      return item
+    })
+    return {
+      categories,
+      offers,
+      banners,
+      collection
+    }
+  },
   data () {
     return {
-      busy: false,
-      banners: [],
-      offers: [],
-      categories: [],
-      // vendors: [],
-      collection: []
-    }
-  },
-  fetchOnServer: true,
-
-  async fetch () {
-    try {
-      const url = this.$apiUrl('app.homePage', {}, false)
-      const { data } = await this.$axiosWithoutToken.get(url)
-
-      if (!hasIn(data, 'banners')) {
-        // eslint-disable-next-line no-throw-literal
-        throw 'data.banners missing'
-      }
-      if (!hasIn(data, 'offers')) {
-        // eslint-disable-next-line no-throw-literal
-        throw 'data.offers missing'
-      }
-
-      if (!hasIn(data, 'collection')) {
-        // eslint-disable-next-line no-throw-literal
-        throw 'data.collection missing'
-      }
-      if (!Array.isArray(data.collection)) {
-        // eslint-disable-next-line no-throw-literal
-        throw 'data.collection must be Array'
-      }
-
-      this.categories = data.categories
-
-      this.offers = data.offers
-      this.banners = data.banners
-      const collection = data.collection.map((item) => {
-        item.busy = false
-        item.data = item.data.map(obj => mixer(obj))
-        return item
-      })
-      this.collection = collection
-    } catch (error) {
-      console.error(error)
-    }
-  },
-  activated () {
-    // Call fetch again if last fetch more than 30 sec ago
-    if (this.$fetchState.timestamp <= Date.now() - 30000) {
-      this.$fetch()
-      this.fetchNextAll()
+      busy: false
     }
   },
 
