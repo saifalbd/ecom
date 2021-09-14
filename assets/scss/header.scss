@@ -165,6 +165,8 @@
           width: 100%;
           left: 0;
           z-index: 500;
+          padding: 0;
+          border-radius: 5px;
 
         }
 
@@ -174,13 +176,22 @@
 
         .srearchList:hover {
 
-          background: #CDDC39;
+          // background: #CDDC39;
 
         }
 
         .srearchList li {
           list-style-type: none;
-          line-height: 80px;
+          // line-height: 80px;
+         border-bottom: 1px solid black;
+         &:last-child{
+           border-bottom: none;
+         }
+         padding:0.3rem;
+         cursor: pointer;
+         &:hover{
+           background-color: #ffde96;
+         }
         }
 
       }

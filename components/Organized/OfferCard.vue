@@ -1,28 +1,34 @@
 <template>
-  <b-card
-    class="offer-card"
-    tag="a"
-    :href="item.link"
-    :img-src="item.thumbnail.url"
-    img-alt="Card image"
-    img-top
+  <a
+  :href="item.link"
+    class="card offer-card"
   >
-    <b-card-title tag="div" style="color:black">
-      {{ item.title }}
-    </b-card-title>
-    <b-card-sub-title tag="div" style="">
-      {{ item.subtitle }}
-    </b-card-sub-title>
-  </b-card>
+
+  <img
+     :src="item.thumbnail.url"
+     alt="Card image"
+     height="150"
+     class="card-img-top">
+    <div class="card-body">
+      <!----><!---->
+      <h4
+        tag="div"
+        class="card-title"
+        style="color: black;"
+        v-text="item.title"
+      />
+      <h6 tag="div" class="card-subtitle text-muted" v-text="item.subtitle" />
+    </div>
+  </a>
 </template>
 
 <script>
-import { BCardSubTitle } from 'bootstrap-vue'
 export default {
-  components: {
-    BCardSubTitle
-  },
   props: {
+    radio: {
+      type: Number,
+      required: true
+    },
     item: {
       type: Object,
       required: true

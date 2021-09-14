@@ -1,9 +1,7 @@
 <template>
   <ul id="topMenu" class="top-menu-box">
     <li class="home-link">
-      <b-link>
-        Home
-      </b-link>
+      <b-link> Home </b-link>
     </li>
     <li
       v-for="(m, index) in menus"
@@ -13,19 +11,17 @@
       <b-link :to="m.to">
         {{ m.title }}
       </b-link>
-
       <ul class="sub-items">
         <li v-for="(sub, i) in m.sub_items" :key="i">
           <b-avatar v-if="sub.src" size="sm" class="mr-1" :src="sub.src" />
-          <b-link :to="sub.to">
-            {{ sub.title }}
-          </b-link>
+          <b-link :to="sub.to" v-text="sub.title"></b-link>
         </li>
       </ul>
     </li>
   </ul>
 </template>
 <script>
+/* eslint no-trailing-spaces: "error" */
 export default {
   data () {
     return {

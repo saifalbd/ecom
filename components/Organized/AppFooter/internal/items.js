@@ -47,3 +47,5 @@ export const links = () => {
   }
   return links
 }
+
+export default {}

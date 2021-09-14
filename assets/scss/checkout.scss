@@ -266,3 +266,119 @@
   }
 
 }
+
+.checkout-cart {
+  .next-btn {
+    font-size: 1.2rem;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    background-color: #06112b;
+    color: gold;
+  }
+
+  .summary {
+    table {
+      width: 100%;
+
+      thead {
+        background-color: silver;
+        th{
+          padding:0.5rem;
+          text-transform: capitalize;
+        }
+      }
+      tbody{
+        tr{
+          border-bottom: 1px solid silver;
+        }
+      }
+    }
+
+    .downboard {
+      margin-top: 1rem;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+
+
+      .calculate-shiping {
+        .title {
+          font-size: 1.5rem;
+          margin: 0.5rem 0;
+        }
+
+        .cal-gorup {
+          width: auto;
+          margin-top: 0.5rem;
+          display: grid;
+          grid-template-columns: 1fr;
+        }
+
+        select,
+        input,
+        button {
+          padding: 0 0.5rem;
+          min-width: 13rem;
+          border-radius: 1rem;
+          font-size: 1.2rem;
+          border: 0.2rem solid rgba(96, 125, 139, 0.43);
+          line-height: 1rem;
+          outline: none;
+        }
+
+        button {
+          background-color: #06112b;
+          color: gold;
+          padding: 0.5rem;
+        }
+      }
+
+      .cart-summary {
+        background-color: #5244602e;
+        padding: 1rem;
+
+        .title {
+          font-size: 1.5rem;
+          margin: 0.5rem 0;
+        }
+
+        .details {
+          list-style: none;
+          display: flex;
+          flex-wrap: wrap;
+
+          .devider {
+            width: 100%;
+            height: 2px;
+            background-color: #00020a;
+          }
+
+          li {
+            width: 50%;
+            margin-top: 0.5rem;
+
+            &.bold {
+              font-weight: bold;
+              font-size: 1.2rem;
+            }
+          }
+        }
+      }
+    }
+  }
+  .payments{
+    .title-bar{
+      padding:0.1rem;
+      display: flex;
+      justify-content:space-between;
+      align-items: center;
+      cursor: pointer;
+      .left{
+        font-size: 1.5rem;
+        img{
+          height: 75px;
+        }
+      }
+    }
+  }
+}

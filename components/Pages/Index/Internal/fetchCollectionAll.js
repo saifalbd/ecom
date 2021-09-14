@@ -1,7 +1,6 @@
 /* eslint-disable camelcase */
-// import { axiosWithoutToken } from '@/plugins/axios'
-import { validate, mixer } from '@/plugins/product/index'
 import { hasIn, isUndefined, head } from 'lodash'
+import { validate, mixer } from '@/plugins/product/index'
 
 const itemsMixer = (items) => {
   return items.map((item) => {
@@ -133,3 +132,5 @@ export const methods = {
     }
   }
 }
+
+export default {}

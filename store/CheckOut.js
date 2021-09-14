@@ -2,10 +2,18 @@ import { isPlainObject, lowerCase, trim } from 'lodash'
 const state = () => ({
   selectedAddress: null,
   shipingChargesTariffs: [],
-  selectedTariff: null
+  selectedTariff: null,
+  paymentType: 'cash_on_hand',
+  createdUser: null
 })
 
 const mutations = {
+  PAYMENT_TYPE (state, payload) {
+    state.paymentType = payload
+  },
+  CREATED_USER (state, payload) {
+    state.createdUser = payload
+  },
   SELECTED_ADDRESS (state, payload) {
     state.selectedAddress = payload
   },
@@ -27,6 +35,12 @@ const mutations = {
 }
 
 const actions = {
+  set_payment_type ({ commit }, payload) {
+    commit('PAYMENT_TYPE', payload)
+  },
+  set_created_user ({ commit }, payload) {
+    commit('CREATED_USER', payload)
+  },
   set_selected_address ({ commit }, payload) {
     commit('SELECTED_ADDRESS', payload)
   },
@@ -45,12 +59,28 @@ const actions = {
     }
   }
 }
-
-const getters = {}
+const getters = {
+  charge: (state) => {
+    const { selectedTariff, paymentType } = state
+    if (!selectedTariff) {
+      return 0
+    }
+    // eslint-disable-next-line camelcase
+    const { charge_on_hand, charge_on_prepaid } = selectedTariff
+    if (paymentType === 'cash_on_hand') {
+      // eslint-disable-next-line camelcase
+      return charge_on_hand
+    } else {
+      // eslint-disable-next-line camelcase
+      return charge_on_prepaid
+    }
+  }
+}
 
 export default {
   namespaced: true,
   state,
   mutations,
-  actions
+  actions,
+  getters
 }

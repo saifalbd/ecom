@@ -1,23 +1,9 @@
 <template>
   <b-overlay :show="busy" tag="div" class="offer-slider">
-    <div class="top-bar">
-      <h4>{{ name }}</h4>
-      <b-button-group size="sm" class="flex-end">
-        <b-button
-          size="sm"
-          :variant="isBox ? 'primary' : 'outline-primary'"
-          @click="isBox = true"
-        >
-          <BIconBox />
-        </b-button>
-        <b-button
-          size="sm"
-          :variant="!isBox ? 'primary' : 'outline-primary'"
-          @click="isBox = false"
-        >
-          <BIconCardList />
-        </b-button>
-      </b-button-group>
+    <div v-show="name" class="top-bar">
+      <h4>
+        {{ name }}
+      </h4>
     </div>
 
     <splide
@@ -26,7 +12,7 @@
       :options="primaryOptions"
     >
       <splide-slide v-for="(item, index) in items" :key="index">
-        <offer-card :item="item" />
+        <offer-card :item="item" :radio="radio"/>
       </splide-slide>
     </splide>
   </b-overlay>
@@ -34,11 +20,14 @@
 
 <script>
 import OfferCard from '@/components/Organized/OfferCard.vue'
-import { BIconBox, BIconCardList } from 'bootstrap-vue'
 
 export default {
-  components: { OfferCard, BIconBox, BIconCardList },
+  components: { OfferCard },
   props: {
+    radio: {
+      type: Number,
+      required: true
+    },
     name: {
       type: String,
       default: 'Recent Offers'
@@ -64,7 +53,7 @@ export default {
         pagination: false,
         autoWidth: true,
 
-        arrows: true,
+        arrows: false,
 
         isNavigation: false
       }
@@ -72,6 +61,7 @@ export default {
   },
   created () {},
   mounted () {
+    this.primaryOptions.heightRatio = this.radio
     // this.$refs.primary.sync(this.$refs.secondary.splide);
   },
   methods: {}

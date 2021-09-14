@@ -61,3 +61,5 @@ export const update = async function () {
   }
   this.innerBusy = false
 }
+
+export default {}

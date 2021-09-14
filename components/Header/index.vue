@@ -1,5 +1,5 @@
 <template>
-  <div id="header" class="header">
+  <div id="header" class="header relative">
     <div class="top">
       <div class="sm-only-box">
         <div class="left">

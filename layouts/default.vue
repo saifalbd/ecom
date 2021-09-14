@@ -1,5 +1,5 @@
 <template>
-  <div class="guest-layout hind-siliguri-font">
+  <div class="guest-layout hind-siliguri-font relative">
     <client-only>
       <Header :categories="categories" />
     </client-only>
@@ -17,14 +17,15 @@
     <client-only>
       <CartSidebar />
     </client-only>
+    <div v-show="searchCount" :style="overlay" @click="overlaOff" />
   </div>
 </template>
 
 <script>
+import { mapState, mapActions } from 'vuex'
 import Header from '@/components/Header/index.vue'
 import AppFooter from '@/components/Organized/AppFooter/AppFooter.vue'
 import CartSidebar from '@/components/Organized/CartSidebar.vue'
-import { mapState, mapActions } from 'vuex'
 import SearchView from '@/components/Organized/SearchView.vue'
 
 export default {
@@ -32,26 +33,29 @@ export default {
   components: { Header, AppFooter, CartSidebar, SearchView },
   data () {
     return {
-      categories: []
+      categories: [],
+      showOverly: false,
+      overlay: {
+        backgroundColor: 'rgba(103, 58, 183,0.50)',
+        position: 'absolute',
+        top: 0,
+        bottom: 0,
+        left: 0,
+        right: 0,
+        zIndex: 10
+      }
     }
   },
   computed: {
-    ...mapState('Search', ['searchView'])
+    ...mapState('Search', ['searchView', 'searchCount'])
   },
 
   methods: {
     ...mapActions('Search', ['removeData']),
-    // async allCategories () {
-    //   try {
-    //     const { data } = await restApi
-    //       .ctx(this)
-    //       .getIs()
-    //       .categories()
-    //     this.categories = data.data
-    //   } catch (error) {
-    //     console.error(error)
-    //   }
-    // },
+    overlaOff () {
+      this.removeData()
+      this.showOverly = false
+    },
     myFunction (header, sticky) {
       if (window.pageYOffset > sticky) {
         header.classList.add('sticky')

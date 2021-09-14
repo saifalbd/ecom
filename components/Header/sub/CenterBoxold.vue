@@ -17,21 +17,22 @@
       <b-avatar variant="warning" class="avatarIcon" :text="countTxt" />
     </div>
     <ul v-if="show" class="srearchList">
-      <li
-        v-for="(item, index) in searchItems"
-        :key="index"
-        @click.stop="to(item)"
-      >
-        <b-avatar variant="info" :src="url(item.images)" class="mr-3" />
-        <span class="mr-auto">{{ item.name }}</span>
+      <li v-if="searchCount">
+        {{ searchCount }} items found for "{{ model }}"
+        <b-button link variant="outline-primary" @click="searchView">
+          show items
+        </b-button>
+      </li>
+      <li v-if="searchBusy && !searchCount">
+        wait ...
       </li>
     </ul>
   </div>
 </template>
+
 <script>
 import { BIconSearch, BIconCart4 } from 'bootstrap-vue'
 import { mapActions, mapState, mapGetters } from 'vuex'
-import { head } from 'lodash'
 
 export default {
   components: {
@@ -48,12 +49,7 @@ export default {
     }
   },
   computed: {
-    ...mapState('Search', [
-      'searchValue',
-      'searchCount',
-      'searchBusy',
-      'searchItems'
-    ]),
+    ...mapState('Search', ['searchValue', 'searchCount', 'searchBusy']),
     ...mapGetters('ShopingCart', ['countCarts', 'totalCartPrices']),
     countTxt () {
       return String(this.countCarts)
@@ -79,12 +75,6 @@ export default {
     }
   },
   methods: {
-    to (item) {
-      this.$router.push({ name: 'products-slug', params: { slug: item.slug } })
-    },
-    url (images) {
-      return head(images).url
-    },
     showCart () {
       this.$store.dispatch('toggleCart', true)
     },

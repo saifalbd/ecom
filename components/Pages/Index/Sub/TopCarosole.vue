@@ -17,6 +17,10 @@
 <script>
 export default {
   props: {
+    radio: {
+      type: Number,
+      required: true
+    },
     name: {
       type: String,
       default: 'ssksk'
@@ -36,7 +40,6 @@ export default {
 
       primaryOptions: {
         autoplay: true,
-        heightRatio: 1 / 2.5,
         pagination: false,
         arrows: true,
         type: 'loop',
@@ -47,6 +50,7 @@ export default {
   },
 
   mounted () {
+    this.primaryOptions.heightRatio = this.radio
     // this.$refs.primary.sync(this.$refs.secondary.splide);
   }
 }
