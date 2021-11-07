@@ -14,6 +14,10 @@ export default {
   target: 'server',
   ssr: true,
 
+  env: {
+    company_id: process.env.COMPANY_ID
+  },
+
   privateRuntimeConfig: {
     API_TOKEN: process.env.API_TOKEN
   },
@@ -160,6 +164,11 @@ export default {
   globalName: 'myCustomName',
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+    extend(config, ctx) {
+      if (ctx.isDev) {
+        config.devtool = ctx.isClient ? 'source-map' : 'inline-source-map'
+      }
+    },
     transpile: ['vue-plugins'],
     cssSourceMap: true,
     extractCSS: true,
