@@ -4,7 +4,7 @@ const routes = require('./ConfigRoute.json')
 // eslint-disable-next-line arrow-parens
 export default isProd => {
   // eslint-disable-next-line quotes
-  const host = 'https://redcom.cloud'
+  const host = 'http://redcomm.lara'
   return {
     url: host,
     port: null,

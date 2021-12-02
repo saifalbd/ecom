@@ -74,6 +74,7 @@ export default {
   },
   async asyncData ({ $axiosWithoutToken, $apiUrl }) {
     const url = $apiUrl('app.homePage', {}, false)
+    console.log(url)
     const { data } = await $axiosWithoutToken.get(url)
     const categories = data.categories
     const offers = data.offers
@@ -90,6 +91,7 @@ export default {
       item.data = item.data.map(obj => mixer(obj))
       return item
     })
+    console.log(collection)
     return {
       imageSettings,
       categories,
