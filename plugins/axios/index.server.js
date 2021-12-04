@@ -5,7 +5,7 @@ export default ({ $axios, redirect }, inject) => {
   }
 
   $axios.defaults.headers.common.company_id = company_id;
-  $axios.defaults.headers.common.baseURL = "http://redcomm.lara";
+  $axios.defaults.headers.common.baseURL = "https://redcom.cloud";
 
   inject("axiosWithoutToken", $axios);
 

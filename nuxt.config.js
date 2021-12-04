@@ -34,14 +34,14 @@ export default {
       {
         hid: 'og:image',
         name: 'og:image',
-        content: `http://redcomm.lara/assets-media/${process.env.COMPANY_ID}/logo/logo.png`
+        content: `https://redcom.cloud/assets-media/${process.env.COMPANY_ID}/logo/logo.png`
       }
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
-    // http://redcomm.laraAPI_TOKEN
+    // https://redcom.cloudAPI_TOKEN
     script: [
       {
-        src: `http://redcomm.lara/assets-media/${process.env.COMPANY_ID}/content/confignew.js`
+        src: `https://redcom.cloud/assets-media/${process.env.COMPANY_ID}/content/confignew.js`
       }
 
       // {
@@ -91,14 +91,14 @@ export default {
     { src: '~/plugins/vue-plugins.js', mode: 'client' },
     { src: '~/plugins/validate/formVError.client.js', mode: 'client' }
   ],
-  // 'http://redcomm.lara/json'
+  // 'https://redcom.cloud/json'
   proxy: {
     '/json': {
-      target: 'http://redcomm.lara',
+      target: 'https://redcom.cloud',
       pathRewrite: { '^/json': '/json' }
     },
     '/laravel': {
-      target: 'http://redcomm.lara',
+      target: 'https://redcom.cloud',
       pathRewrite: { '^/laravel': '/' }
     }
   },
@@ -191,7 +191,7 @@ export default {
   generate: {
     minify: false
     // routes () {
-    //   return axios.get('http://redcomm.lara/json/items?all=1').then((res) => {
+    //   return axios.get('https://redcom.cloud/json/items?all=1').then((res) => {
     //     return res.data.data.map((p) => {
     //       return '/products/' + p.id
     //     })

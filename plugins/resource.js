@@ -9,7 +9,7 @@ export default {
   async fetch (ctx) {
     try {
       const res = await ctx.$axios.get(
-        'http://redcomm.lara/assets-media/1/content/confignew.json'
+        'https://redcom.cloud/assets-media/1/content/confignew.json'
       )
       this.setResource(res.data, ctx)
     } catch (error) {
